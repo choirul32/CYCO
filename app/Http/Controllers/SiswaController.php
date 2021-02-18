@@ -24,9 +24,18 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        //
+        return view('siswa.tambah');
     }
 
+    public function create2()
+    {
+        return view('siswa.tambah2');
+    }
+
+    public function create3()
+    {
+        return view('siswa.tambah3');
+    }
     /**
      * Store a newly created resource in storage.
      *

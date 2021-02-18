@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class KondisiRumah extends Model
 {
-    protected $table = 'users';
+    protected $table = 'data_kondisi_rumah';
 
     public function getKepemilikanRumahAttribute(){
         switch ($this->kepemilikan_rumah) {

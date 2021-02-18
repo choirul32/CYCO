@@ -17,16 +17,16 @@ class CreateDataAkademikTable extends Migration
             $table->bigIncrements('id');
             $table->integer('siswa_id');
             $table->string('sekolah_asal')->nullable();
-            $table->string('alasan')->nullable();
+            $table->text('alasan')->nullable();
             $table->string('waktu_rencana')->nullable();
-            $table->string('rencana_keterima')->nullable();
-            $table->string('ekskul')->nullable();
-            $table->string('rencana_lulus')->nullable();
+            $table->text('rencana_keterima')->nullable();
+            $table->json('ekskul')->nullable();
+            $table->tinyInteger('rencana_lulus')->nullable();
             $table->string('cita_pekerjaan')->nullable();
             $table->string('cita_perguruan')->nullable();
             $table->string('cita_jurusan')->nullable();
-            $table->string('mapel_senangi')->nullable();
-            $table->string('nilai')->nullable();
+            $table->json('mapel_senangi')->nullable();
+            $table->json('nilai')->nullable();
             $table->timestamps();
         });
     }

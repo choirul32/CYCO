@@ -15,7 +15,7 @@ class CreateUploadBerkasTable extends Migration
     {
         Schema::create('upload_berkas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('siswa_id')->unsigned();
+            $table->bigInteger('siswa_id')->unsigned();
             $table->string('kategori');
             $table->integer('imageable_id')->unsigned();
             $table->string('imageable_type');

@@ -16,17 +16,17 @@ class CreateDataKondisiRumahTable extends Migration
         Schema::create('data_kondisi_rumah', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('siswa_id');
-            $table->integer('kepemilikan_rumah')->nullable();
-            $table->integer('sumber_listrik')->nullable();
-            $table->integer('daya_listrik')->nullable();
-            $table->integer('luas_tanah')->nullable();
-            $table->integer('luas_bangunan')->nullable();
-            $table->integer('jenis_atap')->nullable();
-            $table->integer('bahan_lantai')->nullable();
-            $table->integer('bahan_tembok')->nullable();
-            $table->integer('kamar_mandi')->nullable();
-            $table->integer('sumber_air')->nullable();
-            $table->integer('jumlah_tinggal')->nullable();
+            $table->tinyInteger('kepemilikan_rumah')->nullable();
+            $table->tinyInteger('sumber_listrik')->nullable();
+            $table->tinyInteger('daya_listrik')->nullable();
+            $table->tinyInteger('luas_tanah')->nullable();
+            $table->tinyInteger('luas_bangunan')->nullable();
+            $table->tinyInteger('jenis_atap')->nullable();
+            $table->tinyInteger('bahan_lantai')->nullable();
+            $table->tinyInteger('bahan_tembok')->nullable();
+            $table->tinyInteger('kamar_mandi')->nullable();
+            $table->tinyInteger('sumber_air')->nullable();
+            $table->tinyInteger('jumlah_tinggal')->nullable();
             $table->timestamps();
         });
     }

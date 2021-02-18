@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>Data Tables | Xoric - Responsive Bootstrap 4 Admin Dashboard</title>
+        <title>Sistem Informasi Bimbingan Konseling</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
@@ -23,10 +23,10 @@
         <link href="{{url('Vertical/dist/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="{{url('Vertical/dist/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
-
+        @stack('css')
     </head>
 
-    <body data-topbar="colored">
+    <body data-sidebar="dark">
 
         <!-- Begin page -->
         <div id="layout-wrapper">
@@ -40,7 +40,10 @@
             <!-- ============================================================== -->
             <!-- Start right Content here -->
             <!-- ============================================================== -->
+            <div class="main-content">
             @yield('content')
+            @include('layouts.footer')
+            </div>
             <!-- end main content-->
 
         </div>
@@ -75,6 +78,6 @@
         <script src="{{url('Vertical/dist/assets/js/pages/datatables.init.js')}}"></script>
 
         <script src="{{url('Vertical/dist/assets/js/app.js')}}"></script>
-
+        @stack('js')
     </body>
 </html>

@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="main-content">
 
     <div class="page-content">
 
@@ -10,10 +9,10 @@
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-md-8">
-                        <h4 class="page-title mb-1">Tabel Pengguna</h4>
+                        <h4 class="page-title mb-1">Tabel Siswa</h4>
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Tabel</a></li>
-                        <li class="breadcrumb-item active">Table Pengguna</li>
+                        <li class="breadcrumb-item active">Table Siswa</li>
                         </ol>
                     </div>
                     <div class="col-md-4">
@@ -52,6 +51,9 @@
                                     buttons on a page that will interact with a DataTable. The core library
                                     provides the based framework upon which plug-ins can built.
                                 </p> --}}
+                                <div class="button-items mb-2">
+                                    <a href="{{route('siswa.create')}}" class="btn btn-primary waves-effect waves-light">Tambah Siswa</a>
+                                </div>
 
                                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
@@ -537,21 +539,4 @@
         <!-- end page-content-wrapper -->
     </div>
     <!-- End Page-content -->
-
-    
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6">
-                    2020 © Xoric.
-                </div>
-                <div class="col-sm-6">
-                    <div class="text-sm-right d-none d-sm-block">
-                        Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-</div>
 @endsection

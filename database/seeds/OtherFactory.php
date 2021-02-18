@@ -43,11 +43,17 @@ class OtherFactory extends Seeder
                 'name' => "admin",
             ],
             [
-                'name' => "guru_mapel",
+                'name' => "guru bk pns",
             ],
             [
-                'name' => "guru_konseling",
-            ]
+                'name' => "guru bk gtt",
+            ],
+            [
+                'name' => "guru mapel pns",
+            ],
+            [
+                'name' => "guru mapel gtt",
+            ],
         ]);
         DB::table('kelas')->insert([
             foreach ($kelas as $value) {

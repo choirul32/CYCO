@@ -15,8 +15,8 @@ class CreateFotoRumahTable extends Migration
     {
         Schema::create('foto_rumah', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('siswa_id')->unsigned();
-            $table->string('kategori');
+            $table->bigInteger('siswa_id')->unsigned();
+            $table->string('kategori', 20);
             $table->integer('imageable_id')->unsigned();
             $table->string('imageable_type');
             $table->timestamps();
