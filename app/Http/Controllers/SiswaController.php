@@ -14,7 +14,7 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        return view('siswa.index');
+        return view('data_master_user.siswa.index');
     }
 
     /**
@@ -24,17 +24,17 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('siswa.tambah');
+        return view('data_master_user.siswa.tambah');
     }
 
     public function create2()
     {
-        return view('siswa.tambah2');
+        return view('data_master_user.siswa.tambah2');
     }
 
     public function create3()
     {
-        return view('siswa.tambah3');
+        return view('data_master_user.siswa.tambah3');
     }
     /**
      * Store a newly created resource in storage.

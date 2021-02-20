@@ -26,10 +26,10 @@
                                     <span>Data Master User</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="email-inbox.html">Data Guru BK</a></li>
-                                    <li><a href="email-read.html">Data Siswa</a></li>
-                                    <li><a href="email-compose.html">Data Guru Mapel</a></li>
-                                    <li><a href="email-compose.html">Data Orang Tua</a></li>
+                                    <li><a href="{{ url('guru_bk') }}">Data Guru BK</a></li>
+                                    <li><a href="{{ url('siswa') }}">Data Siswa</a></li>
+                                    <li><a href="{{ url('guru_mapel') }}">Data Guru Mapel</a></li>
+                                    <li><a href="{{ url('orang_tua') }}">Data Orang Tua</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -44,71 +44,71 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="{{route('siswa.index')}}" class=" waves-effect">
+                                <a href="" class=" waves-effect">
                                     <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
                                     <span>Materi BK</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('siswa.index')}}" class=" waves-effect">
+                                <a href="" class=" waves-effect">
                                     <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
                                     <span>Konten</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('siswa.index')}}" class=" waves-effect">
+                                <a href="" class=" waves-effect">
                                     <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
                                     <span>Download</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('siswa.index')}}" class=" waves-effect">
+                                <a href="" class=" waves-effect">
                                     <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
                                     <span>Pengumuman</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('siswa.index')}}" class=" waves-effect">
+                                <a href="" class=" waves-effect">
                                     <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
                                     <span>Profil Pengembang</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('siswa.index')}}" class=" waves-effect">
+                                <a href="{{ url('siswa/masukan_saran') }}" class=" waves-effect">
                                     <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
                                     <span>Masukan Dan Saran</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{route('siswa.index')}}" class=" waves-effect">
+                            {{-- <li>
+                                <a href="" class=" waves-effect">
                                     <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
                                     <span>Profil Admin</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('siswa.index')}}" class=" waves-effect">
+                                <a href="" class=" waves-effect">
                                     <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
                                     <span>Profil Guru BK</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('siswa.index')}}" class=" waves-effect">
+                                <a href="" class=" waves-effect">
                                     <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
                                     <span>Profil Guru Mapel</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('siswa.index')}}" class=" waves-effect">
+                                <a href="" class=" waves-effect">
                                     <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
                                     <span>Profil Siswa</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('siswa.index')}}" class=" waves-effect">
+                                <a href="" class=" waves-effect">
                                     <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
                                     <span>Profil Orang Tua</span>
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
 
                     </div>

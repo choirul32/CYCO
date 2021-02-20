@@ -194,8 +194,11 @@
                             <div class="form-group mb-0">
                                 <div>
                                     <button type="submit" class="float-right btn btn-success waves-effect waves-light mr-1">
-                                        Lanjut
+                                        Submit
                                     </button>
+                                    <a href="{{ url('siswa/create3') }}" class="float-left btn btn-warning waves-effect waves-light mr-1">
+                                        Sebelumnya
+                                    </a>
                                 </div>
                             </div>
                         </div>

@@ -7,10 +7,10 @@
         <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-md-8">
-                    <h4 class="page-title mb-1">Tabel Pengguna</h4>
+                    <h4 class="page-title mb-1">Tabel Guru BK</h4>
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Tabel</a></li>
-                    <li class="breadcrumb-item active">Table Pengguna</li>
+                    <li class="breadcrumb-item active">Table Guru BK</li>
                     </ol>
                 </div>
                 <div class="col-md-4">
@@ -50,7 +50,7 @@
                                 provides the based framework upon which plug-ins can built.
                             </p> --}}
                             <div class="button-items mb-2">
-                                <button type="button" class="btn btn-primary waves-effect waves-light">Tambah Guru</button>
+                                <a href="{{ url('guru_bk/create') }}" class="btn btn-primary waves-effect waves-light">Tambah Guru</a>
                             </div>
 
                             <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">

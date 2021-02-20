@@ -130,9 +130,12 @@
                         <div class="card-body">
                             <div class="form-group mb-0">
                                 <div>
-                                    <button type="submit" class="float-right btn btn-success waves-effect waves-light mr-1">
+                                    <a href="{{ url('siswa/create4') }}" class="float-right btn btn-success waves-effect waves-light mr-1">
                                         Lanjut
-                                    </button>
+                                    </a>
+                                    <a href="{{ url('siswa/create2') }}" class="float-left btn btn-warning waves-effect waves-light mr-1">
+                                        Sebelumnya
+                                    </a>
                                 </div>
                             </div>
                         </div>

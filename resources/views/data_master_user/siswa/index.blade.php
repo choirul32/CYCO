@@ -52,7 +52,7 @@
                                     provides the based framework upon which plug-ins can built.
                                 </p> --}}
                                 <div class="button-items mb-2">
-                                    <a href="{{route('siswa.create')}}" class="btn btn-primary waves-effect waves-light">Tambah Siswa</a>
+                                    <a href="{{url('siswa/create')}}" class="btn btn-primary waves-effect waves-light">Tambah Siswa</a>
                                 </div>
 
                                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
