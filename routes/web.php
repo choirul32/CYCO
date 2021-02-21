@@ -16,9 +16,6 @@ Route::prefix('siswa')->group(function () {
     Route::get('/create2', 'Siswa\ViewController@form2');
     Route::get('/create3', 'Siswa\ViewController@form3');
     Route::get('/create4', 'Siswa\ViewController@form4');
-    Route::prefix('masukan_saran')->group(function () {
-        Route::get('/', 'MasukanSaran\ViewController@indexSiswa');
-    });
     Route::prefix('/konseling_individu')->group(function () {
         Route::get('/', 'KonselingIndividu\ViewController@indexSiswa');
         Route::get('/create', 'KonselingIndividu\CreateController@createSiswa');
@@ -38,6 +35,15 @@ Route::prefix('siswa')->group(function () {
 Route::prefix('guru_bk')->group(function () {
     Route::get('/', 'GuruBK\ViewController@index');
     Route::get('/create', 'GuruBK\ViewController@form');
+    Route::get('/api', 'GuruBK\ReadController@getAPIGuruBK');
+    Route::prefix('/materi_bk')->group(function () {
+        Route::get('/', 'MateriBK\ViewController@index');
+        Route::get('/create', 'MateriBK\CreateController@form');
+    });
+    Route::prefix('/konten')->group(function () {
+        Route::get('/', 'Konten\ViewController@index');
+        Route::get('/create', 'Konten\CreateController@form');
+    });
     Route::prefix('/konseling_individu')->group(function () {
         Route::get('/', 'KonselingIndividu\ViewController@indexSiswa');
         Route::get('/create', 'KonselingIndividu\CreateController@createGuruBK');
@@ -92,6 +98,13 @@ Route::prefix('orang_tua')->group(function () {
     Route::get('/upload_berkas', function () {return view('data_master_user.siswa.upload_berkas');});
 });
 
+Route::prefix('masukan_saran')->group(function () {
+    Route::get('/', 'MasukanSaran\ViewController@index');
+});
+Route::prefix('pengumuman')->group(function () {
+    Route::get('/', 'Pengumuman\ViewController@index');
+    Route::get('/create', 'Pengumuman\CreateController@form');
+});
 // Route::resource('guru', GuruController::class);
 // Route::resource('siswa', SiswaController::class);
 

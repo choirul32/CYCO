@@ -44,37 +44,31 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="" class=" waves-effect">
+                                <a href="{{ url('guru_bk/materi_bk') }}" class=" waves-effect">
                                     <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
                                     <span>Materi BK</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="" class=" waves-effect">
+                                <a href="{{ url('guru_bk/konten') }}" class=" waves-effect">
                                     <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
                                     <span>Konten</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="" class=" waves-effect">
-                                    <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
-                                    <span>Download</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="" class=" waves-effect">
+                                <a href="{{ url('pengumuman') }}" class=" waves-effect">
                                     <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
                                     <span>Pengumuman</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="" class=" waves-effect">
+                                <a href="{{ url('profil_pengembang') }}" class=" waves-effect">
                                     <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
                                     <span>Profil Pengembang</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('siswa/masukan_saran') }}" class=" waves-effect">
+                                <a href="{{ url('masukan_saran') }}" class=" waves-effect">
                                     <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
                                     <span>Masukan Dan Saran</span>
                                 </a>

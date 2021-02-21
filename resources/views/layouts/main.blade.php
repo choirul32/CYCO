@@ -9,14 +9,11 @@
         <meta content="Themesdesign" name="author" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{url('Vertical/dist/assets/images/favicon.ico')}}">
-
         <!-- DataTables -->
         <link href="{{url('Vertical/dist/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{url('Vertical/dist/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
-
         <!-- Responsive datatable examples -->
         <link href="{{url('Vertical/dist/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />     
-
         <!-- Bootstrap Css -->
         <link href="{{url('Vertical/dist/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
@@ -27,16 +24,12 @@
     </head>
 
     <body data-sidebar="dark">
-
         <!-- Begin page -->
         <div id="layout-wrapper">
-
             @include('layouts.page-topbar')
-
             <!-- ========== Left Sidebar Start ========== -->
             @include('layouts.vertical-menu')
             <!-- Left Sidebar End -->
-
             <!-- ============================================================== -->
             <!-- Start right Content here -->
             <!-- ============================================================== -->
@@ -45,19 +38,15 @@
             @include('layouts.footer')
             </div>
             <!-- end main content-->
-
         </div>
         <!-- END layout-wrapper -->
-
         <!-- JAVASCRIPT -->
         <script src="{{url('Vertical/dist/assets/libs/jquery/jquery.min.js')}}"></script>
         <script src="{{url('Vertical/dist/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{url('Vertical/dist/assets/libs/metismenu/metisMenu.min.js')}}"></script>
         <script src="{{url('Vertical/dist/assets/libs/simplebar/simplebar.min.js')}}"></script>
         <script src="{{url('Vertical/dist/assets/libs/node-waves/waves.min.js')}}"></script>
-
         <script src="https://unicons.iconscout.com/release/v2.0.1/script/monochrome/bundle.js"></script>
-        
         <!-- Required datatable js -->
         <script src="{{url('Vertical/dist/assets/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
         <script src="{{url('Vertical/dist/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -73,10 +62,13 @@
         <!-- Responsive examples -->
         <script src="{{url('Vertical/dist/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
         <script src="{{url('Vertical/dist/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
-
         <!-- Datatable init js -->
         <script src="{{url('Vertical/dist/assets/js/pages/datatables.init.js')}}"></script>
-
+        <script src="{{url('Vertical/dist/assets/js/app.js')}}"></script>
+        <!-- parsleyjs -->
+        <script src="{{url('Vertical/dist/assets/libs/parsleyjs/parsley.min.js')}}"></script>
+        <!-- validation init -->
+        <script src="{{url('Vertical/dist/assets/js/pages/form-validation.init.js')}}"></script>
         <script src="{{url('Vertical/dist/assets/js/app.js')}}"></script>
         @stack('js')
     </body>

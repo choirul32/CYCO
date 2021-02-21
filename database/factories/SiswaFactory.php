@@ -2,12 +2,12 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Siswa;
+use App\Models\Siswa;
 use Faker\Generator as Faker;
 
 $factory->define(Siswa::class, function (Faker $faker) {
     $nama = $faker->unique()->name;
-    $nisn = $faker->unique()->randomNumber($nbDigits = 10, $strict = false),
+    $nisn = $faker->randomNumber($nbDigits = 10, $strict = false);
     return [
         'username' => $nisn,
         'password' => "12345678",
@@ -16,10 +16,10 @@ $factory->define(Siswa::class, function (Faker $faker) {
         'nama_panggilan' => $nama,
         'kelas_id' => $faker->numberBetween($min=1, $max=4),
         'jurusan_id' => $faker->numberBetween($min=1, $max=22),
-        'tanggal_lahir' => $faker->date($format = 'Y-m-d', $max = 'now'),s
+        'tanggal_lahir' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'tempat_lahir' => $faker->city,
         'nik' => $faker->randomNumber($nbDigits = 15, $strict = false),
-        'jenis_kelamin' => $faker->boolean;
+        'jenis_kelamin' => $faker->boolean,
         'agama_id' => $faker->numberBetween($min=1, $max=5),
         'kewarganegaraan' => $faker->numberBetween($min=1, $max=2),
         'bahasa_id' => $faker->numberBetween($min=1, $max=6),

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\MasukanSaran;
+namespace App\Http\Controllers\MateriBK;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class ViewController extends Controller
 {
     public function index(){
-        return view('masukan_saran.create');
+        return view('materi_bk.index');
     }
 }

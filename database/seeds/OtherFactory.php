@@ -40,48 +40,54 @@ class OtherFactory extends Seeder
         $bahasa = ['Indonesia', 'Jawa', 'Sunda', 'Melayu', 'Inggris'];
         DB::table('role')->insert([
             [
-                'name' => "admin",
+                'nama' => "admin",
             ],
             [
-                'name' => "guru bk pns",
+                'nama' => "guru bk pns",
             ],
             [
-                'name' => "guru bk gtt",
+                'nama' => "guru bk gtt",
             ],
             [
-                'name' => "guru mapel pns",
+                'nama' => "guru mapel pns",
             ],
             [
-                'name' => "guru mapel gtt",
+                'nama' => "guru mapel gtt",
+            ],
+            [
+                'nama' => "siswa",
+            ],
+            [
+                'nama' => "orang tua",
             ],
         ]);
-        DB::table('kelas')->insert([
-            foreach ($kelas as $value) {
-                [
-                    'name' => $value,
-                ],
-            }
-        ]);
-        DB::table('jurusan')->insert([
-            foreach ($jurusan as $value) {
-                [
-                    'name' => $value,
-                ],
-            }
-        ]);
-        DB::table('agama')->insert([
-            foreach ($agama as $value) {
-                [
-                    'name' => $value,
-                ],
-            }
-        ]);
-        DB::table('bahasa')->insert([
-            foreach ($bahasa as $value) {
-                [
-                    'name' => $value,
-                ],
-            }
-        ]);
+        // DB::table('kelas')->insert([
+        //     foreach ($kelas as $value) {
+        //         [
+        //             'name' => $value,
+        //         ],
+        //     }
+        // ]);
+        // DB::table('jurusan')->insert([
+        //     foreach ($jurusan as $value) {
+        //         [
+        //             'name' => $value,
+        //         ],
+        //     }
+        // ]);
+        // DB::table('agama')->insert([
+        //     foreach ($agama as $value) {
+        //         [
+        //             'name' => $value,
+        //         ],
+        //     }
+        // ]);
+        // DB::table('bahasa')->insert([
+        //     foreach ($bahasa as $value) {
+        //         [
+        //             'name' => $value,
+        //         ],
+        //     }
+        // ]);
     }
 }

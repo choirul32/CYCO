@@ -58,10 +58,8 @@
                                         
                                         <h4>Drop files here to upload</h4>
                                     </div>
-                                    
                                 </form>
                             </div>
-                            
                         </div>
                     </div>
                 </div> <!-- end col -->
