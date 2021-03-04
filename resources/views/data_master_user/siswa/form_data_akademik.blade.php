@@ -8,11 +8,11 @@
         <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-md-8">
-                    <h4 class="page-title mb-1">Form Validation</h4>
-                    <ol class="breadcrumb m-0">
+                    <h4 class="page-title mb-1">Data Akademik</h4>
+                    {{-- <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
                     <li class="breadcrumb-item active">Form Validation</li>
-                    </ol>
+                    </ol> --}}
                 </div>
                 <div class="col-md-4">
                     <div class="float-right d-none d-md-block">
@@ -130,12 +130,7 @@
                         <div class="card-body">
                             <div class="form-group mb-0">
                                 <div>
-                                    <a href="{{ url('siswa/create4') }}" class="float-right btn btn-success waves-effect waves-light mr-1">
-                                        Lanjut
-                                    </a>
-                                    <a href="{{ url('siswa/create2') }}" class="float-left btn btn-warning waves-effect waves-light mr-1">
-                                        Sebelumnya
-                                    </a>
+                                    <button type="submit" class="float-right btn btn-success waves-effect waves-light mr-1">Simpan</button>
                                 </div>
                             </div>
                         </div>

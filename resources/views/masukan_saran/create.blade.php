@@ -47,26 +47,29 @@
                             {{-- <p class="card-title-desc">Parsley is a javascript form validation
                                 library. It helps you provide your users with feedback on their form
                                 submission before sending it to your server.</p> --}}
-                            <div class="form-group">
-                                <h5 class="font-size-14">Kritik</h5>
-                                <div>
-                                    <textarea required class="form-control" rows="5"></textarea>
+                            <form method="POST" class="custom-validation" action="{{ url('masukan_saran/create') }}">
+                                @csrf
+                                <div class="form-group">
+                                    <h5 class="font-size-14">Kritik</h5>
+                                    <div>
+                                        <textarea required class="form-control" rows="5" id="kritik"></textarea>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <h5 class="font-size-14">Saran</h5>
-                                <div>
-                                    <textarea required class="form-control" rows="5"></textarea>
+                                <div class="form-group">
+                                    <h5 class="font-size-14">Saran</h5>
+                                    <div>
+                                        <textarea required class="form-control" rows="5" id="saran"></textarea>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group mb-0">
-                                <div>
-                                    <a href="{{ url('siswa/create2') }}" class="float-right btn btn-success waves-effect waves-light mr-1">
-                                        Submit
-                                    </a>
+                                <div class="form-group mb-0">
+                                    <div>
+                                        <button type="submit" class="float-right btn btn-success waves-effect waves-light mr-1">
+                                            Submit
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div> <!-- end col -->

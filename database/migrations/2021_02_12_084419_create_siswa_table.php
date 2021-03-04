@@ -43,6 +43,7 @@ class CreateSiswaTable extends Migration
             $table->string('riw_penyakit')->nullable();
             $table->string('berat_badan', 10)->nullable();
             $table->string('tinggi_badan', 10)->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

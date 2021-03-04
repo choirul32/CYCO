@@ -41,9 +41,24 @@ return [
             'provider' => 'users',
         ],
 
+        'siswa' => [
+            'driver' => 'session',
+            'provider' => 'siswas',
+        ],
+
+        'orangtua' => [
+            'driver' => 'session',
+            'provider' => 'orangtuas',
+        ],
+
+        'guru' => [
+            'driver' => 'session',
+            'provider' => 'gurus',
+        ],
+
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            'provider' => 'user',
             'hash' => false,
         ],
     ],
@@ -68,7 +83,22 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\User::class,
+        ],
+
+        'siswas' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Siswa::class,
+        ],
+
+        'gurus' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Guru::class,
+        ],
+
+        'orangtuas' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\OrangTua::class,
         ],
 
         // 'users' => [
@@ -98,6 +128,11 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+        'siswas' => [
+            'provider' => 'siswas',
+            'table' => 'password_resets',
+            'expire' => 15,
         ],
     ],
 

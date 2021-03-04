@@ -15,6 +15,9 @@ class CreateMateriBkTable extends Migration
     {
         Schema::create('materi_bk', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nama');
+            $table->text('keterangan');
+            $table->string('file');
             $table->timestamps();
         });
     }

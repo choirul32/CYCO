@@ -8,11 +8,11 @@
         <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-md-8">
-                    <h4 class="page-title mb-1">Form Validation</h4>
-                    <ol class="breadcrumb m-0">
+                    <h4 class="page-title mb-1">Data Keluarga</h4>
+                    {{-- <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
                     <li class="breadcrumb-item active">Form Validation</li>
-                    </ol>
+                    </ol> --}}
                 </div>
                 <div class="col-md-4">
                     <div class="float-right d-none d-md-block">
@@ -48,7 +48,6 @@
                                 library. It helps you provide your users with feedback on their form
                                 submission before sending it to your server.</p> --}}
 
-                            <form class="custom-validation" action="#">
                                 <div class="form-group">
                                     <h5 class="font-size-14">Nama ayah</h5>
                                     <input type="text" class="form-control" required placeholder="Type something"/>
@@ -131,7 +130,6 @@
                                     <h5 class="font-size-14">Nomor HP ayah</h5>
                                     <input type="text" class="form-control" required placeholder="Type something"/>
                                 </div>
-                            </form>
 
                         </div>
                     </div>
@@ -145,7 +143,7 @@
                                 library. It helps you provide your users with feedback on their form
                                 submission before sending it to your server.</p> --}}
 
-                                <form class="custom-validation" action="#">
+    
                                     <div class="form-group">
                                         <h5 class="font-size-14">Nama ibu</h5>
                                         <input type="text" class="form-control" required placeholder="Type something"/>
@@ -234,7 +232,7 @@
                                             <textarea required class="form-control" rows="5"></textarea>
                                         </div>
                                     </div>
-                                </form>
+                                
 
                         </div>
                     </div>
@@ -246,12 +244,7 @@
                         <div class="card-body">
                             <div class="form-group mb-0">
                                 <div>
-                                    <a href="{{ url('siswa/create3') }}" class="float-right btn btn-success waves-effect waves-light mr-1">
-                                        Lanjut
-                                    </a>
-                                    <a href="{{ url('siswa/create') }}" class="float-left btn btn-warning waves-effect waves-light mr-1">
-                                        Sebelumnya
-                                    </a>
+                                    <button type="submit" class="float-right btn btn-success waves-effect waves-light mr-1">Simpan</button>
                                 </div>
                             </div>
                         </div>

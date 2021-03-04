@@ -9,7 +9,7 @@ $factory->define(User::class, function (Faker $faker) {
     $email = $faker->unique()->safeEmail;
     return [
         'username' => $email,
-        'password' => Hash::make(12345678),
+        'password' => bcrypt("12345678"),
         'role_id' => 2,
         'nama' => $faker->unique()->name,
         'tanggal_lahir' => $faker->date($format = 'Y-m-d', $max = 'now'),

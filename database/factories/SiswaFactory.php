@@ -7,18 +7,19 @@ use Faker\Generator as Faker;
 
 $factory->define(Siswa::class, function (Faker $faker) {
     $nama = $faker->unique()->name;
-    $nisn = $faker->randomNumber($nbDigits = 10, $strict = false);
+    $nisn = $faker->randomNumber($nbDigits = 9, $strict = false);
     return [
         'username' => $nisn,
-        'password' => "12345678",
+        'password' => bcrypt('12345678'),
         'nama_lengkap' => $nama,
-        'nisn' => $faker->randomNumber($nbDigits = 10, $strict = false),
+        'role_id' => 6,
+        'nisn' => $nisn,
         'nama_panggilan' => $nama,
         'kelas_id' => $faker->numberBetween($min=1, $max=4),
         'jurusan_id' => $faker->numberBetween($min=1, $max=22),
         'tanggal_lahir' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'tempat_lahir' => $faker->city,
-        'nik' => $faker->randomNumber($nbDigits = 15, $strict = false),
+        'nik' => $faker->randomNumber($nbDigits = 9, $strict = false),
         'jenis_kelamin' => $faker->boolean,
         'agama_id' => $faker->numberBetween($min=1, $max=5),
         'kewarganegaraan' => $faker->numberBetween($min=1, $max=2),
@@ -33,5 +34,6 @@ $factory->define(Siswa::class, function (Faker $faker) {
         'gol_darah' => $faker->numberBetween($min=1, $max=4),
         'berat_badan' => $faker->numberBetween($min=50, $max=80),
         'tinggi_badan' => $faker->numberBetween($min=155, $max=185),
+        'remember_token' => Str::random(10),
     ];
 });

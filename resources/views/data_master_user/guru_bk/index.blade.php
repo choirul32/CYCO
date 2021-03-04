@@ -82,9 +82,15 @@
                                         @endif
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-secondary waves-effect waves-light">Detail</button>
-                                            <button type="button" class="btn btn-primary waves-effect waves-light">Edit</button>
-                                            <button type="button" class="btn btn-danger waves-effect waves-light">Delete</button>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-secondary waves-effect waves-light">Detail</button>
+                                                <button type="button" class="btn btn-primary waves-effect waves-light">Edit</button>
+                                                <form action="{{ url('guru_bk/delete', ['id' => $item->id]) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger waves-effect waves-light">Delete</button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

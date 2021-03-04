@@ -7,43 +7,44 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form class="custom-validation" action="#">
+            <form method="POST" class="custom-validation" action="{{ url('siswa/konseling_individu/create') }}">
+                @csrf
+                <div class="modal-body">
                     <div class="form-group">
                         <h5 class="font-size-14">Pilih Konselor</h5>
-                        <select class="form-control">
-                            <option>X</option>
-                            <option>XI</option>
-                            <option>XII</option>
-                            <option>XIII</option>
+                        <select class="form-control" name="konselor" id="konselor">
+                            <option value="0">Guru 1</option>
+                            <option value="1">Guru 2</option>
+                            <option value="2">Guru 3</option>
+                            <option value="3">Guru 4</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <h5 class="font-size-14">Pilih Tanggal</h5>
-                        <input class="form-control" type="date" value="2019-08-19" id="example-date-input">
+                        <input name="tanggal" class="form-control" type="date" value="2019-08-19" id="tanggal">
                     </div>
                     <div class="form-group">
                         <h5 class="font-size-14">Pilih Jam</h5>
-                        <input type="time" class="form-control" required/>
+                        <input name="jam" type="time" class="form-control" required id="jam"/>
                     </div>
                     <div class="form-group">
                         <h5 class="font-size-14">Ringkas Masalah</h5>
                         <div>
-                            <textarea required class="form-control" rows="5"></textarea>
+                            <textarea name="masalah" required class="form-control" rows="5" id="masalah"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <h5 class="font-size-14">Harapan Konseling</h5>
                         <div>
-                            <textarea required class="form-control" rows="5"></textarea>
+                            <textarea name="harapan" required class="form-control" rows="5" id="harapan"></textarea>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Simpan</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                </div>
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
