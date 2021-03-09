@@ -15,4 +15,20 @@ class ViewController extends Controller
     public function form(){
         return view('data_master_user.guru_bk.tambah');
     }
+
+    public function dataDiri(){
+        return view('data_master_user.guru_bk.data_diri');
+    }
+    public function riwayatPendidikan(){
+        return view('data_master_user.guru_bk.data_riwayat_pendidikan');
+    }
+    public function riwayatPekerjaan(){
+        return view('data_master_user.guru_bk.data_riwayat_pekerjaan');
+    }
+    public function publikasiArtikel(){
+        return view('data_master_user.guru_bk.data_publikasi_artikel');
+    }
+    public function pengalamanPenelitian(){
+        return view('data_master_user.guru_bk.data_pengalaman_penelitian');
+    }
 }

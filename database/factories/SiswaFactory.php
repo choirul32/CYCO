@@ -10,7 +10,7 @@ $factory->define(Siswa::class, function (Faker $faker) {
     $nisn = $faker->randomNumber($nbDigits = 9, $strict = false);
     return [
         'username' => $nisn,
-        'password' => bcrypt('12345678'),
+        'password' => bcrypt(12345678),
         'nama_lengkap' => $nama,
         'role_id' => 6,
         'nisn' => $nisn,

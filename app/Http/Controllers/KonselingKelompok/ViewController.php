@@ -5,13 +5,16 @@ namespace App\Http\Controllers\KonselingKelompok;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Konseling;
+use App\Models\Guru;
+use Auth;
 
 class ViewController extends Controller
 {
     public function indexSiswa(){
         $data['konseling'] = Konseling::where('jenis_konseling', 1)
-        // ->where('siswa_id', Auth::user()->id)
+        ->where('siswa_id', Auth::guard('siswa')->user()->id)
         ->get();//konseling kelompok
+        $data['guru_bk'] = Guru::where('role_id', 2)->get();
         return view('konseling_kelompok.siswa.index')->with($data);;
     }
     public function indexGuruBK(){

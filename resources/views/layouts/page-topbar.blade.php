@@ -4,21 +4,27 @@
             <!-- LOGO -->
             <div class="navbar-brand-box">
                 <a href="index.html" class="logo logo-dark">
-                    <span class="logo-sm">
+                    {{-- <span class="logo-sm">
                         <img src="{{url('Vertical/dist/assets/images/logo-sm-dark.png')}}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
                         <img src="{{url('Vertical/dist/assets/images/logo-dark.png')}}" alt="" height="20">
-                    </span>
+                    </span> --}}
+                    {{-- <span>
+                        CYCO
+                    </span> --}}
                 </a>
 
                 <a href="index.html" class="logo logo-light">
-                    <span class="logo-sm">
+                    {{-- <span class="logo-sm">
                         <img src="{{url('Vertical/dist/assets/images/logo-sm-light.png')}}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
                         <img src="{{url('Vertical/dist/assets/images/logo-light.png')}}" alt="" height="20">
-                    </span>
+                    </span> --}}
+                    {{-- <span>
+                        CYCO
+                    </span> --}}
                 </a>
             </div>
 
@@ -62,7 +68,7 @@
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user" src="{{url('Vertical/dist/assets/images/users/avatar-1.jpg')}}" alt="Header Avatar">
-                    <span class="d-none d-sm-inline-block ml-1">{{ Auth::guard('siswa')->user()->username }}</span>
+                    <span class="d-none d-sm-inline-block ml-1">{{ Auth::user()->username }}</span>
                     <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -72,7 +78,10 @@
                     <a class="dropdown-item" href="#"><i class="mdi mdi-account-settings font-size-16 align-middle mr-1"></i> Settings</a>
                     <a class="dropdown-item" href="#"><i class="mdi mdi-lock font-size-16 align-middle mr-1"></i> Lock screen</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#"><i class="mdi mdi-logout font-size-16 align-middle mr-1"></i> Logout</a>
+                    @auth('siswa')
+                        <a class="dropdown-item" href="{{ url('siswa/logout') }}"><i class="mdi mdi-logout font-size-16 align-middle mr-1"></i> Logout</a>
+                    @endauth
+                    
                 </div>
             </div>
 

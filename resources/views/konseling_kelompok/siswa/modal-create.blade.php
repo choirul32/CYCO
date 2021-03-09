@@ -13,10 +13,9 @@
                     <div class="form-group">
                         <h5 class="font-size-14">Pilih Konselor</h5>
                         <select class="form-control" name="konselor" id="konselor">
-                            <option value="0">Guru 1</option>
-                            <option value="1">Guru 2</option>
-                            <option value="2">Guru 3</option>
-                            <option value="3">Guru 4</option>
+                            @foreach ($guru_bk as $item)
+                                <option value="{{$item->id}}">{{$item->nama}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">

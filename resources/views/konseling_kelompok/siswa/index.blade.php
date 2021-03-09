@@ -80,7 +80,7 @@
                                                             @foreach ($konseling as $item)
                                                                 <tr>
                                                                     <td>{{$loop->iteration}}</td>
-                                                                    <td>{{$item->konselor_id}}</td>
+                                                                    <td>{{$item->konselor->nama}}</td>
                                                                     {{-- <td>{{$loop->permintaan}}</td> --}}
                                                                     <td>{{$item->tanggal}}</td>
                                                                     <td>{{$item->jam}}</td>
@@ -96,7 +96,7 @@
                                                                             <button type="button" class="btn btn-secondary waves-effect waves-light" onclick="detailKonseling({{$item->id}})">Detail</button>
                                                                             @if (is_null($item->verified_at))
                                                                                 <button type="button" class="btn btn-primary waves-effect waves-light" onclick="editKonseling({{$item->id}})">Edit</button>
-                                                                                <form action="{{ url('konseling/delete', ['id' => $item->id]) }}" method="POST">
+                                                                                <form action="{{ url('siswa/konseling_kelompok/delete', ['id' => $item->id]) }}" method="POST">
                                                                                     @csrf
                                                                                     @method('DELETE')
                                                                                     <button type="submit" class="btn btn-danger waves-effect waves-light">Delete</button>

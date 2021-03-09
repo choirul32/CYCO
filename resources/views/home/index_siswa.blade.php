@@ -45,7 +45,7 @@
                             <div class="row">
                                     <div class="col-6">
                                         <h5>Welcome Back !</h5>
-                                        <p class="text-muted">{{ Auth::guard('siswa')->user()->username }}</p>
+                                        <p class="text-muted">{{ Auth::user()->username }}</p>
 
                                         <div class="mt-4">
                                             <a href="#" class="btn btn-primary btn-sm">View more <i class="mdi mdi-arrow-right ml-1"></i></a>

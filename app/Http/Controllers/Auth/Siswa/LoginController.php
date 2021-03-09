@@ -17,7 +17,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = 'siswa/home';
 
     public function showLoginForm(){
         return view('auth.siswa.login');
@@ -48,9 +48,15 @@ class LoginController extends Controller
         $auth = $request->only('username', 'password');
 
         if (auth()->guard('siswa')->attempt($auth)) {
+            Auth::shouldUse('siswa');
             return redirect()->intended(url('siswa/home'));
         }
 
         return redirect()->back()->with(['error' => 'Username / Password Salah', '']);
+    }
+
+    public function logout(){
+        auth()->guard('siswa')->logout();
+        return redirect('siswa/login');
     }
 }

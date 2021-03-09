@@ -44,7 +44,47 @@
                         <div class="card-body">
 
                             <h4 class="header-title">Kritik Dan Saran</h4>
-                            
+                
+                            <div class="table-responsive">
+                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>Kritik</th>
+                                            <th>Saran</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($krisar as $item)
+                                            <tr class="text-center">
+                                                <td>{{$loop->iteration}}</td>
+                                                <td>{{$item->siswa->nama ?? '-'}}</td>
+                                                <td>{{$item->kritik ?? '-'}}</td>
+                                                <td>{{$item->saran ?? '-'}}</td>
+                                                
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn-sm btn btn-secondary waves-effect waves-light" onclick="detailKonseling({{$item->id}})">Detail</button>
+                                                        
+                                                        @auth('web')
+                                                        @if (is_null($item->verified_at))
+                                                            <form action="{{ url('guru_bk/konseling_kelompok/delete', ['id' => $item->id]) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn-sm btn btn-danger waves-effect waves-light">Delete</button>
+                                                            </form>
+                                                        @endif
+                                                        @endauth
+                                                        
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div> <!-- end col -->

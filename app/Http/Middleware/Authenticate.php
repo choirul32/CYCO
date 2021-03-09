@@ -4,11 +4,12 @@ namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Closure;
+use Auth;
 
 class Authenticate extends Middleware
 {
     protected $guards;
-
+    
 
     /**
      * Handle an incoming request.
@@ -21,9 +22,20 @@ class Authenticate extends Middleware
      * @throws \Illuminate\Auth\AuthenticationException
      */
     public function handle($request, Closure $next, ...$guards)
-    {
-        if (!auth()->guard('siswa')->check()) {
+    {       
+        // dd($guards);
+        auth()->setDefaultDriver($guards[0]);
+        if (!auth()->check() && $guards == 'admin') {
+            return redirect(url('admin/login'));
+        }
+        if (!auth()->check() && $guards == 'guru') {
+            return redirect(url('guru/login'));
+        }
+        if (!auth()->check() && $guards == 'siswa') {
             return redirect(url('siswa/login'));
+        }
+        if (!auth()->check() && $guards == 'orangtua') {
+            return redirect(url('orangtua/login'));
         }
         
 

@@ -8,10 +8,10 @@
                 <div class="row align-items-center">
                     <div class="col-md-8">
                         <h4 class="page-title mb-1">Konseling Individu</h4>
-                        <ol class="breadcrumb m-0">
+                        {{-- <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Tabel</a></li>
                         <li class="breadcrumb-item active">Table Siswa</li>
-                        </ol>
+                        </ol> --}}
                     </div>
                     <div class="col-md-4">
                         <div class="float-right d-none d-md-block">
@@ -76,8 +76,8 @@
                                                             @foreach ($konseling as $item)
                                                                 <tr>
                                                                     <td>{{$loop->iteration}}</td>
-                                                                    <td>{{$item->konselor_id}}</td>
-                                                                    <td>{{$item->siswa_id}}</td>
+                                                                    <td>{{$item->konselor->nama ?? '-'}}</td>
+                                                                    <td>{{$item->siswa->nama_lengkap ?? '-'}}</td>
                                                                     <td>{{$item->tanggal}}</td>
                                                                     <td>{{$item->jam}}</td>
                                                                     <td>
@@ -89,9 +89,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <div class="btn-group">
-                                                                            <button type="button" class="btn btn-secondary waves-effect waves-light">Detail</button>
+                                                                            <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Detail</button>
                                                                             @if (is_null($item->verified_at))
-                                                                                <a href="{{ url('guru_bk/konseling_individu/verifikasi', ['id' => $item->id]) }}" class="btn btn-warning waves-effect waves-light">Verifikasi</a>
+                                                                                <a href="{{ url('guru_bk/konseling_individu/verifikasi', ['id' => $item->id]) }}" class="btn btn-warning btn-sm waves-effect waves-light">Verifikasi</a>
                                                                             @endif
                                                                         </div>
                                                                     </td>

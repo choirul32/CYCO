@@ -15,7 +15,7 @@ class SiswaAuthenticate
      */
     public function handle($request, Closure $next)
     {
-        if (!auth()->guard('siswa')->check()) {
+        if (!auth()->check()) {
             return redirect(route('siswa.login'));
         }
         return $next($request);

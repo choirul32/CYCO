@@ -110,11 +110,11 @@
                                     <h5 class="font-size-14">Agama</h5>
                                     <select name="agama" class="form-control">
                                         <option selected disabled value="">-- Pilih --</option>
-                                        <option @if ($siswa->agama == 1) selected @endif value="1">Islam</option>
-                                        <option @if ($siswa->agama == 2) selected @endif value="2">Kristen</option>
-                                        <option @if ($siswa->agama == 3) selected @endif value="3">Katolik</option>
-                                        <option @if ($siswa->agama == 4) selected @endif value="4">Hindu</option>
-                                        <option @if ($siswa->agama == 5) selected @endif value="5">Budha</option>
+                                        <option @if ($siswa->agama_id == 1) selected @endif value="1">Islam</option>
+                                        <option @if ($siswa->agama_id == 2) selected @endif value="2">Kristen</option>
+                                        <option @if ($siswa->agama_id == 3) selected @endif value="3">Katolik</option>
+                                        <option @if ($siswa->agama_id == 4) selected @endif value="4">Hindu</option>
+                                        <option @if ($siswa->agama_id == 5) selected @endif value="5">Budha</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

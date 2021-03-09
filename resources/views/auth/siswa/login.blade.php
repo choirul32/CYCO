@@ -21,7 +21,7 @@
 
     <body class="bg-primary bg-pattern">
         <div class="home-btn d-none d-sm-block">
-            <a href="index.html"><i class="mdi mdi-home-variant h2 text-white"></i></a>
+            <a href="{{url('siswa/home')}}"><i class="mdi mdi-home-variant h2 text-white"></i></a>
         </div>
 
         <div class="account-pages my-5 pt-sm-5">
@@ -48,7 +48,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group form-group-custom mb-4">
                                                     <input name="username" type="text" class="form-control" id="username" required>
-                                                    <label for="username">User Name</label>
+                                                    <label for="username">Username</label>
                                                 </div>
 
                                                 <div class="form-group form-group-custom mb-4">
@@ -75,7 +75,7 @@
                                                     <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Log In</button>
                                                 </div>
                                                 <div class="mt-4 text-center">
-                                                    <a href="auth-register.html" class="text-muted"><i class="mdi mdi-account-circle mr-1"></i> Create an account</a>
+                                                    <a href="{{ url('siswa/register') }}" class="text-muted"><i class="mdi mdi-account-circle mr-1"></i> Create an account</a>
                                                 </div>
                                             </div>
                                         </div>

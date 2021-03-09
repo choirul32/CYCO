@@ -79,7 +79,7 @@
                                                             @foreach ($konseling as $item)
                                                                 <tr>
                                                                     <td>{{$loop->iteration}}</td>
-                                                                    <td>{{$item->konselor_id}}</td>
+                                                                    <td>{{$item->konselor->nama}}</td>
                                                                     <td>{{$item->tanggal}}</td>
                                                                     <td>{{$item->jam}}</td>
                                                                     <td>

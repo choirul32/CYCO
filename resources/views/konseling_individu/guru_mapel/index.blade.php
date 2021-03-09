@@ -8,10 +8,10 @@
                 <div class="row align-items-center">
                     <div class="col-md-8">
                         <h4 class="page-title mb-1">Tabel Siswa</h4>
-                        <ol class="breadcrumb m-0">
+                        {{-- <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Tabel</a></li>
                         <li class="breadcrumb-item active">Table Siswa</li>
-                        </ol>
+                        </ol> --}}
                     </div>
                     <div class="col-md-4">
                         <div class="float-right d-none d-md-block">

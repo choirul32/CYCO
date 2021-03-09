@@ -12,7 +12,7 @@ class CreateController extends Controller
     public function storeSiswa(Request $request){
         $data = $request->all();
         $data['konselor_id'] = $request->konselor;
-        $data['siswa_id'] = 1;
+        $data['siswa_id'] = Auth::guard('siswa')->user()->id;
         $data['jenis_konseling'] = 0;
         Konseling::create($data);
         return redirect('siswa/konseling_individu');

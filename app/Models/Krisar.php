@@ -8,4 +8,8 @@ class Krisar extends Model
 {
     protected $table = 'kritik_saran';
     protected $guarded = ['id']; 
+
+    public function siswa(){
+        return $this->belongsTo(Siswa::class, 'siswa_id', 'id');
+    }
 }

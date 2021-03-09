@@ -42,17 +42,17 @@
                             <div class="card-body p-4">
                                 <div class="p-2">
                                     <h5 class="mb-5 text-center">Login Guru</h5>
-                                    <form class="form-horizontal" action="index.html">
-
+                                    <form class="form-horizontal" action="{{ url('/guru/login') }}" method="POST">
+                                        @csrf
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group form-group-custom mb-4">
-                                                    <input type="text" class="form-control" id="username" required>
+                                                    <input name="username" type="text" class="form-control" id="username" required>
                                                     <label for="username">User Name</label>
                                                 </div>
 
                                                 <div class="form-group form-group-custom mb-4">
-                                                    <input type="password" class="form-control" id="userpassword" required>
+                                                    <input name="password" type="password" class="form-control" id="userpassword" required>
                                                     <label for="userpassword">Password</label>
                                                 </div>
 

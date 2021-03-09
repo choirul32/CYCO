@@ -17,19 +17,19 @@ class ViewController extends Controller
         return view('data_master_user.siswa.index')->with($data);
     }
     public function dataSiswa(){
-        $data['siswa'] = Siswa::find(Auth::guard('siswa')->user()->id)->first();
+        $data['siswa'] = Siswa::find(Auth::user()->id)->first();
         return view('data_master_user.siswa.data_siswa')->with($data);
     }
     public function dataKeluarga(){
-        $data['siswa'] = Keluarga::where('siswa_id',Auth::guard('siswa')->user()->id)->first();
+        $data['siswa'] = Keluarga::where('siswa_id',Auth::user()->id)->first();
         return view('data_master_user.siswa.data_keluarga')->with($data);
     }
     public function dataAkademik(){
-        $data['siswa'] = Akademik::where('siswa_id',Auth::guard('siswa')->user()->id)->first();
+        $data['siswa'] = Akademik::where('siswa_id',Auth::user()->id)->first();
         return view('data_master_user.siswa.data_akademik')->with($data);
     }
     public function dataRumah(){
-        $data['siswa'] = KondisiRumah::where('siswa_id',Auth::guard('siswa')->user()->id)->first();
+        $data['siswa'] = KondisiRumah::where('siswa_id',Auth::user()->id)->first();
         return view('data_master_user.siswa.data_rumah')->with($data);
     }
 }

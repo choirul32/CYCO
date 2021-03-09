@@ -8,10 +8,10 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <h4 class="page-title mb-1">Tabel Guru BK</h4>
-                    <ol class="breadcrumb m-0">
+                    {{-- <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Tabel</a></li>
                     <li class="breadcrumb-item active">Table Guru BK</li>
-                    </ol>
+                    </ol> --}}
                 </div>
                 <div class="col-md-4">
                     <div class="float-right d-none d-md-block">
@@ -49,9 +49,11 @@
                                 buttons on a page that will interact with a DataTable. The core library
                                 provides the based framework upon which plug-ins can built.
                             </p> --}}
-                            <div class="button-items mb-2">
-                                <a href="{{ url('guru_bk/create') }}" class="btn btn-primary waves-effect waves-light">Tambah Guru</a>
-                            </div>
+                            @auth('web')
+                                <div class="button-items mb-2">
+                                    <a href="{{ url('guru_bk/create') }}" class="btn btn-primary waves-effect waves-light">Tambah Guru</a>
+                                </div>
+                            @endauth
 
                             <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
@@ -83,13 +85,15 @@
                                         </td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-secondary waves-effect waves-light">Detail</button>
-                                                <button type="button" class="btn btn-primary waves-effect waves-light">Edit</button>
-                                                <form action="{{ url('guru_bk/delete', ['id' => $item->id]) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger waves-effect waves-light">Delete</button>
-                                                </form>
+                                                <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Detail</button>
+                                                @auth('web')
+                                                    <button type="button" class="btn btn-primary btn-sm waves-effect waves-light">Edit</button>
+                                                    <form action="{{ url('guru_bk/delete', ['id' => $item->id]) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm waves-effect waves-light">Delete</button>
+                                                    </form>
+                                                @endauth
                                             </div>
                                         </td>
                                     </tr>
