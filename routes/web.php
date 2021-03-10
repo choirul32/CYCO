@@ -56,11 +56,13 @@ Route::group(['prefix' => 'guru', 'middleware' => ['auth:guru']], function () {
     Route::post('/create', 'GuruBK\CreateController@storeGuruBK');
     Route::delete('/delete/{id}', 'GuruBK\DeleteController@destroyGuruBK');
     Route::get('/api', 'GuruBK\ReadController@getAPIGuruBK');
-    // Route::prefix('/materi_bk')->group(function () {
-    //     Route::get('/', 'MateriBK\ViewController@index');
-    //     Route::get('/create', 'MateriBK\CreateController@form');
-    //     Route::post('/create', 'MateriBK\CreateController@store');
-    // });
+    Route::prefix('/edit')->group(function () {
+        Route::get('/data_diri', 'GuruBK\EditController@dataDiri');
+        Route::get('/riwayat_pendidikan', 'GuruBK\EditController@riwayatPendidikan');
+        Route::get('/riwayat_pekerjaan', 'GuruBK\EditController@riwayatPekerjaan');
+        Route::get('/publikasi_artikel', 'GuruBK\EditController@publikasiArtikel');
+        Route::get('/pengalaman_penelitian', 'GuruBK\EditController@pengalamanPenelitian');
+    });
     // Route::prefix('/konten')->group(function () {
     //     Route::get('/', 'Konten\ViewController@index');
     //     Route::get('/create', 'Konten\CreateController@form');

@@ -30,11 +30,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="float-right d-none d-md-block mr-3">
-                        <a class="btn btn-success btn-rounded dropdown-toggle" href="{{url('guru/edit/data_diri')}}">
-                            <i class="mdi mdi-account-edit-outline mr-1"></i> Edit Data
-                        </a>
-                    </div>
+                    
                 </div>
             </div>
 
@@ -54,19 +50,19 @@
                                 
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Nama Lengkap :</strong></h4>
-                                    <p>{{ $guru->nama ?? '-' }}</p>
+                                    <input class="form-control" type="text" name="nama" value="{{$guru->nama}}">
                                 </div>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>NIP/NIK :</strong></h4>
-                                    <p>{{ $guru->nip_nik ?? '-' }}</p>
+                                    <input class="form-control" type="text" name="nip_nik" value="{{$guru->nip_nik}}">
                                 </div>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Jenis Kelamin :</strong></h4>
-                                    <p>{{ $guru->jenis_kelamin ?? '-' }}</p>
+                                    <input class="form-control" type="text" name="jenis_kelamin" value="{{$guru->jenis_kelamin}}">
                                 </div>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Jenis Guru BK :</strong></h4>
-                                    <p>{{ $guru->jenis_kelamin ?? '-' }}</p>
+                                    <input class="form-control" type="text" name="jenis_guru" value="{{$guru->role_id}}">
                                 </div>
                                 
                         </div>
@@ -83,15 +79,15 @@
 
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Alamat Lengkap :</strong></h4>
-                                    <p>{{ $guru->alamat ?? '-' }}</p>
+                                    <textarea class="form-control" name="alamat" id="" cols="5" rows="5">{{$guru->alamat}}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Email :</strong></h4>
-                                    <p>{{ $guru->email ?? '-' }}</p>
+                                    <input class="form-control" type="email" name="email" value="{{$guru->email}}">
                                 </div>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>No. HP Aktif :</strong></h4>
-                                    <p>{{ $guru->no_handphone ?? '-' }}</p>
+                                    <input class="form-control"  type="text" name="no_handphone" value="{{$guru->no_handphone}}">
                                 </div>
                                 
                         </div>

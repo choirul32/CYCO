@@ -23,7 +23,7 @@ class Authenticate extends Middleware
      */
     public function handle($request, Closure $next, ...$guards)
     {       
-        // dd($guards);
+        // dd($auth()->user());
         auth()->setDefaultDriver($guards[0]);
         if (!auth()->check() && $guards == 'admin') {
             return redirect(url('admin/login'));

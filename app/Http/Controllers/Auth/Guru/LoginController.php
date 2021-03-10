@@ -48,7 +48,7 @@ class LoginController extends Controller
 
         if (auth()->guard('guru')->attempt($auth)) {
             Auth::shouldUse('guru');
-            return redirect()->intended(url('guru_bk/home'));
+            return redirect()->intended(url('guru/home'));
         }
 
         return redirect()->back()->with(['error' => 'Username / Password Salah', '']);

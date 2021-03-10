@@ -15,6 +15,9 @@ class CreateKontenTable extends Migration
     {
         Schema::create('konten', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nama');
+            $table->text('keterangan')->nullable();
+            $table->string('file');
             $table->timestamps();
         });
     }
