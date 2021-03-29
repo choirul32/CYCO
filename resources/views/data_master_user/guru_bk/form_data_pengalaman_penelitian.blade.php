@@ -15,7 +15,7 @@
                     </ol> --}}
                 </div>
                 <div class="col-md-4">
-                    
+
                     <div class="float-right d-none d-md-block">
                         <div class="dropdown">
                             <button class="btn btn-light btn-rounded dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,8 +31,8 @@
                         </div>
                     </div>
                     <div class="float-right d-none d-md-block mr-3">
-                        <a class="btn btn-success btn-rounded dropdown-toggle" href="{{url('siswa/edit/data_siswa')}}">
-                            <i class="mdi mdi-account-edit-outline mr-1"></i> Edit Data
+                        <a class="btn btn-success btn-rounded dropdown-toggle" onclick="tambahPengalamanPenelitian()">
+                            <i class="mdi mdi-account-edit-outline mr-1"></i> Tambah Penelitian
                         </a>
                     </div>
                 </div>
@@ -44,7 +44,13 @@
 
     <div class="page-content-wrapper">
         <div class="container-fluid">
-            <div class="row">
+            <form action="{{ url('guru/edit/pengalaman_penelitian') }}" method="post">
+            @csrf
+            <div class="row" id="parent-form">
+                @php
+                    $data = json_decode($profil_guru->pengalaman_penelitian);
+                @endphp
+                @foreach ($data as $item)
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
@@ -53,57 +59,54 @@
                             <p class="card-title-desc">Parsley is a javascript form validation
                                 library. It helps you provide your users with feedback on their form
                                 submission before sending it to your server.</p> --}}
-
-                                <table class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                    <thead>
-                                    <tr class="text-center">
-                                        <th style="text-align: center;">No.</th>
-                                        <th>Tahun</th>
-                                        <th>Jenis Penelitian</th>
-                                        <th>Judul</th>
-                                        <th>Sumber Pendanaan</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    
-                                    </tbody>
-                                </table>
+                                <div class="form_1 row">
+                                    <div class="form-group col-5">
+                                        <h4 class="font-size-14"><strong>Tahun :</strong></h4>
+                                        <input class="form-control" type="text" name="tahun[]" value="{{ $item->tahun ?? ""}}">
+                                    </div>
+                                    <div class="form-group col-5">
+                                        <h4 class="font-size-14"><strong>Jenis Penelitian :</strong></h4>
+                                        <input class="form-control" type="text" name="jenis_penelitian[]" value="{{ $item->jenis_penelitian ?? ""}}">
+                                    </div>
+                                    <div class="form-group col-5">
+                                        <h4 class="font-size-14"><strong>Judul</strong></h4>
+                                        <input class="form-control" type="text" name="judul[]" value="{{ $item->judul ?? ""}}">
+                                    </div>
+                                    <div class="form-group col-5">
+                                        <h4 class="font-size-14"><strong>Sumber Pendanaan</strong></h4>
+                                        <input class="form-control" type="text" name="sumber_pendanaan[]" value="{{ $item->sumber_pendanaan ?? ""}}">
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div> <!-- end col -->
+                @endforeach
             </div> <!-- end row -->
-            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group mb-0">
+                                <div>
+                                    <button type="submit" class="float-right btn btn-success waves-effect waves-light mr-1">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
 </div>
 @endsection
+@push('js')
+    <script>
+        function tambahPengalamanPenelitian() {
+            var clone = $("#parent-form div:first").clone();
+            clone.appendTo("#parent-form");
+        }
+    </script>
+@endpush

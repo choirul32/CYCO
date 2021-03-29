@@ -39,71 +39,49 @@
             <div class="container-fluid">
 
                 <div class="row">
-                    <div class="col-xl-4 col-sm-6">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h4 class="header-title">Permintaan Konseling</h4>
-                
-                                                <div class="table-responsive">
-                                                    <table class="table mb-0">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>No</th>
-                                                                <th>Nama Siswa</th>
-                                                                <th>Kelas</th>
-                                                                <th>Poin</th>
-                                                                <th>Sakit</th>
-                                                                <th>Izin</th>
-                                                                <th>Absen</th>
-                                                                <th>Aksi</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @foreach ($konseling as $item)
-                                                                <tr>
-                                                                    <td>{{$loop->iteration}}</td>
-                                                                    <td>{{$item->konselor->nama ?? '-'}}</td>
-                                                                    <td>{{$item->siswa->nama_lengkap ?? '-'}}</td>
-                                                                    <td>{{$item->tanggal}}</td>
-                                                                    <td>{{$item->jam}}</td>
-                                                                    <td>
-                                                                        @if (is_null($item->verified_at))
-                                                                            <span class="badge badge-pill badge-danger">Belum Diverifikasi</span>
-                                                                        @else
-                                                                            <span class="badge badge-pill badge-success">Terverifikasi</span>
-                                                                        @endif
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="btn-group">
-                                                                            <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Detail</button>
-                                                                            @if (is_null($item->verified_at))
-                                                                                <a href="{{ url('guru_bk/konseling_individu/verifikasi', ['id' => $item->id]) }}" class="btn btn-warning btn-sm waves-effect waves-light">Verifikasi</a>
-                                                                            @endif
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                            @endforeach
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                
-                                            </div>
-                                        </div>
-                                    </div>
+                                <h4 class="header-title">Permintaan Konseling</h4>
+
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama Siswa</th>
+                                                <th>Kelas</th>
+                                                <th>Poin</th>
+                                                <th>Sakit</th>
+                                                <th>Izin</th>
+                                                <th>Absen</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <!-- end row -->
-                            </div> <!-- end card-body-->
-                        </div> <!-- end card-->
-                    </div> <!-- end col -->
-                </div> <!-- end row -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
 
             </div>
             <!-- end container-fluid -->
-        </div> 
+        </div>
         <!-- end page-content-wrapper -->
     </div>
     <!-- End Page-content -->

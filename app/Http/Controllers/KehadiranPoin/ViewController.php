@@ -13,4 +13,7 @@ class ViewController extends Controller
     public function indexTable(){
         return view('kehadiran_poin.index_table');
     }
+    public function indexOrangtua(){
+        return view('kehadiran_poin.index_table');
+    }
 }

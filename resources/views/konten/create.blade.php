@@ -42,31 +42,39 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
+                            <form action="#" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group">
+                                    <h5 class="font-size-14">Nama</h5>
+                                    {{-- <label class="font-size-14" for="nama_lengkap">Nama Lengkap</label> --}}
+                                    <input type="text" class="form-control" name="nama" required placeholder="Isi nama file"/>
+                                    <div class="invalid-feedback">
+                                        Isi nama file terlebih dahulu.
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h5 class="font-size-14">Keterangan</h5>
+                                    <div>
+                                        <textarea name="keterangan" class="form-control" rows="5"></textarea>
+                                    </div>
+                                </div>
+                                <div >
+                                        <div class="fallback">
+                                            <input name="file" type="file" multiple="multiple">
+                                        </div>
+                                        {{-- <div class="dz-message needsclick">
+                                            <div class="mb-3">
+                                                <i class="display-4 text-muted mdi mdi-cloud-upload-outline"></i>
+                                            </div>
+                                            
+                                            <h4>Drop files here to upload</h4>
+                                        </div> --}}
+                                </div>
 
-                            <h4 class="header-title">Kritik Dan Saran</h4>
-                            {{-- <p class="card-title-desc">Parsley is a javascript form validation
-                                library. It helps you provide your users with feedback on their form
-                                submission before sending it to your server.</p> --}}
-                            <div class="form-group">
-                                <h5 class="font-size-14">Kritik</h5>
-                                <div>
-                                    <textarea required class="form-control" rows="5"></textarea>
+                                <div class="text-center mt-4">
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
                                 </div>
-                            </div>
-
-                            <div class="form-group">
-                                <h5 class="font-size-14">Saran</h5>
-                                <div>
-                                    <textarea required class="form-control" rows="5"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group mb-0">
-                                <div>
-                                    <a href="{{ url('siswa/create2') }}" class="float-right btn btn-success waves-effect waves-light mr-1">
-                                        Submit
-                                    </a>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div> <!-- end col -->

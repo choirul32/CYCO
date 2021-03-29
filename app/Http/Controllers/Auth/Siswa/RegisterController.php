@@ -66,7 +66,7 @@ class RegisterController extends Controller
      */
     protected function create(Request $data)
     {
-        return Siswa::create([
+        Siswa::create([
             'username' => str_replace(' ', '_', $data['nama']),
             'email' => $data['email'],
             'password' => $data['password'],
@@ -75,8 +75,9 @@ class RegisterController extends Controller
             'no_handphone' => $data['no_handphone'],
         ]);
 
-        return redirect('siswa/home');
+        return redirect('siswa/login')->with(['success' => 'Siswa Berhasil Dibuat']);
     }
+    
     
     /**
      * Show the application registration form.

@@ -9,10 +9,10 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <h4 class="page-title mb-1">Tambah Materi BK</h4>
-                    <ol class="breadcrumb m-0">
+                    {{-- <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Materi BK</a></li>
                     <li class="breadcrumb-item active">Tambah Materi BK</li>
-                    </ol>
+                    </ol> --}}
                 </div>
                 <div class="col-md-4">
                     <div class="float-right d-none d-md-block">

@@ -18,7 +18,5 @@ class Guru extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
-    // public function konseling(){
-    //     return $this->hasMany(Konseling::class, 'konselor_id', 'id');
-    // }
+    
 }

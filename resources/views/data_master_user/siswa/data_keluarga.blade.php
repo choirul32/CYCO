@@ -62,12 +62,12 @@
                                 
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Status ayah</strong></h4>
-                                    <p>{{ $siswa->status_ayah ?? '-'}}</p>
+                                    <p>{{ $siswa->status_ayah_nama ?? '-'}}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Hubungan dengan ayah</strong></h4>
-                                    <p>{{ $siswa->hubungan_ayah ?? '-'}}</p>
+                                    <p>{{ $siswa->hubungan_ayah_nama ?? '-'}}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
@@ -77,7 +77,7 @@
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Agama ayah</strong></h4>
-                                    <p>{{ $siswa->agama_ayah ?? '-'}}</p>
+                                    <p>{{ $siswa->agama_ayah_nama ?? '-'}}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
@@ -92,17 +92,17 @@
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Pendidikan ayah</strong></h4>
-                                    <p>{{ $siswa->pendidikan_ayah ?? '-'}}</p>
+                                    <p>{{ $siswa->pendidikan_ayah_nama ?? '-'}}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Pekerjaan ayah</strong></h4>
-                                    <p>{{ $siswa->pekerjaan_ayah ?? '-'}}</p>
+                                    <p>{{ $siswa->pekerjaan_ayah_nama ?? '-'}}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Penghasil ayah</strong></h4>
-                                    <p>{{ $siswa->penghasilan_ayah ?? '-'}}</p>
+                                    <p>{{ $siswa->penghasilan_ayah_nama ?? '-'}}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
@@ -130,12 +130,12 @@
                                 
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Status ibu</strong></h4>
-                                    <p>{{ $siswa->status_ibu ?? '-'}}</p>
+                                    <p>{{ $siswa->status_ibu_nama ?? '-'}}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Hubungan dengan ibu</strong></h4>
-                                    <p>{{ $siswa->hubungan_ibu ?? '-'}}</p>
+                                    <p>{{ $siswa->hubungan_ibu_nama ?? '-'}}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
@@ -145,7 +145,7 @@
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Agama ibu</strong></h4>
-                                    <p>{{ $siswa->agama_ibu ?? '-'}}</p>
+                                    <p>{{ $siswa->agama_ibu_nama ?? '-'}}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
@@ -160,17 +160,17 @@
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Pendidikan ibu</strong></h4>
-                                    <p>{{ $siswa->pendidikan_ibu ?? '-'}}</p>
+                                    <p>{{ $siswa->pendidikan_ibu_nama ?? '-'}}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Pekerjaan ibu</strong></h4>
-                                    <p>{{ $siswa->pekerjaan_ibu ?? '-'}}</p>
+                                    <p>{{ $siswa->pekerjaan_ibu_nama ?? '-'}}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Penghasil ibu</strong></h4>
-                                    <p>{{ $siswa->penghasilan_ibu ?? '-'}}</p>
+                                    <p>{{ $siswa->penghasilan_ibu_nama ?? '-'}}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">

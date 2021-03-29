@@ -26,10 +26,10 @@ class CreateSiswaTable extends Migration
             $table->date('tanggal_lahir')->nullable();
             $table->string('tempat_lahir', 50)->nullable();
             $table->string('nik', 20)->nullable();
-            $table->boolean('jenis_kelamin');
-            $table->integer('agama_id')->unsigned()->nullable();
+            $table->boolean('jenis_kelamin')->nullable();
+            $table->tinyInteger('agama')->nullable();
             $table->tinyInteger('kewarganegaraan')->unsigned()->nullable();
-            $table->integer('bahasa_id')->unsigned()->nullable();
+            $table->json('bahasa')->nullable()->default('[]');
             $table->tinyInteger('anak_ke')->unsigned()->nullable();
             $table->tinyInteger('jumlah_saudara')->unsigned()->nullable();
             $table->string('no_handphone', 15)->nullable();
@@ -43,6 +43,7 @@ class CreateSiswaTable extends Migration
             $table->string('riw_penyakit')->nullable();
             $table->string('berat_badan', 10)->nullable();
             $table->string('tinggi_badan', 10)->nullable();
+            $table->bigInteger('orangtua_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

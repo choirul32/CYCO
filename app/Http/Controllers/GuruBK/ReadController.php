@@ -12,4 +12,9 @@ class ReadController extends Controller
         $guru_bk = User::where('role_id', 2)->get();
         return Response()->json($guru_bk);
     }
+
+    public function getAPIGuruBKById($id){
+        $guru = User::find($id);
+        return response()->json($guru);
+    }
 }

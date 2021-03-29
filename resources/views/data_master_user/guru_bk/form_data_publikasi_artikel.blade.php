@@ -15,7 +15,7 @@
                     </ol> --}}
                 </div>
                 <div class="col-md-4">
-                    
+
                     <div class="float-right d-none d-md-block">
                         <div class="dropdown">
                             <button class="btn btn-light btn-rounded dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,8 +31,8 @@
                         </div>
                     </div>
                     <div class="float-right d-none d-md-block mr-3">
-                        <a class="btn btn-success btn-rounded dropdown-toggle" href="{{url('siswa/edit/data_siswa')}}">
-                            <i class="mdi mdi-account-edit-outline mr-1"></i> Edit Data
+                        <a class="btn btn-success btn-rounded dropdown-toggle" onclick="tambahPublikasiArtikel()">
+                            <i class="mdi mdi-account-edit-outline mr-1"></i> Tambah Publikasi
                         </a>
                     </div>
                 </div>
@@ -44,61 +44,69 @@
 
     <div class="page-content-wrapper">
         <div class="container-fluid">
-            <div class="row">
+            <form action="{{ url('guru/edit/publikasi_artikel') }}" method="post">
+            @csrf
+            @php
+                $data = json_decode($profil_guru->publikasi_artikel);
+            @endphp
+            <div class="row" id="parent-form">
+                @foreach ($data as $item)
                 <div class="col-lg-12">
                     <div class="card">
-                        <div class="card-body">
-
+                        <div class="card-body row">
                             {{-- <h4 class="header-title">Validation type</h4>
                             <p class="card-title-desc">Parsley is a javascript form validation
                                 library. It helps you provide your users with feedback on their form
                                 submission before sending it to your server.</p> --}}
-                                <table class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                    <thead>
-                                    <tr class="text-center">
-                                        <th style="text-align: center;">No.</th>
-                                        <th>Judul Artikel Ilmiah</th>
-                                        <th>Nama Jurnal</th>
-                                        <th>Volume/Nomor/tahun</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    
-                                    </tbody>
-                                </table>
+                                <div class="form_1 col-10">
+                                    <div class="form-group">
+                                        <h4 class="font-size-14"><strong>Judul Artikel Ilmiah :</strong></h4>
+                                        <input class="form-control" type="text" name="judul_artikel_ilmiah[]" value="{{ $item->judul_artikel_ilmiah ?? ""}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <h4 class="font-size-14"><strong>Nama Jurnal :</strong></h4>
+                                        <input class="form-control" type="text" name="nama_jurnal[]" value="{{ $item->nama_jurnal ?? ""}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <h4 class="font-size-14"><strong>Volume/Nomor/Tahun</strong></h4>
+                                        <input class="form-control" type="text" name="volume_nomer_tahun[]" value="{{ $item->volume_nomer_tahun ?? ""}}">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <button>Delete</button>
+                                </div>
 
                         </div>
                     </div>
                 </div> <!-- end col -->
+                @endforeach
             </div> <!-- end row -->
-            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group mb-0">
+                                <div>
+                                    <button type="submit" class="float-right btn btn-success waves-effect waves-light mr-1">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
 </div>
 @endsection
+
+@push('js')
+    <script>
+        function tambahPublikasiArtikel() {
+            var clone = $("#parent-form div:first").clone();
+            clone.appendTo("#parent-form");
+        }
+    </script>
+@endpush

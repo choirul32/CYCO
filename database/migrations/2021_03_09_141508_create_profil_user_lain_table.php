@@ -16,10 +16,10 @@ class CreateProfilUserLainTable extends Migration
         Schema::create('profil_user_lain', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
-            $table->json('riwayat_pendidikan');
-            $table->json('riwayat_pekerjaan');
-            $table->json('publikasi_artikel');
-            $table->json('pengalaman_penelitian');
+            $table->json('riwayat_pendidikan')->nullable()->default([]);
+            $table->json('riwayat_pekerjaan')->nullable()->default([]);
+            $table->json('publikasi_artikel')->nullable()->default([]);
+            $table->json('pengalaman_penelitian')->nullable()->default([]);
             $table->timestamps();
         });
     }

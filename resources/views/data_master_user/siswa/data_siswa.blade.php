@@ -96,7 +96,7 @@
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Agama :</strong></h4>
-                                    <p>{{ $siswa->agama->nama ?? '-' }}</p> 
+                                    <p>{{ $siswa->agama_nama ?? '-' }}</p> 
                                 </div>
                                 <hr>
                                 <div class="form-group">
@@ -106,7 +106,7 @@
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Bahasa Sehari-hari :</strong></h4>
-                                    <p>{{ $siswa->bahasa ?? '-' }}</p> 
+                                    <p>{{ $siswa->bahasa_nama ?? '-' }}</p> 
                                 </div>
                         </div>
                     </div>
@@ -158,7 +158,7 @@
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Golongan Darah</strong></h4>
-                                    <p>{{ $siswa->gol_darah ?? '-' }}</p> 
+                                    <p>{{ $siswa->golongan_darah ?? '-' }}</p> 
                                 </div>
                                 <hr>
                                 <div class="form-group">

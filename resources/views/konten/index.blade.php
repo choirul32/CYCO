@@ -51,7 +51,7 @@
                                     provides the based framework upon which plug-ins can built.
                                 </p> --}}
                                 <div class="button-items mb-2">
-                                    <a href="{{url('guru_bk/konten/create')}}" class="btn btn-primary waves-effect waves-light">Tambah Konten</a>
+                                    <a href="{{url('guru/konten/create')}}" class="btn btn-primary waves-effect waves-light">Tambah Konten</a>
                                 </div>
                                 @for ($i = 0; $i < 4; $i++)
                                 <div id="accordion">

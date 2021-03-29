@@ -53,9 +53,9 @@
                                 library. It helps you provide your users with feedback on their form
                                 submission before sending it to your server.</p> --}}
 
-                            
+
                                 <div class="form-group">
-                                    <h4 class="font-size-14"><strong><strong>Sekolah asal :</strong></h4>
+                                    <h4 class="font-size-14"><strong>Sekolah asal :</strong></h4>
                                     <p>{{ $siswa->sekolah_asal ?? '-' }}</p>
                                 </div>
                                 <hr>
@@ -76,12 +76,12 @@
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Ekstrakulikuler yang akan diikuti selama belajar di SMKN 5 Surakarta :</strong></h4>
-                                    <p>{{ $siswa->ekskul ?? '-' }}</p>
+                                    <p>{{ $siswa->ekstrakulikuler_nama ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Apakah rencana anda setelah lulus SMK :</strong></h4>
-                                    <p>{{ $siswa->rencana_lulus ?? '-' }}</p>
+                                    <p>{{ $siswa->rencana_lulus_nama ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
@@ -101,17 +101,76 @@
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Mata Pelajaran yang paling anda senangi selama ini :</strong></h4>
-                                    <p>{{ $siswa->mapel_senangi ?? '-' }}</p>
+                                    <p>{{ $siswa->mapel_nama ?? '-' }}</p>
                                 </div>
+                                <br><br>
+                                <h5 class="header-title">Nilai Akademis yang Diperoleh</h5></h5>
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <thead class="thead-light text-center">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Semester 1</th>
+                                                <th>Semester 2</th>
+                                                <th>Semester 3</th>
+                                                <th>Semester 4</th>
+                                                <th>Semester 5</th>
+                                                <th>Semester 6</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+                                            @php
+                                                $data = json_decode($siswa->nilai);
+                                                $keterangan = ["Rangking", "Nilai Total", "Rata-rata", "Jml Mapel"];
+                                            @endphp
+                                            <tr>
+                                                <td class="text-center">{{$keterangan[0]}}</td>
+                                                <td>{{$data[0]->rangking}}</td>
+                                                <td>{{$data[1]->rangking}}</td>
+                                                <td>{{$data[2]->rangking}}</td>
+                                                <td>{{$data[3]->rangking}}</td>
+                                                <td>{{$data[4]->rangking}}</td>
+                                                <td>{{$data[5]->rangking}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">{{$keterangan[1]}}</td>
+                                                <td>{{$data[0]->nilai_total}}</td>
+                                                <td>{{$data[1]->nilai_total}}</td>
+                                                <td>{{$data[2]->nilai_total}}</td>
+                                                <td>{{$data[3]->nilai_total}}</td>
+                                                <td>{{$data[4]->nilai_total}}</td>
+                                                <td>{{$data[5]->nilai_total}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">{{$keterangan[2]}}</td>
+                                                <td>{{$data[0]->rata_rata}}</td>
+                                                <td>{{$data[1]->rata_rata}}</td>
+                                                <td>{{$data[2]->rata_rata}}</td>
+                                                <td>{{$data[3]->rata_rata}}</td>
+                                                <td>{{$data[4]->rata_rata}}</td>
+                                                <td>{{$data[5]->rata_rata}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">{{$keterangan[3]}}</td>
+                                                <td>{{$data[0]->jml_mapel}}</td>
+                                                <td>{{$data[1]->jml_mapel}}</td>
+                                                <td>{{$data[2]->jml_mapel}}</td>
+                                                <td>{{$data[3]->jml_mapel}}</td>
+                                                <td>{{$data[4]->jml_mapel}}</td>
+                                                <td>{{$data[5]->jml_mapel}}</td>
+                                            </tr>
 
+                                        </tbody>
+                                    </table>
+                                </div>
                         </div>
                     </div>
                 </div> <!-- end col -->
             </div> <!-- end row -->
-            
+
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
 </div>
 @endsection

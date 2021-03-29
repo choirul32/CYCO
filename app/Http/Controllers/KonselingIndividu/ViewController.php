@@ -21,4 +21,11 @@ class ViewController extends Controller
         $data['konseling'] = Konseling::where('jenis_konseling', 0)->orderBy('verified_at', 'DESC')->get();
         return view('konseling_individu.guru_bk.index')->with($data);
     }
+    public function indexOrangtua(){
+        $data['konseling'] = Konseling::where('jenis_konseling', 0)
+        ->where('siswa_id', Auth::guard('orangtua')->user()->siswa_id)
+        ->get();
+        $data['guru_bk'] = Guru::where('role_id', 2)->get();
+        return view('konseling_individu.orangtua.index')->with($data);
+    }
 }

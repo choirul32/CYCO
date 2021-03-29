@@ -15,7 +15,7 @@
                     </ol> --}}
                 </div>
                 <div class="col-md-4">
-                    
+
                     <div class="float-right d-none d-md-block">
                         <div class="dropdown">
                             <button class="btn btn-light btn-rounded dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="float-right d-none d-md-block mr-3">
-                        <a class="btn btn-success btn-rounded dropdown-toggle" href="{{url('siswa/edit/data_siswa')}}">
+                        <a class="btn btn-success btn-rounded dropdown-toggle" href="{{url('guru/edit/riwayat_pekerjaan')}}">
                             <i class="mdi mdi-account-edit-outline mr-1"></i> Edit Data
                         </a>
                     </div>
@@ -44,8 +44,13 @@
 
     <div class="page-content-wrapper">
         <div class="container-fluid">
+            @php
+                $data = json_decode($profil_guru->riwayat_pekerjaan);
+            @endphp
+
             <div class="row">
-                <div class="col-lg-12">
+                @foreach ($data as $item)
+                <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
 
@@ -53,45 +58,43 @@
                             <p class="card-title-desc">Parsley is a javascript form validation
                                 library. It helps you provide your users with feedback on their form
                                 submission before sending it to your server.</p> --}}
-
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Status Kepegawaian :</strong></h4>
-                                    <p>{{ $siswa->nama_lengkap ?? '-' }}</p>
+                                    <p>{{$item->status_kepegawaian ?? "-"}}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Lembaga Pengangkatan :</strong></h4>
-                                    <p>{{ $siswa->nisn ?? '-' }}</p>
+                                    <p>{{$item->lembaga_pengangkatan ?? "-"}}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>No.SK :</strong></h4>
-                                    <p>{{ $siswa->nama_panggilan ?? '-' }}</p>
+                                    <p>{{$item->no_sk ?? "-"}}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Tanggal SK : </strong></h4>
-                                    <p>{{ $siswa->kelas->nama ?? '-' }}</p>
+                                    <p>{{$item->tanggal_sk ?? "-"}}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>TMT Kerja :</strong></h4>
-                                    <p>{{ $siswa->jurusan->nama ?? '-' }}</p> 
+                                    <p>{{$item->tmt_kerja ?? "-"}}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Tempat Kerja :</strong></h4>
-                                    <p>-</p>
+                                    <p>{{$item->tempat_kerja ?? "-"}}</p>
                                 </div>
                         </div>
                     </div>
                 </div> <!-- end col -->
-
+                @endforeach
             </div> <!-- end row -->
-            
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
 </div>
 @endsection

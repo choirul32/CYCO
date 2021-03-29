@@ -23,23 +23,28 @@ class Authenticate extends Middleware
      */
     public function handle($request, Closure $next, ...$guards)
     {       
-        // dd($auth()->user());
+        // dd($guards[0]);
         auth()->setDefaultDriver($guards[0]);
-        if (!auth()->check() && $guards == 'admin') {
+        if (!auth()->check() && $guards[0] == 'admin') {
             return redirect(url('admin/login'));
         }
-        if (!auth()->check() && $guards == 'guru') {
+        if (!auth()->check() && $guards[0] == 'guru') {
             return redirect(url('guru/login'));
         }
-        if (!auth()->check() && $guards == 'siswa') {
+        if (!auth()->check() && $guards[0] == 'siswa') {
             return redirect(url('siswa/login'));
         }
-        if (!auth()->check() && $guards == 'orangtua') {
+        if (!auth()->check() && $guards[0] == 'orangtua') {
             return redirect(url('orangtua/login'));
         }
-        
-
-        return $next($request);
+        if (!auth()->check() && $guards[0] == 'web') {
+            return redirect(url('admin/login'));
+        }
+        if(auth()->check()){
+            return $next($request);
+        }else{
+            abort(404);
+        }
     }
     /**
      * Get the path the user should be redirected to when they are not authenticated.

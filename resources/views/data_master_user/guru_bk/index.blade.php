@@ -85,7 +85,7 @@
                                         </td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Detail</button>
+                                                <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" id="detail-guru-btn">Detail</button>
                                                 @auth('web')
                                                     <button type="button" class="btn btn-primary btn-sm waves-effect waves-light">Edit</button>
                                                     <form action="{{ url('guru_bk/delete', ['id' => $item->id]) }}" method="POST">
@@ -110,5 +110,24 @@
         <!-- end container-fluid -->
     </div> 
     <!-- end page-content-wrapper -->
+    @include('data_master_user.guru_bk.modal_detail')
 </div>
 @endsection
+@push('js')
+    <script>
+        $('#detail-guru-btn').on('click', function(){
+            $.ajax({
+                type:'GET',
+                url:'{{ url("guru/api/data_guru_bk") }}',
+                dataType: 'json',
+                success:function(data){
+                    console.log(data);
+                    $('#detail-guru-modal').modal('show');    
+                },
+                error:function(data){
+                    console.log(data);
+                }
+            });
+        });
+    </script>
+@endpush

@@ -66,7 +66,7 @@
                                         <th>Kelas</th>
                                         <th>Jurusan</th>
                                         <th>Aksi</th>
-                                        
+
                                     </tr>
                                     </thead>
 
@@ -82,7 +82,7 @@
                                             <td>{{ $item->jurusan->nama ?? '-' }}</td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Detail</button>
+                                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" data-toggle="modal" data-target="#modal-detail">Detail</button>
                                                     @auth('web')
                                                         <button type="button" class="btn btn-primary btn-sm waves-effect waves-light">Edit</button>
                                                         <form action="{{ url('siswa/delete', ['id' => $item->id]) }}" method="POST">
@@ -104,8 +104,9 @@
 
             </div>
             <!-- end container-fluid -->
-        </div> 
+        </div>
         <!-- end page-content-wrapper -->
     </div>
     <!-- End Page-content -->
+    @include('data_master_user.siswa.detail')
 @endsection

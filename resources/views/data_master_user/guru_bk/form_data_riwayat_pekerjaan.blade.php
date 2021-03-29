@@ -15,7 +15,7 @@
                     </ol> --}}
                 </div>
                 <div class="col-md-4">
-                    
+
                     <div class="float-right d-none d-md-block">
                         <div class="dropdown">
                             <button class="btn btn-light btn-rounded dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,8 +31,8 @@
                         </div>
                     </div>
                     <div class="float-right d-none d-md-block mr-3">
-                        <a class="btn btn-success btn-rounded dropdown-toggle" href="{{url('siswa/edit/data_siswa')}}">
-                            <i class="mdi mdi-account-edit-outline mr-1"></i> Edit Data
+                        <a class="btn btn-success btn-rounded dropdown-toggle" onclick="tambahRiwayatPekerjaan()">
+                            <i class="mdi mdi-account-edit-outline mr-1"></i> Tambah Pekerjaan
                         </a>
                     </div>
                 </div>
@@ -44,54 +44,91 @@
 
     <div class="page-content-wrapper">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
+            <form action="{{ url('guru/edit/riwayat_pekerjaan') }}" method="post">
+            @csrf
+            @php
+                $data = json_decode($profil_guru->riwayat_pekerjaan);
+            @endphp
+
+            <div class="row" id="parent-form">
+                @foreach ($data as $item)
+                <div class="col-lg-12" id="add-form">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body row">
 
                             {{-- <h4 class="header-title">Validation type</h4>
                             <p class="card-title-desc">Parsley is a javascript form validation
                                 library. It helps you provide your users with feedback on their form
                                 submission before sending it to your server.</p> --}}
+                                <div class="row col-10">
+                                    <div class="form-group col-4">
+                                        <h4 class="font-size-14"><strong>Status Kepegawaian :</strong></h4>
+                                        <input class="form-control" type="text" name="status_kepegawaian[]" value="{{ $item->status_kepegawaian ?? ""}}">
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <h4 class="font-size-14"><strong>Lembaga Pengangkatan :</strong></h4>
+                                        <input class="form-control" type="text" name="lembaga_pengangkatan[]" value="{{ $item->lembaga_pengangkatan ?? ""}}">
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <h4 class="font-size-14"><strong>No.SK :</strong></h4>
+                                        <input class="form-control" type="text" name="no_sk[]" value="{{ $item->no_sk ?? ""}}">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <button>DELETE</button>
+                                </div>
+                                <div class="row col-10">
+                                    <div class="form-group col-4">
+                                        <h4 class="font-size-14"><strong>Tanggal SK : </strong></h4>
+                                        <input class="form-control" type="text" name="tanggal_sk[]" value="{{ $item->tanggal_sk ?? ""}}">
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <h4 class="font-size-14"><strong>TMT Kerja :</strong></h4>
+                                        <input class="form-control" type="text" name="tmt_kerja[]" value="{{ $item->tmt_kerja ?? ""}}">
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <h4 class="font-size-14"><strong>Tempat Kerja :</strong></h4>
+                                        <input class="form-control" type="text" name="tempat_kerja[]" value="{{ $item->tempat_kerja ?? ""}}">
+                                    </div>
+                                </div>
 
-                                <div class="form-group">
-                                    <h4 class="font-size-14"><strong>Status Kepegawaian :</strong></h4>
-                                    <p>{{ $siswa->nama_lengkap ?? '-' }}</p>
-                                </div>
-                                <hr>
-                                <div class="form-group">
-                                    <h4 class="font-size-14"><strong>Lembaga Pengangkatan :</strong></h4>
-                                    <p>{{ $siswa->nisn ?? '-' }}</p>
-                                </div>
-                                <hr>
-                                <div class="form-group">
-                                    <h4 class="font-size-14"><strong>No.SK :</strong></h4>
-                                    <p>{{ $siswa->nama_panggilan ?? '-' }}</p>
-                                </div>
-                                <hr>
-                                <div class="form-group">
-                                    <h4 class="font-size-14"><strong>Tanggal SK : </strong></h4>
-                                    <p>{{ $siswa->kelas->nama ?? '-' }}</p>
-                                </div>
-                                <hr>
-                                <div class="form-group">
-                                    <h4 class="font-size-14"><strong>TMT Kerja :</strong></h4>
-                                    <p>{{ $siswa->jurusan->nama ?? '-' }}</p> 
-                                </div>
-                                <hr>
-                                <div class="form-group">
-                                    <h4 class="font-size-14"><strong>Tempat Kerja :</strong></h4>
-                                    <p>-</p>
-                                </div>
                         </div>
                     </div>
                 </div> <!-- end col -->
+                @endforeach
+
 
             </div> <!-- end row -->
-            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group mb-0">
+                                <div>
+                                    <button type="submit" class="float-right btn btn-success waves-effect waves-light mr-1">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
 </div>
 @endsection
+
+@push('js')
+    <script>
+
+        function tambahRiwayatPekerjaan() {
+            // var form = document.getElementById("add-form");
+            // var parent = document.getElementById("parent-form");
+            // parent.after(form);
+            var clone = $("#parent-form div:first").clone();
+            clone.appendTo("#parent-form");
+        }
+    </script>
+@endpush

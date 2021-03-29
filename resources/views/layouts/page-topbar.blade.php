@@ -1,5 +1,23 @@
+
 <header id="page-topbar">
+
     <div class="navbar-header">
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert" style="position: absolute; right: 20px; top: 20px; z-index: 1">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <strong>{{ $message }}</strong>
+            </div>
+        @endif
+        @if ($message = Session::get('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" style="position: absolute; right: 20px; top: 20px; z-index: 1">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <strong>{{ $message }}</strong>
+            </div>
+        @endif
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
@@ -50,7 +68,7 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
                     aria-labelledby="page-header-search-dropdown">
-        
+
                     <form class="p-3">
                         <div class="form-group m-0">
                             <div class="input-group">
@@ -84,7 +102,9 @@
                     @auth('guru')
                         <a class="dropdown-item" href="{{ url('guru/logout') }}"><i class="mdi mdi-logout font-size-16 align-middle mr-1"></i> Logout</a>
                     @endauth
-                    
+                    @auth('orangtua')
+                        <a class="dropdown-item" href="{{ url('orangtua/logout') }}"><i class="mdi mdi-logout font-size-16 align-middle mr-1"></i> Logout</a>
+                    @endauth
                 </div>
             </div>
 

@@ -23,7 +23,7 @@ $factory->define(Siswa::class, function (Faker $faker) {
         'jenis_kelamin' => $faker->boolean,
         'agama_id' => $faker->numberBetween($min=1, $max=5),
         'kewarganegaraan' => $faker->numberBetween($min=1, $max=2),
-        'bahasa_id' => $faker->numberBetween($min=1, $max=6),
+        'bahasa_id' => [1,2,3,4],
         'anak_ke' => $faker->numberBetween($min=1, $max=10),
         'jumlah_saudara' => $faker->numberBetween($min=1, $max=10),
         'no_handphone' => $faker->phoneNumber,
@@ -37,3 +37,4 @@ $factory->define(Siswa::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
+

@@ -37,4 +37,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getJenisKelaminNamaAttribute(){
+        if($this->attributes['jenis_kelamin'] == 1) return "Laki-Laki"; else return "Perempuan";
+    }
 }

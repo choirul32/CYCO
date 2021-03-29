@@ -15,7 +15,7 @@
                     </ol> --}}
                 </div>
                 <div class="col-md-4">
-                    
+
                     <div class="float-right d-none d-md-block">
                         <div class="dropdown">
                             <button class="btn btn-light btn-rounded dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="float-right d-none d-md-block mr-3">
-                        <a class="btn btn-success btn-rounded dropdown-toggle" href="{{url('siswa/edit/data_siswa')}}">
+                        <a class="btn btn-success btn-rounded dropdown-toggle" href="{{url('guru/edit/pengalaman_penelitian')}}">
                             <i class="mdi mdi-account-edit-outline mr-1"></i> Edit Data
                         </a>
                     </div>
@@ -65,45 +65,28 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    
+                                        @php
+                                            $data = json_decode($profil_guru->pengalaman_penelitian);
+                                        @endphp
+                                        @foreach ($data as $item)
+                                        <tr>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$item->tahun}}</td>
+                                            <td>{{$item->jenis_penelitian}}</td>
+                                            <td>{{$item->judul}}</td>
+                                            <td>{{$item->sumber_pendanaan}}</td>
+                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                         </div>
                     </div>
                 </div> <!-- end col -->
             </div> <!-- end row -->
-            
+
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
 </div>
 @endsection

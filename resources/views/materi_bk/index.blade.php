@@ -51,7 +51,7 @@
                                     provides the based framework upon which plug-ins can built.
                                 </p> --}}
                                 <div class="button-items mb-2">
-                                    <a href="{{url('guru_bk/materi_bk/create')}}" class="btn btn-primary waves-effect waves-light">Tambah Materi</a>
+                                    <a href="{{url('guru/materi_bk/create')}}" class="btn btn-primary waves-effect waves-light">Tambah Materi</a>
                                 </div>
                                 {{-- <h4 class="header-title">Accordion example</h4>
                                 <p class="card-title-desc">Extend the default collapse behavior to create an accordion.</p> --}}

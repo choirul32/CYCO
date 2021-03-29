@@ -21,4 +21,12 @@ class ViewController extends Controller
         $data['konseling'] = Konseling::where('jenis_konseling', 1)->get();
         return view('konseling_kelompok.guru_bk.index')->with($data);
     }
+
+    public function indexOrangtua(){
+        $data['konseling'] = Konseling::where('jenis_konseling', 1)
+        ->where('siswa_id', Auth::guard('orangtua')->user()->siswa_id)
+        ->get();//konseling kelompok
+        $data['guru_bk'] = Guru::where('role_id', 2)->get();
+        return view('konseling_kelompok.orangtua.index')->with($data);;
+    }
 }

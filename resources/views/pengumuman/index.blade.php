@@ -51,7 +51,7 @@
                                     provides the based framework upon which plug-ins can built.
                                 </p> --}}
                                 <div class="button-items mb-2">
-                                    <a href="{{url('pengumuman/create')}}" class="btn btn-primary waves-effect waves-light">Tambah Pengumuman</a>
+                                    <a href="{{url('guru/pengumuman/create')}}" class="btn btn-primary waves-effect waves-light">Tambah Pengumuman</a>
                                 </div>
 
                                 @for ($i = 0; $i < 4; $i++)

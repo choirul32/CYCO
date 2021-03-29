@@ -62,11 +62,11 @@
                                 </div>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Jenis Kelamin :</strong></h4>
-                                    <p>{{ $guru->jenis_kelamin ?? '-' }}</p>
+                                    <p>{{ $guru->jenis_kelamin_nama ?? '-' }}</p>
                                 </div>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Jenis Guru BK :</strong></h4>
-                                    <p>{{ $guru->jenis_kelamin ?? '-' }}</p>
+                                    <p>{{ $guru->role_id ?? '-' }}</p>
                                 </div>
                                 
                         </div>

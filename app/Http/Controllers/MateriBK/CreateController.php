@@ -8,9 +8,10 @@ use App\Models\MateriBK;
 
 class CreateController extends Controller
 {
-    public function form(){
+    public function createForm(){
         return view('materi_bk.create');
     }
+
     public function store(Request $request){
         // menyimpan data file yang diupload ke variabel $file
 		$file = $request->file('file');

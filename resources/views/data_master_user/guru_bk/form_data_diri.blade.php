@@ -40,6 +40,8 @@
 
     <div class="page-content-wrapper">
         <div class="container-fluid">
+            <form action="{{ url('guru/edit/data_diri') }}" method="post">
+            @csrf
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card">
@@ -58,11 +60,19 @@
                                 </div>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Jenis Kelamin :</strong></h4>
-                                    <input class="form-control" type="text" name="jenis_kelamin" value="{{$guru->jenis_kelamin}}">
+                                    <select name="jenis_kelamin" class="form-control">
+                                        <option selected disabled value="">-- Pilih --</option>
+                                        <option @if ($guru->jenis_kelamin == 1) selected @endif value="1">Laki Laki</option>
+                                        <option @if ($guru->jenis_kelamin == 2) selected @endif value="2">Perempuan</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Jenis Guru BK :</strong></h4>
-                                    <input class="form-control" type="text" name="jenis_guru" value="{{$guru->role_id}}">
+                                    <select name="role_id" class="form-control">
+                                        <option selected disabled value="">-- Pilih --</option>
+                                        <option @if ($guru->role_id == 6) selected @endif value="6">ASN</option>
+                                        <option @if ($guru->role_id == 4) selected @endif value="4">GTT</option>
+                                    </select>
                                 </div>
                                 
                         </div>
@@ -93,9 +103,22 @@
                         </div>
                     </div>
                 </div> <!-- end col -->
+                
             </div> <!-- end row -->
             <div class="row">
-            
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group mb-0">
+                                <div>
+                                    <button type="submit" class="float-right btn btn-success waves-effect waves-light mr-1">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
         </div>
         <!-- end container-fluid -->
     </div> 

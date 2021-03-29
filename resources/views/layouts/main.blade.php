@@ -20,12 +20,16 @@
         <link href="{{url('Vertical/dist/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="{{url('Vertical/dist/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
+        <!-- Sweet Alert-->
+        <link href="{{url('Vertical/dist/assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
         @stack('css')
     </head>
 
     <body data-sidebar="dark">
+        
         <!-- Begin page -->
         <div id="layout-wrapper">
+            
             @include('layouts.page-topbar')
             <!-- ========== Left Sidebar Start ========== -->
             @include('layouts.vertical-menu')
@@ -70,6 +74,12 @@
         <!-- validation init -->
         <script src="{{url('Vertical/dist/assets/js/pages/form-validation.init.js')}}"></script>
         <script src="{{url('Vertical/dist/assets/js/app.js')}}"></script>
+
+        <!-- Sweet Alerts js -->
+        <script src="{{url('Vertical/dist/assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
+
+        <!-- Sweet alert init js-->
+        <script src="{{url('Vertical/dist/assets/js/pages/sweet-alerts.init.js')}}"></script>
         @stack('js')
     </body>
 </html>

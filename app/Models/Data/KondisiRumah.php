@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class KondisiRumah extends Model
 {
     protected $table = 'data_kondisi_rumah';
+    protected $guarded = ['id'];
 
-    public function getKepemilikanRumahAttribute(){
-        switch ($this->kepemilikan_rumah) {
+    public function getKepemilikanRumahNamaAttribute(){
+        switch ($this->attributes['kepemilikan_rumah']) {
             case 1:
                 return "Sendiri";
             case 2:
@@ -22,12 +23,10 @@ class KondisiRumah extends Model
                 return "Tidak memiliki";
             case 6:
                 return "Menumpang tanpa izin";
-            default:
-                return "Lainnya";
         }
     }
-    public function getSumberListrikAttribute(){
-        switch ($this->sumber_listrik) {
+    public function getSumberListrikNamaAttribute(){
+        switch ($this->attributes['sumber_listrik']) {
             case 1:
                 return "PLN";
             case 2:
@@ -36,12 +35,10 @@ class KondisiRumah extends Model
                 return "TENAGA SURYA";
             case 4:
                 return "PLN DAN GENSET";
-            default:
-                return "Lainnya";
         }
     }
-    public function getDayaListrikAttribute(){
-        switch ($this->daya_listrik) {
+    public function getDayaListrikNamaAttribute(){
+        switch ($this->attributes['daya_listrik']) {
             case 1:
                 return "450";
             case 2:
@@ -56,12 +53,10 @@ class KondisiRumah extends Model
                 return "5500";
             case 7:
                 return ">5500";
-            default:
-                return "Lainnya";
         }
     }
-    public function getLuasTanahAttribute(){
-        switch ($this->luas_tanah) {
+    public function getLuasTanahNamaAttribute(){
+        switch ($this->attributes['luas_tanah']) {
             case 1:
                 return ">200";
             case 2:
@@ -72,12 +67,10 @@ class KondisiRumah extends Model
                 return "25-50";
             case 5:
                 return "<25";
-            default:
-                return "Lainnya";
         }
     }
-    public function getLuasBangunanAttribute(){
-        switch ($this->luas_bangunan) {
+    public function getLuasBangunanNamaAttribute(){
+        switch ($this->attributes['luas_bangunan']) {
             case 1:
                 return ">200";
             case 2:
@@ -88,12 +81,10 @@ class KondisiRumah extends Model
                 return "25-50";
             case 5:
                 return "<25";
-            default:
-                return "Lainnya";
         }
     }
-    public function getJenisAtapAttribute(){
-        switch ($this->jenis_atap) {
+    public function getJenisAtapNamaAttribute(){
+        switch ($this->attributes['jenis_atap']) {
             case 1:
                 return "Genting";
             case 2:
@@ -106,12 +97,12 @@ class KondisiRumah extends Model
                 return "Rumbai/Tanaman";
             case 6:
                 return "Tanpa Atap";
-            default:
+            case 7:
                 return "Lainnya";
         }
     }
-    public function getBahanLantaiAttribute(){
-        switch ($this->bahan_lantai) {
+    public function getBahanLantaiNamaAttribute(){
+        switch ($this->attributes['bahan_lantai']) {
             case 1:
                 return "Tanah";
             case 2:
@@ -122,12 +113,26 @@ class KondisiRumah extends Model
                 return "Ubin";
             case 5:
                 return "Keramik";
-            default:
+            case 6:
                 return "Lainnya";
         }
     }
-    public function getKamarMandiAttribute(){
-        switch ($this->kamar_mandi) {
+    public function getBahanTembokNamaAttribute(){
+        switch ($this->attributes['bahan_tembok']) {
+            case 1:
+                return "Kayu";
+            case 2:
+                return "Seng";
+            case 3:
+                return "Batu Bata";
+            case 4:
+                return "Semen/beton";
+            case 5:
+                return "Lainnya";
+        }
+    }
+    public function getKamarMandiNamaAttribute(){
+        switch ($this->attributes['kamar_mandi']) {
             case 1:
                 return "Kepemilikan sendiri di dalam";
             case 2:
@@ -136,12 +141,12 @@ class KondisiRumah extends Model
                 return "Berbagi pakai dengan tetangga";
             case 4:
                 return "Kamar mandi umum";
-            default:
+            case 5:
                 return "Lainnya";
         }
     }
-    public function getSumberAirAttribute(){
-        switch ($this->sumber_air) {
+    public function getSumberAirNamaAttribute(){
+        switch ($this->attributes['sumber_air']) {
             case 1:
                 return "Kemasan";
             case 2:
@@ -150,7 +155,7 @@ class KondisiRumah extends Model
                 return "Sumur";
             case 4:
                 return "Sungai/Mata Air";
-            default:
+            case 5:
                 return "Lainnya";
         }
     }

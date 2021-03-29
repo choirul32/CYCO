@@ -5,6 +5,7 @@ namespace App\Http\Controllers\GuruBK;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\ProfilGuru;
 
 class ViewController extends Controller
 {
@@ -21,15 +22,19 @@ class ViewController extends Controller
         return view('data_master_user.guru_bk.data_diri')->with($data);
     }
     public function riwayatPendidikan(){
-        return view('data_master_user.guru_bk.data_riwayat_pendidikan');
+        $data['profil_guru'] = ProfilGuru::where('user_id', auth()->guard('guru')->user()->id)->first();
+        return view('data_master_user.guru_bk.data_riwayat_pendidikan')->with($data);
     }
     public function riwayatPekerjaan(){
-        return view('data_master_user.guru_bk.data_riwayat_pekerjaan');
+        $data['profil_guru'] = ProfilGuru::where('user_id', auth()->guard('guru')->user()->id)->first();
+        return view('data_master_user.guru_bk.data_riwayat_pekerjaan')->with($data);
     }
     public function publikasiArtikel(){
-        return view('data_master_user.guru_bk.data_publikasi_artikel');
+        $data['profil_guru'] = ProfilGuru::where('user_id', auth()->guard('guru')->user()->id)->first();
+        return view('data_master_user.guru_bk.data_publikasi_artikel')->with($data);
     }
     public function pengalamanPenelitian(){
-        return view('data_master_user.guru_bk.data_pengalaman_penelitian');
+        $data['profil_guru'] = ProfilGuru::where('user_id', auth()->guard('guru')->user()->id)->first();
+        return view('data_master_user.guru_bk.data_pengalaman_penelitian')->with($data);
     }
 }

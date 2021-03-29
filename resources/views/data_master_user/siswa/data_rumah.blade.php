@@ -55,53 +55,53 @@
 
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Kepemillikan Rumah :</strong></h4>
-                                    <p>{{ $siswa->kepemilikan_rumah ?? '-' }}</p>
+                                    <p>{{ $siswa->kepemilikan_rumah_nama ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Sumber Listrik :</strong></h4>
-                                    <p>{{ $siswa->sumber_listrik ?? '-' }}</p>
+                                    <p>{{ $siswa->sumber_listrik_nama ?? '-' }}</p>
                                 </div>
                                 <hr>
-                                
+
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Daya Listrik :</strong></h4>
-                                    <p>{{ $siswa->daya_listrik ?? '-' }}</p>
+                                    <p>{{ $siswa->daya_listrik_nama ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Daya Listrik :</strong></h4>
-                                    <p>{{ $siswa->luas_tanah ?? '-' }}</p>
+                                    <p>{{ $siswa->luas_tanah_nama ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Luas Bangunan :</strong></h4>
-                                    <p>{{ $siswa->luas_bangunan ?? '-' }}</p>
+                                    <p>{{ $siswa->luas_bangunan_nama ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Jenis Atap :</strong></h4>
-                                    <p>{{ $siswa->jenis_atap ?? '-' }}</p>
+                                    <p>{{ $siswa->jenis_atap_nama ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Bahan Lantai :</strong></h4>
-                                    <p>{{ $siswa->bahan_lantai ?? '-' }}</p>
+                                    <p>{{ $siswa->bahan_lantai_nama ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Bahan Tembok :</strong></h4>
-                                    <p>{{ $siswa->bahan_tembok ?? '-' }}</p>
+                                    <p>{{ $siswa->bahan_tembok_nama ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Kamar mandi :</strong></h4>
-                                    <p>{{ $siswa->kamar_mandi ?? '-' }}</p>
+                                    <p>{{ $siswa->kamar_mandi_nama ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Sumber Air Utama :</strong></h4>
-                                    <p>{{ $siswa->sumber_air ?? '-' }}</p>
+                                    <p>{{ $siswa->sumber_air_nama ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
@@ -111,7 +111,7 @@
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Foto Rumah :</strong></h4>
-                                    
+
                                 </div>
 
                         </div>
@@ -139,7 +139,7 @@
             </div> <!-- end row -->
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
 </div>
 @endsection
