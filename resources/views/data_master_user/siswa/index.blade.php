@@ -82,7 +82,7 @@
                                             <td>{{ $item->jurusan->nama ?? '-' }}</td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" data-toggle="modal" data-target="#modal-detail">Detail</button>
+                                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" data-toggle="modal" data-target="#modal-detail" onclick="detailShow({{$item->id}})">Detail</button>
                                                     @auth('web')
                                                         <button type="button" class="btn btn-primary btn-sm waves-effect waves-light">Edit</button>
                                                         <form action="{{ url('siswa/delete', ['id' => $item->id]) }}" method="POST">
@@ -110,3 +110,45 @@
     <!-- End Page-content -->
     @include('data_master_user.siswa.detail')
 @endsection
+
+@push('js')
+    <script>
+        function detailShow(id){
+            $.ajax({
+                url: '/guru/api/data_siswa/'+ id,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    console.log('data berhasil diload');
+                    document.getElementById('nama_lengkap').innerHTML = data.siswa.nama_lengkap;
+                    document.getElementById('nisn').innerHTML = data.siswa.nisn;
+                    document.getElementById('nama_panggilan').innerHTML = data.siswa.nama_panggilan;
+                    document.getElementById('kelas').innerHTML = data.siswa.kelas_id;
+                    document.getElementById('jurusan').innerHTML = data.siswa.juruan_id;
+                    document.getElementById('tempat_tanggal_lahir').innerHTML = data.siswa.tempat_lahir;
+                    document.getElementById('nik').innerHTML = data.siswa.nik;
+                    document.getElementById('jenis_kelamin').innerHTML = data.siswa.jenis_kelamin;
+                    document.getElementById('agama').innerHTML = data.siswa.agama;
+                    document.getElementById('kewarganegaraan').innerHTML = data.siswa.kewarganegaraan;
+                    document.getElementById('bahasa').innerHTML = data.siswa.bahasa;
+                    document.getElementById('anak_ke').innerHTML = data.siswa.anak_ke;
+                    document.getElementById('jumlah_saudara').innerHTML = data.siswa.jumlah_saudara;
+                    document.getElementById('no_hp').innerHTML = data.siswa.no_handphone;
+                    document.getElementById('email').innerHTML = data.siswa.email;
+                    document.getElementById('alamat').innerHTML = data.siswa.alamat;
+                    document.getElementById('koordinat_rumah').innerHTML = data.siswa.koordinat_rumah;
+                    document.getElementById('jenis_tinggal').innerHTML = data.siswa.jenis_tinggal;
+                    document.getElementById('transportasi').innerHTML = data.siswa.alat_transportasi_sekolah;
+                    document.getElementById('gol_darah').innerHTML = data.siswa.gol_darah;
+                    document.getElementById('riw_penyakit').innerHTML = data.siswa.riw_penyakit;
+                    document.getElementById('berat_badan').innerHTML = data.siswa.berat_badan + " Kg";
+                    document.getElementById('tinggi_badan').innerHTML = data.siswa.tinggi_badan + " cm";
+
+                },
+                error: function() {
+                },
+            });
+
+        }
+    </script>
+@endpush

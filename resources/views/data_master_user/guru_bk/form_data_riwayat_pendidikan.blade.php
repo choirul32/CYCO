@@ -15,7 +15,7 @@
                     </ol> --}}
                 </div>
                 <div class="col-md-4">
-                    
+
                     <div class="float-right d-none d-md-block">
                         <div class="dropdown">
                             <button class="btn btn-light btn-rounded dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,7 +47,8 @@
             <form class="" action="{{url('guru/edit/riwayat_pendidikan')}}" method="post">
             @csrf
             @php
-                $data = json_decode($profil_guru->riwayat_pendidikan ?? []);
+                $guru = $profil_guru->riwayat_pendidikan ?? "";
+                $data = json_decode($guru);
             @endphp
             <div class="row">
                 <div class="col-lg-6">
@@ -133,7 +134,7 @@
             </form>
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
 </div>
 @endsection

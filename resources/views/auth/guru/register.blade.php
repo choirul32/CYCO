@@ -21,12 +21,24 @@
                                 <div class="mb-4 ml-2">
                                     <h4 class="font-size-14 mb-3">Jenis Guru</h4>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input value="asn" type="radio" id="custominlineRadio1" name="jenis_guru" onclick="showNIP()" class="custom-control-input" checked="">
-                                        <label class="custom-control-label" for="custominlineRadio1">Guru ASN</label>
+                                        <input value="bk" type="radio" id="custominlineRadio1" name="jenis_guru" onclick="showNIP()" class="custom-control-input" checked="">
+                                        <label class="custom-control-label" for="custominlineRadio1">Guru BK</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input value="gtt" type="radio" id="custominlineRadio2" name="jenis_guru" onclick="showNIK()" class="custom-control-input" >
-                                        <label class="custom-control-label" for="custominlineRadio2">Guru GTT</label>
+                                        <input value="mapel" type="radio" id="custominlineRadio2" name="jenis_guru" onclick="showNIK()" class="custom-control-input" >
+                                        <label class="custom-control-label" for="custominlineRadio2">Guru Matapelajaran</label>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="mb-4 ml-2">
+                                    <h4 class="font-size-14 mb-3">Pangkat Guru</h4>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input value="pns" type="radio" id="custominlineRadio3" name="pangkat_guru" onclick="showNIP()" class="custom-control-input" checked="">
+                                        <label class="custom-control-label" for="custominlineRadio3">Guru ASN</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input value="gtt" type="radio" id="custominlineRadio4" name="pangkat_guru" onclick="showNIK()" class="custom-control-input" >
+                                        <label class="custom-control-label" for="custominlineRadio4">Guru GTT</label>
                                     </div>
                                 </div>
                                 <div id="nip-group" class="form-group form-group-custom mb-4">
@@ -43,7 +55,7 @@
                                 </div>
                                 <div class="form-group form-group-custom mb-4">
                                     <input name="email" type="email" class="form-control" id="useremail" required="">
-                                    <label for="useremail">Email</label> 
+                                    <label for="useremail">Email</label>
                                 </div>
                                 <div class="form-group form-group-custom mb-4">
                                     <input name="password" type="password" class="form-control" id="userpassword" required="">
@@ -57,7 +69,7 @@
                                     <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Register</button>
                                 </div>
                                 <div class="mt-4 text-center">
-                                    <a href="auth-login.html" class="text-muted"><i class="mdi mdi-account-circle mr-1"></i> Already have account?</a>
+                                    <a href="{{ url('guru/login') }}" class="text-muted"><i class="mdi mdi-account-circle mr-1"></i> Already have account?</a>
                                 </div>
                             </div>
                         </div>

@@ -18,7 +18,7 @@ class RegisterController extends Controller
             'username' => str_replace(' ', '_', $request->nama),
             'email' => $request->email,
             'password' => $request->password,
-            'role_id' => 1,
+            'role_id' => 7,
             'nama' => $request->nama,
             'nama_siswa' => $request->nama,
             'alamat' => $request->alamat,

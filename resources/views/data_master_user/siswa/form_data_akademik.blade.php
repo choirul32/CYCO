@@ -58,7 +58,7 @@
                                     <div class="form-group">
                                         <h5 class="header-title">Mengapa anda memilih SMKN 5 Surakarta</h5>
                                         <div>
-                                            <textarea name="alasan" required class="form-control" rows="5">{{$siswa->sekolah_asal}}</textarea>
+                                            <textarea name="alasan" required class="form-control" rows="5">{{$siswa->alasan}}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -76,12 +76,23 @@
                                         <h5 class="header-title">Ekstrakulikuler yang akan diikuti selama belajar di SMKN 5 Surakarta</h5>
                                         <div>
                                             @if (!empty($siswa->ekskul))
+                                            @php
+                                                $ekskul = json_decode($siswa->ekskul) ?? "";
+                                            @endphp
                                                 @foreach ($collection_ as $item)
                                                     <div class="custom-control custom-checkbox">
                                                         <input name="ekskul[]" value="{{$loop->iteration+1}}" type="checkbox" class="custom-control-input" id="customCheck{{$loop->iteration}}" data-parsley-multiple="groups"
-                                                                data-parsley-mincheck="2" @if (in_array($loop->iteration+1, json_decode($siswa->ekskul))) checked @endif>
+                                                                data-parsley-mincheck="2" @if (in_array($loop->iteration+1, $ekskul)) checked @endif>
                                                         <label class="custom-control-label" for="customCheck{{$loop->iteration}}">{{$item}}</label>
                                                     </div>
+                                                @endforeach
+                                            @else
+                                                @foreach ($collection_ as $item)
+                                                <div class="custom-control custom-checkbox">
+                                                    <input name="ekskul[]" value="{{$loop->iteration+1}}" type="checkbox" class="custom-control-input" id="customCheck{{$loop->iteration}}" data-parsley-multiple="groups"
+                                                            data-parsley-mincheck="2">
+                                                    <label class="custom-control-label" for="customCheck{{$loop->iteration}}">{{$item}}</label>
+                                                </div>
                                                 @endforeach
                                             @endif
                                         </div>
@@ -111,16 +122,30 @@
                                         <input name="cita_jurusan" type="text" class="form-control" required placeholder="" value="{{ $siswa->cita_jurusan }}"/>
                                     </div>
                                     <div class="form-group">
-                                        <?php $collection_ = ['Matematika', 'Ekonomi', 'Geografi', 'Sejarah', 'Sosiologi', 'Fisika', 'Kimia', 'Biologi', 'Bahasa Inggris', 'Bahasa Indonesia', 'Lainnya']; ?>
+                                        <?php
+                                            $collection_ = ['Matematika', 'Ekonomi', 'Geografi', 'Sejarah', 'Sosiologi', 'Fisika', 'Kimia', 'Biologi', 'Bahasa Inggris', 'Bahasa Indonesia', 'Lainnya'];
+                                            $mapel_senangi = json_decode($siswa->mapel_senangi);
+                                        ?>
                                         <h5 class="header-title">Mata Pelajaran yang paling anda senangi selama ini</h5>
                                         <div>
-                                            @foreach ($collection_ as $item)
+                                            @if (isset($mapel_senangi))
+                                                @foreach ($collection_ as $item)
                                                 <div class="custom-control custom-checkbox">
                                                     <input name="mapel_senangi[]" value="{{$loop->iteration+1}}" type="checkbox" class="custom-control-input" id="mapelCheck{{$loop->iteration}}" data-parsley-multiple="groups"
-                                                            data-parsley-mincheck="2" @if (in_array($loop->iteration+1, json_decode($siswa->mapel_senangi))) checked @endif>
+                                                            data-parsley-mincheck="2" @if (in_array($loop->iteration+1, $mapel_senangi)) checked @endif>
                                                     <label class="custom-control-label" for="mapelCheck{{$loop->iteration}}">{{$item}}</label>
                                                 </div>
-                                            @endforeach
+                                                @endforeach
+                                            @else
+                                                @foreach ($collection_ as $item)
+                                                <div class="custom-control custom-checkbox">
+                                                    <input name="mapel_senangi[]" value="{{$loop->iteration+1}}" type="checkbox" class="custom-control-input" id="mapelCheck{{$loop->iteration}}" data-parsley-multiple="groups"
+                                                            data-parsley-mincheck="2">
+                                                    <label class="custom-control-label" for="mapelCheck{{$loop->iteration}}">{{$item}}</label>
+                                                </div>
+                                                @endforeach
+                                            @endif
+
                                         </div>
                                     </div>
                                     <br>
@@ -142,41 +167,42 @@
                                                 @php
                                                     $data = json_decode($siswa->nilai);
                                                 @endphp
+
                                                 <tr>
                                                     <td>Rangking</td>
-                                                    <td scope="row"><input type="text" class="form-control" placeholder="Rangking" name="rangking[]" value="{{$data[0]->rangking}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Rangking" name="rangking[]" value="{{$data[1]->rangking}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Rangking" name="rangking[]" value="{{$data[2]->rangking}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Rangking" name="rangking[]" value="{{$data[3]->rangking}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Rangking" name="rangking[]" value="{{$data[4]->rangking}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Rangking" name="rangking[]" value="{{$data[5]->rangking}}"></td>
+                                                    <td scope="row"><input type="text" class="form-control" placeholder="Rangking" name="rangking[]" value="{{$data[0]->rangking ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Rangking" name="rangking[]" value="{{$data[1]->rangking ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Rangking" name="rangking[]" value="{{$data[2]->rangking ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Rangking" name="rangking[]" value="{{$data[3]->rangking ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Rangking" name="rangking[]" value="{{$data[4]->rangking ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Rangking" name="rangking[]" value="{{$data[5]->rangking ?? "" }}"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Nilai Total</td>
-                                                    <td scope="row"><input type="text" class="form-control" placeholder="Nilai Total" name="nilai_total[]" value="{{$data[0]->nilai_total}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Nilai Total" name="nilai_total[]" value="{{$data[1]->nilai_total}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Nilai Total" name="nilai_total[]" value="{{$data[2]->nilai_total}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Nilai Total" name="nilai_total[]" value="{{$data[3]->nilai_total}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Nilai Total" name="nilai_total[]" value="{{$data[4]->nilai_total}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Nilai Total" name="nilai_total[]" value="{{$data[5]->nilai_total}}"></td>
+                                                    <td scope="row"><input type="text" class="form-control" placeholder="Nilai Total" name="nilai_total[]" value="{{$data[0]->nilai_total ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Nilai Total" name="nilai_total[]" value="{{$data[1]->nilai_total ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Nilai Total" name="nilai_total[]" value="{{$data[2]->nilai_total ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Nilai Total" name="nilai_total[]" value="{{$data[3]->nilai_total ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Nilai Total" name="nilai_total[]" value="{{$data[4]->nilai_total ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Nilai Total" name="nilai_total[]" value="{{$data[5]->nilai_total ?? "" }}"></td>
                                                 </tr>
                                                 <tr>
                                                     <td >Rata-rata</td>
-                                                    <td scope="row"><input type="text" class="form-control" placeholder="Rata-rata" name="rata_rata[]" value="{{$data[0]->rata_rata}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Rata-rata" name="rata_rata[]" value="{{$data[1]->rata_rata}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Rata-rata" name="rata_rata[]" value="{{$data[2]->rata_rata}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Rata-rata" name="rata_rata[]" value="{{$data[3]->rata_rata}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Rata-rata" name="rata_rata[]" value="{{$data[4]->rata_rata}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Rata-rata" name="rata_rata[]" value="{{$data[5]->rata_rata}}"></td>
+                                                    <td scope="row"><input type="text" class="form-control" placeholder="Rata-rata" name="rata_rata[]" value="{{$data[0]->rata_rata ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Rata-rata" name="rata_rata[]" value="{{$data[1]->rata_rata ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Rata-rata" name="rata_rata[]" value="{{$data[2]->rata_rata ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Rata-rata" name="rata_rata[]" value="{{$data[3]->rata_rata ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Rata-rata" name="rata_rata[]" value="{{$data[4]->rata_rata ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Rata-rata" name="rata_rata[]" value="{{$data[5]->rata_rata ?? "" }}"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Jml Mapel</td>
-                                                    <td scope="row"><input type="text" class="form-control" placeholder="Rata-rata" name="jml_mapel[]" value="{{$data[0]->jml_mapel}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Jml Mapel" name="jml_mapel[]" value="{{$data[1]->jml_mapel}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Jml Mapel" name="jml_mapel[]" value="{{$data[2]->jml_mapel}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Jml Mapel" name="jml_mapel[]" value="{{$data[3]->jml_mapel}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Jml Mapel" name="jml_mapel[]" value="{{$data[4]->jml_mapel}}"></td>
-                                                    <td><input type="text" class="form-control" placeholder="Jml Mapel" name="jml_mapel[]" value="{{$data[5]->jml_mapel}}"></td>
+                                                    <td scope="row"><input type="text" class="form-control" placeholder="Rata-rata" name="jml_mapel[]" value="{{$data[0]->jml_mapel ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Jml Mapel" name="jml_mapel[]" value="{{$data[1]->jml_mapel ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Jml Mapel" name="jml_mapel[]" value="{{$data[2]->jml_mapel ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Jml Mapel" name="jml_mapel[]" value="{{$data[3]->jml_mapel ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Jml Mapel" name="jml_mapel[]" value="{{$data[4]->jml_mapel ?? "" }}"></td>
+                                                    <td><input type="text" class="form-control" placeholder="Jml Mapel" name="jml_mapel[]" value="{{$data[5]->jml_mapel ?? "" }}"></td>
                                                 </tr>
                                             </tbody>
                                         </table>

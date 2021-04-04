@@ -47,9 +47,10 @@
             <form action="{{ url('guru/edit/riwayat_pekerjaan') }}" method="post">
             @csrf
             @php
-                $data = json_decode($profil_guru->riwayat_pekerjaan);
+                $guru = $profil_guru->riwayat_pekerjaan ?? "";
+                $data = json_decode($guru);
             @endphp
-
+            @if (isset($data))
             <div class="row" id="parent-form">
                 @foreach ($data as $item)
                 <div class="col-lg-12" id="add-form">
@@ -96,9 +97,56 @@
                     </div>
                 </div> <!-- end col -->
                 @endforeach
-
-
             </div> <!-- end row -->
+            @else
+            <div class="row" id="parent-form">
+
+                <div class="col-lg-12" id="add-form">
+                    <div class="card">
+                        <div class="card-body row">
+
+                            {{-- <h4 class="header-title">Validation type</h4>
+                            <p class="card-title-desc">Parsley is a javascript form validation
+                                library. It helps you provide your users with feedback on their form
+                                submission before sending it to your server.</p> --}}
+                                <div class="row col-10">
+                                    <div class="form-group col-4">
+                                        <h4 class="font-size-14"><strong>Status Kepegawaian :</strong></h4>
+                                        <input class="form-control" type="text" name="status_kepegawaian[]" >
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <h4 class="font-size-14"><strong>Lembaga Pengangkatan :</strong></h4>
+                                        <input class="form-control" type="text" name="lembaga_pengangkatan[]">
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <h4 class="font-size-14"><strong>No.SK :</strong></h4>
+                                        <input class="form-control" type="text" name="no_sk[]">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <button>DELETE</button>
+                                </div>
+                                <div class="row col-10">
+                                    <div class="form-group col-4">
+                                        <h4 class="font-size-14"><strong>Tanggal SK : </strong></h4>
+                                        <input class="form-control" type="text" name="tanggal_sk[]">
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <h4 class="font-size-14"><strong>TMT Kerja :</strong></h4>
+                                        <input class="form-control" type="text" name="tmt_kerja[]">
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <h4 class="font-size-14"><strong>Tempat Kerja :</strong></h4>
+                                        <input class="form-control" type="text" name="tempat_kerja[]">
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                </div> <!-- end col -->
+            </div> <!-- end row -->
+            @endif
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">

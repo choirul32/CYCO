@@ -109,10 +109,6 @@
                                     <p>{{ $siswa->jumlah_tinggal ?? '-' }}</p>
                                 </div>
                                 <hr>
-                                <div class="form-group">
-                                    <h4 class="font-size-14"><strong>Foto Rumah :</strong></h4>
-
-                                </div>
 
                         </div>
                     </div>
@@ -125,13 +121,17 @@
                             <p class="card-title-desc">Parsley is a javascript form validation
                                 library. It helps you provide your users with feedback on their form
                                 submission before sending it to your server.</p> --}}
-
-                            <form class="custom-validation" action="#">
+                                @php
+                                    $gambar = json_decode($siswa->foto_rumah, true);
+                                @endphp
                                 <div class="form-group">
-                                    <h4 class="font-size-14"><strong>Foto Rumah :</strong></h4>
-                                    <input type="text" class="form-control" required placeholder="Type something"/>
+                                    <h4 class="font-size-14"><strong>Foto Rumah Depan :</strong></h4>
+                                    <img src="{{ asset("foto_rumah/". $gambar['foto_rumah_depan']) }}" id="preview_depan" class="output_image"/>
                                 </div>
-                            </form>
+                                <div class="form-group">
+                                    <h4 class="font-size-14"><strong>Foto Rumah Belakang :</strong></h4>
+                                    <img src="{{ asset("foto_rumah/". $gambar['foto_rumah_belakang']) }}" id="preview_depan" class="output_image"/>
+                                </div>
 
                         </div>
                     </div>
@@ -143,3 +143,46 @@
     <!-- end page-content-wrapper -->
 </div>
 @endsection
+
+@push('css')
+<style>
+    #wrapper
+    {
+        text-align:center;
+        margin:0 auto;
+        padding:0px;
+        width:995px;
+    }
+    .output_image
+    {
+        max-width:300px;
+    }
+    .button-add-image{
+        display: block;
+        padding: 10px 25px;
+        border: 0;
+        margin: 0 auto;
+        font-size: 15px;
+        letter-spacing: 0.05em;
+        cursor: pointer;
+        background: #216e69;
+        color: #fff;
+        outline: none;
+        transition: .3s ease-in-out;
+    }
+</style>
+@endpush
+
+@push('js')
+<script type='text/javascript'>
+    function preview_image(event, id_input){
+        var reader = new FileReader();
+        reader.onload = function(){
+            var output = document.getElementById(id_input);
+            output.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
+</script>
+@endpush

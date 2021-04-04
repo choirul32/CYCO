@@ -27,6 +27,9 @@ Route::group(['prefix' => 'siswa', 'middleware' => ['auth:siswa']], function () 
         Route::post('/data_akademik', 'Siswa\EditController@dataAkademikUpdate');
         Route::post('/data_rumah', 'Siswa\EditController@dataKondisiRumahUpdate');
     });
+    Route::prefix('/api')->group(function(){
+        Route::get('/data_siswa/{id}', 'Siswa\ReadController@getAPISiswaById');
+    });
     Route::delete('/delete/{id}', 'Siswa\DeleteController@destroySiswa');
     Route::prefix('/konseling_individu')->group(function () {
         Route::get('/', 'KonselingIndividu\ViewController@indexSiswa');

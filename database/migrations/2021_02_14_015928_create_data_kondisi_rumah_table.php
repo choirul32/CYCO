@@ -27,6 +27,7 @@ class CreateDataKondisiRumahTable extends Migration
             $table->tinyInteger('kamar_mandi')->nullable();
             $table->tinyInteger('sumber_air')->nullable();
             $table->tinyInteger('jumlah_tinggal')->nullable();
+            $table->json('foto_rumah')->nullable();
             $table->timestamps();
         });
     }

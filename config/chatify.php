@@ -37,7 +37,7 @@ return [
     |
     */
 
-    'middleware' => env('CHATIFY_MIDDLEWARE', 'auth'),
+    // 'middleware' => env('CHATIFY_MIDDLEWARE', 'auth'),
 
     /*
     |--------------------------------------------------------------------------

@@ -15,7 +15,7 @@
                     </ol> --}}
                 </div>
                 <div class="col-md-4">
-                    
+
                     <div class="float-right d-none d-md-block">
                         <div class="dropdown">
                             <button class="btn btn-light btn-rounded dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -54,7 +54,8 @@
                                 library. It helps you provide your users with feedback on their form
                                 submission before sending it to your server.</p> --}}
                                 @php
-                                    $data = json_decode($profil_guru->riwayat_pendidikan);
+                                    $guru = $profil_guru->riwayat_pendidikan ?? "";
+                                    $data = json_decode($guru);
                                 @endphp
                                 <table class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
@@ -68,7 +69,7 @@
                                     <tbody>
                                     <tr>
                                         <td>Nama Perguruan Tinggi</td>
-                                        <td>{{ $data->nama_perguruan_tinggi_d3 ?? ""}}</td> 
+                                        <td>{{ $data->nama_perguruan_tinggi_d3 ?? ""}}</td>
                                         <td>{{ $data->nama_perguruan_tinggi_s1 ?? ""}}</td>
                                         <td>{{ $data->nama_perguruan_tinggi_s2 ?? ""}}</td>
                                     </tr>
@@ -90,7 +91,7 @@
                                         <td></td>
                                         <td></td>
                                     </tr>
-                                    
+
                                     </tbody>
                                 </table>
                         </div>
@@ -98,10 +99,10 @@
                 </div> <!-- end col -->
 
             </div> <!-- end row -->
-            
+
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
 </div>
 @endsection

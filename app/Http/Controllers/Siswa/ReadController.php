@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Siswa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
-
+use App\Models\Data\Akademik;
+use App\Models\Data\Keluarga;
+use App\Models\Data\KondisiRumah;
 class ReadController extends Controller
 {
     public function getAPISiswa(){
@@ -14,7 +16,10 @@ class ReadController extends Controller
     }
 
     public function getAPISiswaById($id){
-        $guru = Siswa::find($id);
-        return response()->json($guru);
+        $data['siswa'] = Siswa::find($id);
+        $data['akademik'] = Akademik::find($id);
+        $data['keluarga'] = Keluarga::find($id);
+        $data['kondisi_rumah'] = KondisiRumah::find($id);
+        return response()->json($data);
     }
 }

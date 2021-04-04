@@ -30,8 +30,25 @@ class Siswa extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
-    public function kelas(){
-        return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
+    // public function kelas(){
+    //     return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
+    // }
+    public function getKelasAttribute(){
+        $kelas = $this->attributes['kelas_id'];
+        switch ($kelas) {
+            case 1:
+                return "X";
+                break;
+            case 2:
+                return "XI";
+                break;
+            case 3:
+                return "XII";
+                break;
+            case 4:
+                return "XIII";
+                break;
+        }
     }
 
     public function jurusan(){
@@ -39,7 +56,7 @@ class Siswa extends Authenticatable
     }
 
     private function getBahasaArray(){
-        $bahasa = json_decode($this->attributes['bahasa']);
+        $bahasa = json_decode($this->attributes['bahasa']) ?? [];
         $temp = [];
         foreach ($bahasa as $item) {
             switch ($item) {
@@ -69,7 +86,7 @@ class Siswa extends Authenticatable
     public function getBahasaNamaAttribute(){
         $result = $this->getBahasaArray();
         $temp = "";
-        $i = 0; 
+        $i = 0;
         foreach ($result as $item) {
             if ($i == 0) $temp = $temp. "" .$item;
             else $temp = $temp .", " .$item;
@@ -153,5 +170,5 @@ class Siswa extends Authenticatable
                 return "Lainnya";
         }
     }
-    
+
 }

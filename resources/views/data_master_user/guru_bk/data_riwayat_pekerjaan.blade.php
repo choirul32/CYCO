@@ -45,53 +45,67 @@
     <div class="page-content-wrapper">
         <div class="container-fluid">
             @php
-                $data = json_decode($profil_guru->riwayat_pekerjaan);
+                $guru = $profil_guru->riwayat_pekerjaan ?? "";
+                $data = json_decode($guru);
             @endphp
+            {{-- {{dd($data)}} --}}
 
-            <div class="row">
-                @foreach ($data as $item)
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-body">
+                @if (isset($data))
+                <div class="row">
+                    @foreach ($data as $item)
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
 
-                            {{-- <h4 class="header-title">Validation type</h4>
-                            <p class="card-title-desc">Parsley is a javascript form validation
-                                library. It helps you provide your users with feedback on their form
-                                submission before sending it to your server.</p> --}}
-                                <div class="form-group">
-                                    <h4 class="font-size-14"><strong>Status Kepegawaian :</strong></h4>
-                                    <p>{{$item->status_kepegawaian ?? "-"}}</p>
-                                </div>
-                                <hr>
-                                <div class="form-group">
-                                    <h4 class="font-size-14"><strong>Lembaga Pengangkatan :</strong></h4>
-                                    <p>{{$item->lembaga_pengangkatan ?? "-"}}</p>
-                                </div>
-                                <hr>
-                                <div class="form-group">
-                                    <h4 class="font-size-14"><strong>No.SK :</strong></h4>
-                                    <p>{{$item->no_sk ?? "-"}}</p>
-                                </div>
-                                <hr>
-                                <div class="form-group">
-                                    <h4 class="font-size-14"><strong>Tanggal SK : </strong></h4>
-                                    <p>{{$item->tanggal_sk ?? "-"}}</p>
-                                </div>
-                                <hr>
-                                <div class="form-group">
-                                    <h4 class="font-size-14"><strong>TMT Kerja :</strong></h4>
-                                    <p>{{$item->tmt_kerja ?? "-"}}</p>
-                                </div>
-                                <hr>
-                                <div class="form-group">
-                                    <h4 class="font-size-14"><strong>Tempat Kerja :</strong></h4>
-                                    <p>{{$item->tempat_kerja ?? "-"}}</p>
-                                </div>
+                                {{-- <h4 class="header-title">Validation type</h4>
+                                <p class="card-title-desc">Parsley is a javascript form validation
+                                    library. It helps you provide your users with feedback on their form
+                                    submission before sending it to your server.</p> --}}
+                                    <div class="form-group">
+                                        <h4 class="font-size-14"><strong>Status Kepegawaian :</strong></h4>
+                                        <p>{{$item->status_kepegawaian ?? "-"}}</p>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <h4 class="font-size-14"><strong>Lembaga Pengangkatan :</strong></h4>
+                                        <p>{{$item->lembaga_pengangkatan ?? "-"}}</p>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <h4 class="font-size-14"><strong>No.SK :</strong></h4>
+                                        <p>{{$item->no_sk ?? "-"}}</p>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <h4 class="font-size-14"><strong>Tanggal SK : </strong></h4>
+                                        <p>{{$item->tanggal_sk ?? "-"}}</p>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <h4 class="font-size-14"><strong>TMT Kerja :</strong></h4>
+                                        <p>{{$item->tmt_kerja ?? "-"}}</p>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <h4 class="font-size-14"><strong>Tempat Kerja :</strong></h4>
+                                        <p>{{$item->tempat_kerja ?? "-"}}</p>
+                                    </div>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                    @endforeach
+                </div> <!-- end row -->
+                @else
+                    <div class="row justify-content-center pt-5">
+                        <div class="col-lg-10">
+                            <div class="text-center mt-4">
+                                <h4>Anda Belum Memiliki Riwayat Pekerjaan</h4>
+                                <p class="text-muted">klik tombol "edit data" untuk melakukan mengisi riwayat pekerjaan</p>
+                            </div>
                         </div>
                     </div>
-                </div> <!-- end col -->
-                @endforeach
-            </div> <!-- end row -->
+                @endif
+
         </div>
         <!-- end container-fluid -->
     </div>

@@ -37,7 +37,7 @@
     <!-- end page title end breadcrumb -->
 
     <div class="page-content-wrapper">
-        
+
         <div class="container-fluid">
         <form action="{{ url('siswa/edit/data_siswa') }}" method="post">
             @csrf
@@ -84,7 +84,7 @@
                                         @foreach ($array_jurusan as $item)
                                             <option @if ($siswa->jurusan_id == $loop->iteration) selected @endif value="{{$loop->iteration}}">{{ $item }}</option>
                                         @endforeach
-                                    </select>    
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <h5 class="header-title">Tempat & Tanggal Lahir</h5>
@@ -133,35 +133,38 @@
                                 <div class="form-group">
                                     <h5 class="header-title">Bahasa Sehari-hari</h5>
                                     <small>Boleh pilih lebih dari satu</small>
+                                    @php
+                                        $bahasa = json_decode($siswa->bahasa) ?? [];
+                                    @endphp
                                     <div>
                                         <div class="custom-control custom-checkbox">
                                             <input value="1" name="bahasa[]" type="checkbox" class="custom-control-input" id="customCheck1" data-parsley-multiple="groups"
-                                                    data-parsley-mincheck="2" @if (in_array(1, json_decode($siswa->bahasa))) checked @endif>
+                                                    data-parsley-mincheck="2" @if (in_array(1, $bahasa)) checked @endif>
                                             <label class="custom-control-label" for="customCheck1">Bahasa Indonesia</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
                                             <input value="2" name="bahasa[]" type="checkbox" class="custom-control-input" id="customCheck2" data-parsley-multiple="groups"
-                                                    data-parsley-mincheck="2" @if (in_array(2, json_decode($siswa->bahasa))) checked @endif>
+                                                    data-parsley-mincheck="2" @if (in_array(2, $bahasa)) checked @endif>
                                             <label class="custom-control-label" for="customCheck2">Bahasa Jawa</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
                                             <input value="3" name="bahasa[]" type="checkbox" class="custom-control-input" id="customCheck3" data-parsley-multiple="groups"
-                                                    data-parsley-mincheck="2" @if (in_array(3, json_decode($siswa->bahasa))) checked @endif>
+                                                    data-parsley-mincheck="2" @if (in_array(3, $bahasa)) checked @endif>
                                             <label class="custom-control-label" for="customCheck3">Bahasa Sunda</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
                                             <input value="4" name="bahasa[]" type="checkbox" class="custom-control-input" id="customCheck4" data-parsley-multiple="groups"
-                                                    data-parsley-mincheck="2" @if (in_array(4, json_decode($siswa->bahasa))) checked @endif>
+                                                    data-parsley-mincheck="2" @if (in_array(4, $bahasa)) checked @endif>
                                             <label class="custom-control-label" for="customCheck4">Bahasa Melayu</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
                                             <input value="5" name="bahasa[]" type="checkbox" class="custom-control-input" id="customCheck5" data-parsley-multiple="groups"
-                                                    data-parsley-mincheck="2" @if (in_array(5, json_decode($siswa->bahasa))) checked @endif>
+                                                    data-parsley-mincheck="2" @if (in_array(5, $bahasa)) checked @endif>
                                             <label class="custom-control-label" for="customCheck5">Bahasa Inggris</label>
                                         </div>
                                         <div class="custom-control custom-checkbox">
                                             <input value="6" name="bahasa[]" type="checkbox" class="custom-control-input" id="customCheck6" data-parsley-multiple="groups"
-                                                    data-parsley-mincheck="2" @if (in_array(6, json_decode($siswa->bahasa))) checked @endif>
+                                                    data-parsley-mincheck="2" @if (in_array(6, $bahasa)) checked @endif>
                                             <label class="custom-control-label" for="customCheck6">Lainnya</label>
                                         </div>
 
@@ -272,7 +275,7 @@
                                             <div class="input-group-text">cm</div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                         </div>
                     </div>
@@ -294,7 +297,7 @@
         </form>
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
 </div>
 @endsection

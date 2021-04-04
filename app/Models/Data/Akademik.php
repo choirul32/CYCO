@@ -10,9 +10,8 @@ class Akademik extends Model
     protected $guarded = ['id'];
 
     public function getEkstrakulikulerNamaAttribute(){
-        $data = json_decode($this->attributes['ekskul']);
+        $data = json_decode($this->attributes['ekskul']) ?? [];
         $temp = [];
-        // dd($data);
         foreach ($data as $item) {
             switch ($item) {
                 case 1:
@@ -69,7 +68,7 @@ class Akademik extends Model
     }
 
     public function getMapelNamaAttribute(){
-        $data = json_decode($this->attributes['mapel_senangi']);
+        $data = json_decode($this->attributes['mapel_senangi']) ?? [];
         $temp = [];
         foreach ($data as $item) {
             switch ($item) {

@@ -9,7 +9,7 @@ use Auth;
 class Authenticate extends Middleware
 {
     protected $guards;
-    
+
 
     /**
      * Handle an incoming request.
@@ -22,8 +22,7 @@ class Authenticate extends Middleware
      * @throws \Illuminate\Auth\AuthenticationException
      */
     public function handle($request, Closure $next, ...$guards)
-    {       
-        // dd($guards[0]);
+    {
         auth()->setDefaultDriver($guards[0]);
         if (!auth()->check() && $guards[0] == 'admin') {
             return redirect(url('admin/login'));

@@ -66,11 +66,12 @@ class EditController extends Controller
     }
 
     public function dataAkademikUpdate(Request $request){
-        try {
-            $data = $request->all();
+        // try {
+            // dd($request);
+            $data = $request->except([ 'rangking', 'nilai_total', 'rata_rata', 'jml_mapel']);
             $model = Akademik::where('siswa_id',Auth::user()->id)->first();
-            $data['ekskul'] = $request->input("ekskul");
-            $data['mapel_senangi'] = $request->input("mapel_senangi");
+            $data['ekskul'] = json_encode($request->input("ekskul") ?? []);
+            $data['mapel_senangi'] = json_encode($request->input("mapel_senangi") ?? []);
 
             $temp_data = [];
             for ($i=0; $i < count($request->rangking); $i++) {
@@ -81,8 +82,8 @@ class EditController extends Controller
                 $temp['jml_mapel'] = $request->jml_mapel[$i];
                 $temp_data[] = $temp;
             }
-            $data['nilai'] = $temp_data;
-
+            $data['nilai'] = json_encode($temp_data);
+            // dd($data);
             if (!isset($model)) {
                 $model = new Akademik();
                 $data['siswa_id'] = Auth::user()->id;
@@ -92,26 +93,60 @@ class EditController extends Controller
                 $model->save();
             }
             return redirect('siswa/data_akademik')->with(['success' => 'Data Akademik Berhasil Diperbaharui']);
-        } catch (\Throwable $th) {
-            return redirect('siswa/data_akademik')->with(['alert' => 'Data Akademik Gagal Diperbaharui']);
-        }
+        // } catch (\Throwable $th) {
+        //     return redirect('siswa/data_akademik')->with(['alert' => 'Data Akademik Gagal Diperbaharui']);
+        // }
     }
 
     public function dataKondisiRumahUpdate(Request $request){
-        try {
+        // try {
             $data = $request->all();
+            $this->validate($request, [
+                'foto_rumah_*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20248'
+            ]);
             $model = KondisiRumah::where('siswa_id',Auth::user()->id)->first();
+            if (isset($model)) {
+                $temp = json_decode($model->foto_rumah, true);
+            }
+            $array_foto = ['foto_rumah_depan', 'foto_rumah_belakang'];
+
+
             if (!isset($model)) {
+                foreach ($array_foto as $item) {
+                    $name = null;
+                    if($request->hasFile($item)){
+                        $file = $request->file($item);
+                        $nama_file = time()."_".$file->getClientOriginalName();
+                        $tujuan_upload = 'foto_rumah';
+                        $file->move($tujuan_upload, $nama_file);
+                    }
+                    $temp[$item] = $nama_file;
+                }
+                $data['foto_rumah'] = json_encode($temp);
                 $model = new KondisiRumah();
                 $data['siswa_id'] = Auth::user()->id;
                 $model->create($data);
             }else{
+                foreach ($array_foto as $item) {
+                    if($request->hasFile($item)){
+                        $file = $request->file($item);
+                        $nama_file = time()."_".$file->getClientOriginalName();
+                        $tujuan_upload = 'foto_rumah';
+                        $file->move($tujuan_upload, $nama_file);
+                        $temp[$item] = $nama_file;
+                    }
+                }
+                $data['foto_rumah'] = json_encode($temp);
                 $model->update($data);
                 $model->save();
             }
+            // dd('benar');
             return redirect('siswa/data_rumah')->with(['success' => 'Data Kondisi Rumah Berhasil Diperbaharui']);
-        } catch (\Throwable $th) {
-            return redirect('siswa/data_rumah')->with(['alert' => 'Data Akademik Gagal Diperbaharui']);
-        }
+
+        // }
+        // catch (\Throwable $th) {
+        //     dd('salah');
+        //     return redirect('siswa/data_rumah')->with(['alert' => 'Data Akademik Gagal Diperbaharui']);
+        // }
     }
 }

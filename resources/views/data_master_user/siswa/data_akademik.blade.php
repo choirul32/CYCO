@@ -120,44 +120,45 @@
                                         </thead>
                                         <tbody class="text-center">
                                             @php
-                                                $data = json_decode($siswa->nilai);
+                                                $nilai = $siswa->nilai ?? null;
+                                                $data = json_decode($nilai);
                                                 $keterangan = ["Rangking", "Nilai Total", "Rata-rata", "Jml Mapel"];
                                             @endphp
                                             <tr>
                                                 <td class="text-center">{{$keterangan[0]}}</td>
-                                                <td>{{$data[0]->rangking}}</td>
-                                                <td>{{$data[1]->rangking}}</td>
-                                                <td>{{$data[2]->rangking}}</td>
-                                                <td>{{$data[3]->rangking}}</td>
-                                                <td>{{$data[4]->rangking}}</td>
-                                                <td>{{$data[5]->rangking}}</td>
+                                                <td>{{$data[0]->rangking ?? ""}}</td>
+                                                <td>{{$data[1]->rangking ?? ""}}</td>
+                                                <td>{{$data[2]->rangking ?? ""}}</td>
+                                                <td>{{$data[3]->rangking ?? ""}}</td>
+                                                <td>{{$data[4]->rangking ?? ""}}</td>
+                                                <td>{{$data[5]->rangking ?? ""}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="text-center">{{$keterangan[1]}}</td>
-                                                <td>{{$data[0]->nilai_total}}</td>
-                                                <td>{{$data[1]->nilai_total}}</td>
-                                                <td>{{$data[2]->nilai_total}}</td>
-                                                <td>{{$data[3]->nilai_total}}</td>
-                                                <td>{{$data[4]->nilai_total}}</td>
-                                                <td>{{$data[5]->nilai_total}}</td>
+                                                <td>{{$data[0]->nilai_total ?? ""}}</td>
+                                                <td>{{$data[1]->nilai_total ?? ""}}</td>
+                                                <td>{{$data[2]->nilai_total ?? ""}}</td>
+                                                <td>{{$data[3]->nilai_total ?? ""}}</td>
+                                                <td>{{$data[4]->nilai_total ?? ""}}</td>
+                                                <td>{{$data[5]->nilai_total ?? ""}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="text-center">{{$keterangan[2]}}</td>
-                                                <td>{{$data[0]->rata_rata}}</td>
-                                                <td>{{$data[1]->rata_rata}}</td>
-                                                <td>{{$data[2]->rata_rata}}</td>
-                                                <td>{{$data[3]->rata_rata}}</td>
-                                                <td>{{$data[4]->rata_rata}}</td>
-                                                <td>{{$data[5]->rata_rata}}</td>
+                                                <td>{{$data[0]->rata_rata ?? ""}}</td>
+                                                <td>{{$data[1]->rata_rata ?? ""}}</td>
+                                                <td>{{$data[2]->rata_rata ?? ""}}</td>
+                                                <td>{{$data[3]->rata_rata ?? ""}}</td>
+                                                <td>{{$data[4]->rata_rata ?? ""}}</td>
+                                                <td>{{$data[5]->rata_rata ?? ""}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="text-center">{{$keterangan[3]}}</td>
-                                                <td>{{$data[0]->jml_mapel}}</td>
-                                                <td>{{$data[1]->jml_mapel}}</td>
-                                                <td>{{$data[2]->jml_mapel}}</td>
-                                                <td>{{$data[3]->jml_mapel}}</td>
-                                                <td>{{$data[4]->jml_mapel}}</td>
-                                                <td>{{$data[5]->jml_mapel}}</td>
+                                                <td>{{$data[0]->jml_mapel ?? ""}}</td>
+                                                <td>{{$data[1]->jml_mapel ?? ""}}</td>
+                                                <td>{{$data[2]->jml_mapel ?? ""}}</td>
+                                                <td>{{$data[3]->jml_mapel ?? ""}}</td>
+                                                <td>{{$data[4]->jml_mapel ?? ""}}</td>
+                                                <td>{{$data[5]->jml_mapel ?? ""}}</td>
                                             </tr>
 
                                         </tbody>

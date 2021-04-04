@@ -15,7 +15,7 @@
                     </ol> --}}
                 </div>
                 <div class="col-md-4">
-                    
+
                     <div class="float-right d-none d-md-block">
                         <div class="dropdown">
                             <button class="btn btn-light btn-rounded dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -71,12 +71,12 @@
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Kelas : </strong></h4>
-                                    <p>{{ $siswa->kelas->nama ?? '-' }}</p>
+                                    <p>{{ $siswa->kelas ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Jurusan :</strong></h4>
-                                    <p>{{ $siswa->jurusan->nama ?? '-' }}</p> 
+                                    <p>{{ $siswa->jurusan->nama ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
@@ -86,27 +86,27 @@
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Nomor Induk Kependudukan :</strong></h4>
-                                    <p>{{ $siswa->nik ?? '-' }}</p> 
+                                    <p>{{ $siswa->nik ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Jenis Kelamin :</strong></h4>
-                                    <p>{{ $siswa->jenis_kelamin_nama ?? '-' }}</p> 
+                                    <p>{{ $siswa->jenis_kelamin_nama ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Agama :</strong></h4>
-                                    <p>{{ $siswa->agama_nama ?? '-' }}</p> 
+                                    <p>{{ $siswa->agama_nama ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Kewarganegaraan :</strong></h4>
-                                    <p>{{ $siswa->kewarganegaraan_nama ?? '-' }}</p> 
+                                    <p>{{ $siswa->kewarganegaraan_nama ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Bahasa Sehari-hari :</strong></h4>
-                                    <p>{{ $siswa->bahasa_nama ?? '-' }}</p> 
+                                    <p>{{ $siswa->bahasa_nama ?? '-' }}</p>
                                 </div>
                         </div>
                     </div>
@@ -123,57 +123,57 @@
                             <form action="#" class="custom-validation">
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Anak Ke-</strong></h4>
-                                    <p>{{ $siswa->anak_ke ?? '-' }}</p> 
+                                    <p>{{ $siswa->anak_ke ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Jumlah Saudara</strong></h4>
-                                    <p>{{ $siswa->jumlah_saudara ?? '-' }}</p> 
+                                    <p>{{ $siswa->jumlah_saudara ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Nomor Handphone Aktif</strong></h4>
-                                    <p>{{ $siswa->no_handphone ?? '-' }}</p> 
+                                    <p>{{ $siswa->no_handphone ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Alamat Lengkap</strong></h4>
-                                    <p>{{ $siswa->alamat ?? '-' }}</p> 
+                                    <p>{{ $siswa->alamat ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Titik Koordinat Rumah</strong></h4>
-                                    <p>{{ $siswa->koordinat_rumah ?? '-' }}</p> 
+                                    <p>{{ $siswa->koordinat_rumah ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Jenis Tinggal</strong></h4>
-                                    <p>{{ $siswa->jenis_tinggal_nama ?? '-' }}</p> 
+                                    <p>{{ $siswa->jenis_tinggal_nama ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Alat Transportasi ke Sekolah</strong></h4>
-                                    <p>{{ $siswa->transportasi_nama ?? '-' }}</p> 
+                                    <p>{{ $siswa->transportasi_nama ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Golongan Darah</strong></h4>
-                                    <p>{{ $siswa->golongan_darah ?? '-' }}</p> 
+                                    <p>{{ $siswa->golongan_darah ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Riwayat Penyakit</strong></h4>
-                                    <p>{{ $siswa->riw_penyakit ?? '-' }}</p> 
+                                    <p>{{ $siswa->riw_penyakit ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Berat Badan</strong></h4>
-                                    <p>{{ $siswa->berat_badan ?? '-' }}</p> 
+                                    <p>{{ $siswa->berat_badan ?? '-' }}</p>
                                 </div>
                                 <hr>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Tinggi Badan</strong></h4>
-                                    <p>{{ $siswa->tinggi_badan ?? '-' }}</p> 
+                                    <p>{{ $siswa->tinggi_badan ?? '-' }}</p>
                                 </div>
                             </form>
 
@@ -181,10 +181,10 @@
                     </div>
                 </div> <!-- end col -->
             </div> <!-- end row -->
-            
+
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
 </div>
 @endsection
