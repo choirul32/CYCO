@@ -26,7 +26,7 @@ class CreateDataAkademikTable extends Migration
             $table->string('cita_perguruan')->nullable();
             $table->string('cita_jurusan')->nullable();
             $table->json('mapel_senangi')->nullable();
-            $table->json('nilai')->nullable()->default('[]');
+            $table->json('nilai')->nullable();
             $table->timestamps();
         });
     }
