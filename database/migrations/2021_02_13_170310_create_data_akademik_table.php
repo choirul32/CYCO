@@ -20,7 +20,7 @@ class CreateDataAkademikTable extends Migration
             $table->text('alasan')->nullable();
             $table->string('waktu_rencana')->nullable();
             $table->text('rencana_keterima')->nullable();
-            $table->json('ekskul')->nullable()->default('[]');
+            $table->json('ekskul')->nullable();
             $table->tinyInteger('rencana_lulus')->nullable();
             $table->string('cita_pekerjaan')->nullable();
             $table->string('cita_perguruan')->nullable();
