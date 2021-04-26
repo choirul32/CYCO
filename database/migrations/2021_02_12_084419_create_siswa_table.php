@@ -29,7 +29,7 @@ class CreateSiswaTable extends Migration
             $table->boolean('jenis_kelamin')->nullable();
             $table->tinyInteger('agama')->nullable();
             $table->tinyInteger('kewarganegaraan')->unsigned()->nullable();
-            $table->json('bahasa')->nullable()->default('[]');
+            $table->json('bahasa')->nullable();
             $table->tinyInteger('anak_ke')->unsigned()->nullable();
             $table->tinyInteger('jumlah_saudara')->unsigned()->nullable();
             $table->string('no_handphone', 15)->nullable();
