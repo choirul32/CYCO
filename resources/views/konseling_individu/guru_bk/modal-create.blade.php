@@ -21,7 +21,7 @@
                     </div>
                     <div class="form-group">
                         <h5 class="font-size-14">Pilih Tanggal</h5>
-                        <input name="tanggal" class="form-control" type="date" value="2019-08-19" id="example-date-input">
+                        <input name="tanggal" class="form-control" type="date" value="{{ date('d-m-Y') }}" id="example-date-input">
                     </div>
                     <div class="form-group">
                         <h5 class="font-size-14">Pilih Jam</h5>

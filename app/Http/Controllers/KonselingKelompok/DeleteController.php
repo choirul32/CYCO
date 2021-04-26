@@ -9,8 +9,12 @@ use App\Models\Konseling;
 class DeleteController extends Controller
 {
     public function deleteSiswa($id){
-        $data = Konseling::find($id);
-        $data->delete();
-        return redirect()->back();
+        try {
+            $data = Konseling::find($id);
+            $data->delete();
+            return redirect()->back()->with(['success' => 'Konseling Individu Berhasil Dihapus']);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(['success' => 'Konseling Individu Gagal Dihapus']);
+        }
     }
 }

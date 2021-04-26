@@ -10,7 +10,12 @@
             <form method="POST" class="custom-validation" action="{{ url('siswa/konseling_individu/create') }}">
                 @csrf
                 <div class="modal-body">
-                    Detail
+                    <h4 class="header-title">Ringkasan Masalah</h4>
+                    <p class="card-title-desc"></p>
+                    <h4 class="header-title">Harapan Konseling</h4>
+                    <p class="card-title-desc"></p>
+                    <h4 class="header-title">Link</h4>
+                    <p id="link" class="card-title-desc"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>

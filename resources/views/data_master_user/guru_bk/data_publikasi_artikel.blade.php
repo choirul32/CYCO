@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="float-right d-none d-md-block mr-3">
-                        <a class="btn btn-success btn-rounded dropdown-toggle" href="{{url('guru/edit/publikasi_artikel')}}">
+                        <a class="btn btn-success btn-rounded" href="{{url('guru/edit/publikasi_artikel')}}">
                             <i class="mdi mdi-account-edit-outline mr-1"></i> Edit Data
                         </a>
                     </div>
@@ -54,8 +54,10 @@
                                 library. It helps you provide your users with feedback on their form
                                 submission before sending it to your server.</p> --}}
                                 @php
-                                    $data = json_decode($profil_guru->publikasi_artikel);
+                                    $guru = $profil_guru->publikasi_artikel ?? "";
+                                    $data = json_decode($guru);
                                 @endphp
+
                                 <table class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                     <tr class="text-center">
@@ -66,14 +68,21 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data as $item)
-                                        <tr>
-                                            <td>{{$loop->iteration}}</td>
-                                            <td>{{$item->judul_artikel_ilmiah ?? "-"}}</td>
-                                            <td>{{$item->nama_jurnal ?? "-"}}</td>
-                                            <td>{{$item->volume_nomer_tahun ?? "-"}}</td>
-                                        </tr>
-                                        @endforeach
+                                        @if (isset($data))
+                                            @foreach ($data as $item)
+                                            <tr>
+                                                <td>{{$loop->iteration}}</td>
+                                                <td>{{$item->judul_artikel_ilmiah ?? "-"}}</td>
+                                                <td>{{$item->nama_jurnal ?? "-"}}</td>
+                                                <td>{{$item->volume_nomer_tahun ?? "-"}}</td>
+                                            </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td class="text-center" colspan="4">Data Masih Kosong</td>
+
+                                            </tr>
+                                        @endif
                                     </tbody>
                                 </table>
 

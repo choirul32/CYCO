@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="form-group form-group-custom mb-4">
                                     <input name="email" type="email" class="form-control" id="useremail" required="">
-                                    <label for="useremail">Email</label> 
+                                    <label for="useremail">Email</label>
                                 </div>
                                 <div class="form-group form-group-custom mb-4">
                                     <input name="password" type="password" class="form-control" id="password" required="">
@@ -43,10 +43,10 @@
                                     <label class="custom-control-label font-weight-normal" for="term-conditionCheck">I accept <a href="#" class="text-primary">Terms and Conditions</a></label>
                                 </div> --}}
                                 <div class="mt-4">
-                                    <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Register</button>
+                                    <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Daftar</button>
                                 </div>
                                 <div class="mt-4 text-center">
-                                    <a href="{{url('siswa/login')}}" class="text-muted"><i class="mdi mdi-account-circle mr-1"></i> Already have account?</a>
+                                    <a href="{{url('siswa/login')}}" class="text-muted"><i class="mdi mdi-account-circle mr-1"></i> Sudah punya akun?</a>
                                 </div>
                             </div>
                         </div>

@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="float-right d-none d-md-block mr-3">
-                        <a class="btn btn-success btn-rounded dropdown-toggle" href="{{url('siswa/edit/data_keluarga')}}">
+                        <a class="btn btn-success btn-rounded" href="{{url('siswa/edit/data_keluarga')}}">
                             <i class="mdi mdi-account-edit-outline mr-1"></i> Edit Data
                         </a>
                     </div>
@@ -59,7 +59,7 @@
                                     <p>{{ $siswa->nama_ayah ?? '-'}}</p>
                                 </div>
                                 <hr>
-                                
+
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Status ayah</strong></h4>
                                     <p>{{ $siswa->status_ayah_nama ?? '-'}}</p>
@@ -127,7 +127,7 @@
                                     <p>{{ $siswa->nama_ibu ?? '-'}}</p>
                                 </div>
                                 <hr>
-                                
+
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Status ibu</strong></h4>
                                     <p>{{ $siswa->status_ibu_nama ?? '-'}}</p>
@@ -189,7 +189,7 @@
             </div> <!-- end row -->
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
 </div>
 @endsection

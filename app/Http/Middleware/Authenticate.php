@@ -23,22 +23,32 @@ class Authenticate extends Middleware
      */
     public function handle($request, Closure $next, ...$guards)
     {
-        auth()->setDefaultDriver($guards[0]);
-        if (!auth()->check() && $guards[0] == 'admin') {
-            return redirect(url('admin/login'));
+        if (isset($guards[0])) {
+            auth()->setDefaultDriver($guards[0]);
+            if (!auth()->check() && $guards[0] == 'admin') {
+                return redirect(url('admin/login'));
+            }
+            if (!auth()->check() && $guards[0] == 'guru') {
+                return redirect(url('guru/login'));
+            }
+            if (!auth()->check() && $guards[0] == 'siswa') {
+                return redirect(url('siswa/login'));
+            }
+            if (!auth()->check() && $guards[0] == 'orangtua') {
+                return redirect(url('orangtua/login'));
+            }
+            if (!auth()->check() && $guards[0] == 'web') {
+                return redirect(url('admin/login'));
+            }
         }
-        if (!auth()->check() && $guards[0] == 'guru') {
-            return redirect(url('guru/login'));
+        if(auth()->check()){
+            return $next($request);
         }
-        if (!auth()->check() && $guards[0] == 'siswa') {
-            return redirect(url('siswa/login'));
+        auth()->setDefaultDriver('siswa');
+        if(auth()->check()){
+            return $next($request);
         }
-        if (!auth()->check() && $guards[0] == 'orangtua') {
-            return redirect(url('orangtua/login'));
-        }
-        if (!auth()->check() && $guards[0] == 'web') {
-            return redirect(url('admin/login'));
-        }
+        auth()->setDefaultDriver('guru');
         if(auth()->check()){
             return $next($request);
         }else{

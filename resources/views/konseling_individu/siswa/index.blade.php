@@ -62,7 +62,7 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <h4 class="header-title">Permintaan Konseling</h4>
-                
+
                                                 <div class="table-responsive">
                                                     <table class="table mb-0">
                                                         <thead>
@@ -70,6 +70,7 @@
                                                                 <th>No</th>
                                                                 <th>Konselor</th>
                                                                 <th>Permintaan Tanggal</th>
+                                                                <th>Media</th>
                                                                 <th>Permintaan Jam</th>
                                                                 <th>Status</th>
                                                                 <th>Aksi</th>
@@ -80,8 +81,13 @@
                                                                 <tr>
                                                                     <td>{{$loop->iteration}}</td>
                                                                     <td>{{$item->konselor->nama}}</td>
-                                                                    <td>{{$item->tanggal}}</td>
-                                                                    <td>{{$item->jam}}</td>
+                                                                    <td>{{ Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
+                                                                    <td>{{$item->perantara}}</td>
+                                                                    <td>{{$item->jam_pengganti ?? $item->jam}}
+                                                                        @if ($item->jam_pengganti != null)
+                                                                            <span class="badge badge-pill badge-success">diganti</span>
+                                                                        @endif
+                                                                    </td>
                                                                     <td>
                                                                     @if (is_null($item->verified_at))
                                                                         <span class="badge badge-pill badge-danger">Belum Diverifikasi</span>
@@ -91,13 +97,13 @@
                                                                     </td>
                                                                     <td>
                                                                         <div class="btn-group">
-                                                                            <button type="button" class="btn btn-secondary waves-effect waves-light" onclick="detailKonseling({{$item->id}})">Detail</button>
+                                                                            <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" onclick="detailKonseling({{$item->id}})">Detail</button>
                                                                             @if (is_null($item->verified_at))
-                                                                                <button type="button" class="btn btn-primary waves-effect waves-light" onclick="editKonseling({{$item->id}})">Edit</button>
+                                                                                <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" onclick="editKonseling({{$item->id}})">Edit</button>
                                                                                 <form action="{{ url('siswa/konseling_individu/delete', ['id' => $item->id]) }}" method="POST">
                                                                                     @csrf
                                                                                     @method('DELETE')
-                                                                                    <button type="submit" class="btn btn-danger waves-effect waves-light">Delete</button>
+                                                                                    <button type="submit" class="btn btn-danger btn-sm waves-effect waves-light">Delete</button>
                                                                                 </form>
                                                                             @endif
                                                                         </div>
@@ -107,7 +113,7 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                
+
                                             </div>
                                         </div>
                                     </div>
@@ -121,7 +127,7 @@
 
             </div>
             <!-- end container-fluid -->
-        </div> 
+        </div>
         <!-- end page-content-wrapper -->
     </div>
     <!-- End Page-content -->
@@ -139,14 +145,18 @@
                     $('#myModal form').attr("action", url_ + id);
                     var konselor_id = data.konselor_id
                     var tanggal = data.tanggal
+                    var perantara = data.perantara
                     var jam = data.jam
                     var masalah = data.masalah
                     var harapan = data.harapan
+                    var perantara_data = data.perantara
                     $('#konselor').val(konselor_id)
                     $('#tanggal').val(tanggal)
+                    $('#perantara').val(perantara)
                     $('#jam').val(jam)
                     $('#masalah').val(masalah)
                     $('#harapan').val(harapan)
+                    document.querySelector('#perantara [value="' + perantara_data + '"]').selected = true;
                     $('#myModal').modal('show')
                 },
                 error: function() {
@@ -155,13 +165,16 @@
         }
         function detailKonseling(id){
             var host = "{{URL::to('/')}}";
-            var url_ = host + '/siswa/konseling_individu/edit/';
+            var url_ = host + '/siswa/api/edit/{id}/';
             $.ajax({
                 url: '/siswa/konseling_individu/api/edit/'+ id,
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
                     $('#modalDetail').modal('show')
+                    document.getElementsByTagName("p")[0].innerHTML= data.masalah;
+                    document.getElementsByTagName("p")[1].innerHTML=data.harapan;
+                    document.getElementById("link").innerHTML= data.link ?? "MASIH KOSONG";
                 },
                 error: function() {
             },

@@ -64,7 +64,7 @@
                                     <th>No Handphone</th>
                                     <th>Jenis</th>
                                     <th>Aksi</th>
-                                    
+
                                 </tr>
                                 </thead>
 
@@ -78,14 +78,16 @@
                                         <td>{{ $item->no_handphone }}</td>
                                         <td>
                                         @if($item->role_id = 2)
-                                            Guru BK PNS 
+                                            Guru BK PNS
                                         @else
                                             Guru BK GTT
                                         @endif
                                         </td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" id="detail-guru-btn">Detail</button>
+                                                <button id="detail-guru-btn" class="btn btn-outline-info waves-effect waves-light" onclick="detailShow({{$item->id}})" data-target="#modal-detail" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail"><i class="mdi mdi-account-details"></i></button>
+                                                    <button class="btn btn-outline-warning waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-account-edit-outline"></i></button>
+                                                    <button class="btn btn-outline-danger waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-delete-alert"></i></button>
                                                 @auth('web')
                                                     <button type="button" class="btn btn-primary btn-sm waves-effect waves-light">Edit</button>
                                                     <form action="{{ url('guru_bk/delete', ['id' => $item->id]) }}" method="POST">
@@ -98,7 +100,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                                
+
                                 </tbody>
                             </table>
                         </div>
@@ -108,21 +110,22 @@
 
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
-    @include('data_master_user.guru_bk.modal_detail')
+    @include('data_master_user.guru_bk.detail')
 </div>
 @endsection
 @push('js')
     <script>
         $('#detail-guru-btn').on('click', function(){
+            $('#modal-detail').modal('show');
             $.ajax({
                 type:'GET',
                 url:'{{ url("guru/api/data_guru_bk") }}',
                 dataType: 'json',
                 success:function(data){
                     console.log(data);
-                    $('#detail-guru-modal').modal('show');    
+                    // $('#detail-guru-modal').modal('show');
                 },
                 error:function(data){
                     console.log(data);

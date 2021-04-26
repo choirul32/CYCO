@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="float-right d-none d-md-block mr-3">
-                        <a class="btn btn-success btn-rounded dropdown-toggle" href="{{url('siswa/edit/data_rumah')}}">
+                        <a class="btn btn-success btn-rounded" href="{{url('siswa/edit/data_rumah')}}">
                             <i class="mdi mdi-account-edit-outline mr-1"></i> Edit Data
                         </a>
                     </div>
@@ -122,15 +122,37 @@
                                 library. It helps you provide your users with feedback on their form
                                 submission before sending it to your server.</p> --}}
                                 @php
-                                    $gambar = json_decode($siswa->foto_rumah, true);
+                                    $gambar = json_decode($siswa->foto_rumah ?? "", true);
+                                    $foto_rumah_depan = $gambar['foto_rumah_depan'] ?? null;
+                                    $foto_ruang_tamu = $gambar['foto_ruang_tamu'] ?? null;
+                                    $foto_dapur = $gambar['foto_dapur'] ?? null;
+                                    $foto_kamar_tidur = $gambar['foto_kamar_tidur'] ?? null;
+                                    $foto_ruang_belajar = $gambar['foto_ruang_belajar'] ?? null;
+                                    $foto_kamar_mandi = $gambar['foto_kamar_mandi'] ?? null;
                                 @endphp
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Foto Rumah Depan :</strong></h4>
-                                    <img src="{{ asset("foto_rumah/". $gambar['foto_rumah_depan']) }}" id="preview_depan" class="output_image"/>
+                                    <img src="{{ asset("foto_rumah/". $foto_rumah_depan) }}" class="center output_image"/>
                                 </div>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Foto Rumah Belakang :</strong></h4>
-                                    <img src="{{ asset("foto_rumah/". $gambar['foto_rumah_belakang']) }}" id="preview_depan" class="output_image"/>
+                                    <img src="{{ asset("foto_rumah/". $foto_ruang_tamu) }}" class="center output_image"/>
+                                </div>
+                                <div class="form-group">
+                                    <h4 class="font-size-14"><strong>Foto Dapur :</strong></h4>
+                                    <img src="{{ asset("foto_rumah/". $foto_dapur) }}" class="center output_image"/>
+                                </div>
+                                <div class="form-group">
+                                    <h4 class="font-size-14"><strong>Foto Kamar Tidur :</strong></h4>
+                                    <img src="{{ asset("foto_rumah/". $foto_kamar_tidur) }}" class="center output_image"/>
+                                </div>
+                                <div class="form-group">
+                                    <h4 class="font-size-14"><strong>Foto Ruang Belajar :</strong></h4>
+                                    <img src="{{ asset("foto_rumah/". $foto_ruang_belajar) }}" class="center output_image"/>
+                                </div>
+                                <div class="form-group">
+                                    <h4 class="font-size-14"><strong>Foto Kamar Mandi :</strong></h4>
+                                    <img src="{{ asset("foto_rumah/". $foto_kamar_mandi) }}" class="center output_image"/>
                                 </div>
 
                         </div>
@@ -146,6 +168,12 @@
 
 @push('css')
 <style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
     #wrapper
     {
         text-align:center;

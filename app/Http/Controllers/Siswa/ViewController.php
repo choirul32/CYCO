@@ -8,6 +8,7 @@ use App\Models\Siswa;
 use App\Models\Data\Keluarga;
 use App\Models\Data\Akademik;
 use App\Models\Data\KondisiRumah;
+use App\Models\Data\UnggahBerkas;
 use Auth;
 
 class ViewController extends Controller
@@ -31,5 +32,10 @@ class ViewController extends Controller
     public function dataRumah(){
         $data['siswa'] = KondisiRumah::where('siswa_id',Auth::user()->id)->first();
         return view('data_master_user.siswa.data_rumah')->with($data);
+    }
+    public function unggahBerkas(){
+        $data['siswa'] = UnggahBerkas::where('siswa_id',Auth::user()->id)->first();
+        // dd($data['siswa']);
+        return view('data_master_user.siswa.unggah_berkas')->with($data);
     }
 }

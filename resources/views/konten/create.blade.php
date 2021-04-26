@@ -42,7 +42,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="#" method="POST" enctype="multipart/form-data">
+                            <form action="{{ url('guru/konten/store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <h5 class="font-size-14">Nama</h5>
@@ -66,7 +66,7 @@
                                             <div class="mb-3">
                                                 <i class="display-4 text-muted mdi mdi-cloud-upload-outline"></i>
                                             </div>
-                                            
+
                                             <h4>Drop files here to upload</h4>
                                         </div> --}}
                                 </div>
@@ -81,7 +81,7 @@
             </div> <!-- end row -->
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
 </div>
 @endsection

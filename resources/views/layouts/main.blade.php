@@ -7,13 +7,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{url('Vertical/dist/assets/images/favicon.ico')}}">
         <!-- DataTables -->
         <link href="{{url('Vertical/dist/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{url('Vertical/dist/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- Responsive datatable examples -->
-        <link href="{{url('Vertical/dist/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />     
+        <link href="{{url('Vertical/dist/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- Bootstrap Css -->
         <link href="{{url('Vertical/dist/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
@@ -22,14 +23,16 @@
         <link href="{{url('Vertical/dist/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- Sweet Alert-->
         <link href="{{url('Vertical/dist/assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
+
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         @stack('css')
     </head>
 
     <body data-sidebar="dark">
-        
+
         <!-- Begin page -->
         <div id="layout-wrapper">
-            
+
             @include('layouts.page-topbar')
             <!-- ========== Left Sidebar Start ========== -->
             @include('layouts.vertical-menu')
@@ -45,6 +48,7 @@
         </div>
         <!-- END layout-wrapper -->
         <!-- JAVASCRIPT -->
+        <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{url('Vertical/dist/assets/libs/jquery/jquery.min.js')}}"></script>
         <script src="{{url('Vertical/dist/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{url('Vertical/dist/assets/libs/metismenu/metisMenu.min.js')}}"></script>

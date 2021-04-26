@@ -43,7 +43,7 @@
                                     <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Log In</button>
                                 </div>
                                 <div class="mt-4 text-center">
-                                    <a href="{{ url('siswa/register') }}" class="text-muted"><i class="mdi mdi-account-circle mr-1"></i> Create an account</a>
+                                    <a href="{{ url('siswa/register') }}" class="text-muted"><i class="mdi mdi-account-circle mr-1"></i> Buat akun baru</a>
                                 </div>
                             </div>
                         </div>

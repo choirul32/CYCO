@@ -17,15 +17,18 @@ Route::group(['prefix' => 'siswa', 'middleware' => ['auth:siswa']], function () 
     Route::get('/data_keluarga', 'Siswa\ViewController@dataKeluarga');
     Route::get('/data_akademik', 'Siswa\ViewController@dataAkademik');
     Route::get('/data_rumah', 'Siswa\ViewController@dataRumah');
+    Route::get('/unggah_berkas', 'Siswa\ViewController@unggahBerkas');
     Route::prefix('/edit')->group(function () {
         Route::get('/data_siswa', 'Siswa\EditController@dataSiswa');
         Route::get('/data_keluarga', 'Siswa\EditController@dataKeluarga');
         Route::get('/data_akademik', 'Siswa\EditController@dataAkademik');
         Route::get('/data_rumah', 'Siswa\EditController@dataRumah');
+        Route::get('/unggah_berkas', 'Siswa\EditController@unggahBerkas');
         Route::post('/data_siswa', 'Siswa\EditController@dataSiswaUpdate');
         Route::post('/data_keluarga', 'Siswa\EditController@dataKeluargaUpdate');
         Route::post('/data_akademik', 'Siswa\EditController@dataAkademikUpdate');
         Route::post('/data_rumah', 'Siswa\EditController@dataKondisiRumahUpdate');
+        Route::post('/unggah_berkas', 'Siswa\EditController@unggahBerkasUpdate');
     });
     Route::prefix('/api')->group(function(){
         Route::get('/data_siswa/{id}', 'Siswa\ReadController@getAPISiswaById');
@@ -92,10 +95,16 @@ Route::group(['prefix' => 'guru', 'middleware' => ['auth:guru']], function () {
     Route::prefix('/konseling_individu')->group(function () {
         Route::get('/', 'KonselingIndividu\ViewController@indexGuruBK');
         Route::get('/verifikasi/{id}', 'KonselingIndividu\EditController@verifikasiPermintaan');
+        Route::post('/save-link', 'KonselingIndividu\EditController@saveLink');
+        Route::post('/save-jam', 'KonselingIndividu\EditController@saveJam');
+        Route::get('/api/edit/{id}', 'KonselingIndividu\ReadController@getSingleKonseling');
     });
     Route::prefix('/konseling_kelompok')->group(function () {
         Route::get('/', 'KonselingKelompok\ViewController@indexGuruBK');
         Route::get('/verifikasi/{id}', 'KonselingIndividu\EditController@verifikasiPermintaan');
+        Route::post('/save-link', 'KonselingKelompok\EditController@saveLink');
+        Route::post('/save-jam', 'KonselingKelompok\EditController@saveJam');
+        Route::get('/api/edit/{id}', 'KonselingKelompok\ReadController@getSingleKonseling');
     });
     Route::prefix('/profil')->group(function () {
         Route::get('/data_diri', 'GuruBK\ViewController@dataDiri');
@@ -108,15 +117,18 @@ Route::group(['prefix' => 'guru', 'middleware' => ['auth:guru']], function () {
     Route::get('kritik_dan_saran', 'MasukanSaran\ViewController@indexTable');
     Route::get('/materi_bk', 'MateriBK\ViewController@index');
     Route::get('/materi_bk/create', 'MateriBK\CreateController@createForm');
+    Route::post('/materi_bk/store', 'MateriBK\CreateController@store');
+    Route::delete('/materi_bk/delete/{id}', 'MateriBK\DeleteController@delete');
     Route::get('/konten', 'Konten\ViewController@index');
     Route::get('/konten/create', 'Konten\CreateController@createForm');
+    Route::post('/konten/store', 'Konten\CreateController@store');
     Route::get('/pengumuman', 'Pengumuman\ViewController@index');
     Route::get('/pengumuman/create', 'Pengumuman\CreateController@createForm');
+    Route::post('/pengumuman/store', 'Pengumuman\CreateController@store');
     Route::get('/kehadiran_dan_poin', 'KehadiranPoin\ViewController@indexTable');
-    // Route::prefix('/kehadiran_dan_poin')->group(function () {
-    //     Route::get('/', 'KehadiranPoin\ViewController@indexGuruBK');
-    // });
-    // Route::get('/upload_berkas', function () {return view('data_master_user.siswa.upload_berkas');});
+    Route::get('/message', function(){
+        return view('message.index');
+    });
 });
 
 Route::group(['prefix' => 'orangtua', 'middleware' => ['auth:orangtua']], function () {
@@ -133,6 +145,10 @@ Route::group(['prefix' => 'orangtua', 'middleware' => ['auth:orangtua']], functi
         Route::get('/', 'KehadiranPoin\ViewController@indexOrangtua');
     });
     Route::get('/upload_berkas', function () {return view('data_master_user.siswa.upload_berkas');});
+    Route::prefix('masukan_saran')->group(function () {
+        Route::get('/', 'MasukanSaran\ViewController@index');
+        Route::post('/create', 'MasukanSaran\CreateController@createKritikSaran');
+    });
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
@@ -235,3 +251,7 @@ Route::prefix('orangtua')->group(function () {
 Route::get('/', function(){
     return view('website.index');
 });
+
+
+
+// Route::get('/message', '@showLoginForm');

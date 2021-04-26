@@ -44,7 +44,7 @@
                         <div class="card-body">
 
                             <h4 class="header-title">Kritik Dan Saran</h4>
-                
+
                             <div class="table-responsive">
                                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
@@ -60,14 +60,14 @@
                                         @foreach ($krisar as $item)
                                             <tr class="text-center">
                                                 <td>{{$loop->iteration}}</td>
-                                                <td>{{$item->siswa->nama ?? '-'}}</td>
+                                                <td>{{$item->siswa->nama_lengkap }}</td>
                                                 <td>{{$item->kritik ?? '-'}}</td>
                                                 <td>{{$item->saran ?? '-'}}</td>
-                                                
+
                                                 <td>
                                                     <div class="btn-group">
                                                         <button type="button" class="btn-sm btn btn-secondary waves-effect waves-light" onclick="detailKonseling({{$item->id}})">Detail</button>
-                                                        
+
                                                         @auth('web')
                                                         @if (is_null($item->verified_at))
                                                             <form action="{{ url('guru_bk/konseling_kelompok/delete', ['id' => $item->id]) }}" method="POST">
@@ -77,7 +77,7 @@
                                                             </form>
                                                         @endif
                                                         @endauth
-                                                        
+
                                                     </div>
                                                 </td>
                                             </tr>
@@ -91,7 +91,9 @@
             </div> <!-- end row -->
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
 </div>
 @endsection
+
+

@@ -207,7 +207,40 @@
                                             </tbody>
                                         </table>
                                     </div>
-
+                                    <br>
+                                    {{-- <h5 class="header-title">Upload Berkas</h5></h5>
+                                    <div>
+                                        <div class="form-group">
+                                            <h4 class="font-size-14"><strong>Foto Diri  :</strong></h4>
+                                            <input name="foto_kamar_mandi" class="button-add-image" type="file" accept="image/*" onchange="preview_image(event, 'preview_kmandi')">
+                                            <img src="{{ asset("foto_rumah/") }}" id="preview_kmandi" class="center output_image"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <h4 class="font-size-14"><strong>Ijazah  :</strong></h4>
+                                            <input name="foto_kamar_mandi" class="button-add-image" type="file" onchange="preview_image(event, 'preview_kmandi')">
+                                            <img src="{{ asset("foto_rumah/") }}" id="preview_kmandi" class="center output_image"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <h4 class="font-size-14"><strong>SKHU  :</strong></h4>
+                                            <input name="foto_kamar_mandi" class="button-add-image" type="file" onchange="preview_image(event, 'preview_kmandi')">
+                                            <img src="{{ asset("foto_rumah/") }}" id="preview_kmandi" class="center output_image"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <h4 class="font-size-14"><strong>KK  :</strong></h4>
+                                            <input name="foto_kamar_mandi" class="button-add-image" type="file" onchange="preview_image(event, 'preview_kmandi')">
+                                            <img src="{{ asset("foto_rumah/") }}" id="preview_kmandi" class="center output_image"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <h4 class="font-size-14"><strong>Akta Kelahiran  :</strong></h4>
+                                            <input name="foto_kamar_mandi" class="button-add-image" type="file" onchange="preview_image(event, 'preview_kmandi')">
+                                            <img src="{{ asset("foto_rumah/") }}" id="preview_kmandi" class="center output_image"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <h4 class="font-size-14"><strong>Lain Lain  :</strong></h4>
+                                            <input name="foto_kamar_mandi" class="button-add-image" type="file" onchange="preview_image(event, 'preview_kmandi')">
+                                            <img src="{{ asset("foto_rumah/") }}" id="preview_kmandi" class="center output_image"/>
+                                        </div>
+                                    </div> --}}
                             </div>
                         </div>
                     </div> <!-- end col -->
@@ -232,3 +265,11 @@
     <!-- end page-content-wrapper -->
 </div>
 @endsection
+
+@push('js')
+    <script src="{{url('Vertical/dist/assets/libs/dropzone/min/dropzone.min.js')}}"></script>
+@endpush
+
+@push('css')
+    <link href="{{url('Vertical/dist/assets/libs/dropzone/min/dropzone.min.css')}}" rel="stylesheet" type="text/css">
+@endpush

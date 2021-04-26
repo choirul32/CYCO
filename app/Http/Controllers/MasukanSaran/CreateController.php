@@ -10,10 +10,15 @@ use Auth;
 class CreateController extends Controller
 {
     public function createKritikSaran(Request $request){
-        $data = $request->all();
-        $data['user_id'] = 1;
-        $data['role_user'] = 1;
-        Krisar::create($data);
-        return redirect()->back();
+        try {
+            $data = $request->all();
+            $data['user_id'] = Auth::user()->id;
+            $data['role_user'] = Auth::user()->role_id;
+            Krisar::create($data);
+            return redirect()->back()->with(['success' => 'Kritik dan saran berhasil ditambah']);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(['error' => 'Kritik dan saran gagal ditambah']);
+        }
+
     }
 }

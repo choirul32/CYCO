@@ -47,24 +47,24 @@
                             {{-- <p class="card-title-desc">Parsley is a javascript form validation
                                 library. It helps you provide your users with feedback on their form
                                 submission before sending it to your server.</p> --}}
-                            <form method="POST" class="custom-validation" action="{{ url('masukan_saran/create') }}">
+                            <form id="form_kritik_dan_saran" method="POST" class="custom-validation" action="{{ url('siswa/masukan_saran/create') }}">
                                 @csrf
                                 <div class="form-group">
                                     <h5 class="font-size-14">Kritik</h5>
                                     <div>
-                                        <textarea required class="form-control" rows="5" id="kritik"></textarea>
+                                        <textarea name="kritik" required class="form-control" rows="5" id="kritik"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <h5 class="font-size-14">Saran</h5>
                                     <div>
-                                        <textarea required class="form-control" rows="5" id="saran"></textarea>
+                                        <textarea name="saran" required class="form-control" rows="5" id="saran"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group mb-0">
                                     <div>
-                                        <button type="submit" class="float-right btn btn-success waves-effect waves-light mr-1">
+                                        <button type="button" onclick="submitConfirmation()" class="float-right btn btn-success waves-effect waves-light mr-1">
                                             Submit
                                         </button>
                                     </div>
@@ -76,7 +76,36 @@
             </div> <!-- end row -->
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
 </div>
 @endsection
+@push('css')
+    <link href="{{url('Vertical/dist/assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css">
+@endpush
+
+@push('js')
+    <script src="{{url('Vertical/dist/assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
+    <script src="{{url('Vertical/dist/assets/js/pages/sweet-alerts.init.js')}}"></script>
+    <script type="text/javascript">
+        function submitConfirmation() {
+        swal.fire({
+            title: "Kritik Dan Saran?",
+            text: "Apakah anda yakin memasukan data ini!",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Ya",
+            cancelButtonText: "Tidak",
+            reverseButtons: !0
+        }).then(function (e) {
+            if (e.value === true) {
+                document.getElementById("form_kritik_dan_saran").submit();
+            } else {
+                e.dismiss;
+            }
+        }, function (dismiss) {
+            return false;
+            })
+        }
+        </script>
+@endpush

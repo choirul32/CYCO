@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="float-right d-none d-md-block mr-3">
-                        <a class="btn btn-success btn-rounded dropdown-toggle" href="{{url('guru/edit/pengalaman_penelitian')}}">
+                        <a class="btn btn-success btn-rounded" href="{{url('guru/edit/pengalaman_penelitian')}}">
                             <i class="mdi mdi-account-edit-outline mr-1"></i> Edit Data
                         </a>
                     </div>
@@ -66,17 +66,26 @@
                                     </thead>
                                     <tbody>
                                         @php
-                                            $data = json_decode($profil_guru->pengalaman_penelitian);
+                                            $guru = $profil_guru->pengalaman_penelitian ?? "";
+                                            $data = json_decode($guru);
                                         @endphp
-                                        @foreach ($data as $item)
-                                        <tr>
-                                            <td>{{$loop->iteration}}</td>
-                                            <td>{{$item->tahun}}</td>
-                                            <td>{{$item->jenis_penelitian}}</td>
-                                            <td>{{$item->judul}}</td>
-                                            <td>{{$item->sumber_pendanaan}}</td>
-                                        </tr>
-                                        @endforeach
+
+                                        @if (isset($data))
+                                            @foreach ($data as $item)
+                                            <tr>
+                                                <td>{{$loop->iteration}}</td>
+                                                <td>{{$item->tahun}}</td>
+                                                <td>{{$item->jenis_penelitian}}</td>
+                                                <td>{{$item->judul}}</td>
+                                                <td>{{$item->sumber_pendanaan}}</td>
+                                            </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td class="text-center" colspan="5">Data Masih Kosong</td>
+
+                                            </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                         </div>

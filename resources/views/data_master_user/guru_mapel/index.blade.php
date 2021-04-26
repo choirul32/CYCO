@@ -54,7 +54,7 @@
                                     <a href="{{ url('guru_mapel/create') }}" class="btn btn-primary waves-effect waves-light">Tambah Guru</a>
                                 </div>
                             @endauth
-                            
+
 
                             <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
@@ -65,7 +65,7 @@
                                     <th>No Handphone</th>
                                     <th>Jenis</th>
                                     <th>Aksi</th>
-                                    
+
                                 </tr>
                                 </thead>
 
@@ -79,14 +79,16 @@
                                         <td>{{ $item->no_handphone }}</td>
                                         <td>
                                         @if($item->role_id = 2)
-                                            Guru Mapel PNS 
+                                            Guru Mapel PNS
                                         @else
                                             Guru Mapel GTT
                                         @endif
                                         </td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Detail</button>
+                                                <button class="btn btn-outline-info waves-effect waves-light" onclick="detailShow({{$item->id}})" data-target="#modal-detail" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail"><i class="mdi mdi-account-details"></i></button>
+                                                    <button class="btn btn-outline-warning waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-account-edit-outline"></i></button>
+                                                    <button class="btn btn-outline-danger waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-delete-alert"></i></button>
                                                 @auth('web')
                                                     <button type="button" class="btn btn-primary btn-sm waves-effect waves-light">Edit</button>
                                                     <form action="{{ url('guru_mapel/delete', ['id' => $item->id]) }}" method="POST">
@@ -95,12 +97,12 @@
                                                         <button type="submit" class="btn btn-danger btn-sm waves-effect waves-light">Delete</button>
                                                     </form>
                                                 @endauth
-                                                
+
                                             </div>
                                         </td>
                                     </tr>
                                 @endforeach
-                                
+
                                 </tbody>
                             </table>
                         </div>
@@ -110,7 +112,8 @@
 
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
+    @include('data_master_user.guru_mapel.detail')
 </div>
 @endsection

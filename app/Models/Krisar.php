@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Krisar extends Model
 {
     protected $table = 'kritik_saran';
-    protected $guarded = ['id']; 
+    protected $guarded = ['id'];
 
     public function siswa(){
-        return $this->belongsTo(Siswa::class, 'siswa_id', 'id');
+        return $this->belongsTo(Siswa::class, 'user_id', 'id');
     }
 }

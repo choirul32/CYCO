@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Models\Siswa;
+use App\Models\Absensi;
 use Auth;
 
 class RegisterController extends Controller
@@ -50,7 +51,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -66,7 +67,8 @@ class RegisterController extends Controller
      */
     protected function create(Request $data)
     {
-        Siswa::create([
+
+        $siswa = Siswa::create([
             'username' => str_replace(' ', '_', $data['nama']),
             'email' => $data['email'],
             'password' => $data['password'],
@@ -74,11 +76,13 @@ class RegisterController extends Controller
             'kelas_id' => $data['kelas'],
             'no_handphone' => $data['no_handphone'],
         ]);
+        $absensi = new Absensi();
+        $absensi->siswa_id = $siswa->id;
 
         return redirect('siswa/login')->with(['success' => 'Siswa Berhasil Dibuat']);
     }
-    
-    
+
+
     /**
      * Show the application registration form.
      *
@@ -87,7 +91,7 @@ class RegisterController extends Controller
     public function showRegisterForm(){
         return view('auth.siswa.register');
     }
-    
+
     /**
      * Get the guard to be used during registration.
      *

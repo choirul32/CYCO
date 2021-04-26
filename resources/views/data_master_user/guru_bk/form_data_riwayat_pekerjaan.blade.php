@@ -53,7 +53,7 @@
             @if (isset($data))
             <div class="row" id="parent-form">
                 @foreach ($data as $item)
-                <div class="col-lg-12" id="add-form">
+                <div class="col-lg-12 parent" id="add-form">
                     <div class="card">
                         <div class="card-body row">
 
@@ -76,7 +76,7 @@
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <button>DELETE</button>
+                                    <button type="button" class="btn btn-danger waves-effect waves-light deleteBtn">Delete</button>
                                 </div>
                                 <div class="row col-10">
                                     <div class="form-group col-4">
@@ -101,7 +101,7 @@
             @else
             <div class="row" id="parent-form">
 
-                <div class="col-lg-12" id="add-form">
+                <div class="col-lg-12 parent" id="add-form">
                     <div class="card">
                         <div class="card-body row">
 
@@ -124,7 +124,7 @@
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <button>DELETE</button>
+                                    <button type="button" class="btn btn-danger waves-effect waves-light deleteBtn">Delete</button>
                                 </div>
                                 <div class="row col-10">
                                     <div class="form-group col-4">
@@ -170,13 +170,21 @@
 
 @push('js')
     <script>
-
+        $(document).ready(function(){
+            deleteForm();
+        });
         function tambahRiwayatPekerjaan() {
             // var form = document.getElementById("add-form");
             // var parent = document.getElementById("parent-form");
             // parent.after(form);
             var clone = $("#parent-form div:first").clone();
             clone.appendTo("#parent-form");
+            deleteForm();
+        }
+        function deleteForm() {
+            $(".deleteBtn").click(function () {
+                $(this).closest(".parent").remove();
+            });
         }
     </script>
 @endpush

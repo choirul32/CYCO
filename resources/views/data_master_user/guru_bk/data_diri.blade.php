@@ -15,7 +15,7 @@
                     </ol> --}}
                 </div>
                 <div class="col-md-4">
-                    
+
                     <div class="float-right d-none d-md-block">
                         <div class="dropdown">
                             <button class="btn btn-light btn-rounded dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,7 +51,7 @@
                             {{-- <p class="card-title-desc">Parsley is a javascript form validation
                                 library. It helps you provide your users with feedback on their form
                                 submission before sending it to your server.</p> --}}
-                                
+
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Nama Lengkap :</strong></h4>
                                     <p>{{ $guru->nama ?? '-' }}</p>
@@ -66,9 +66,15 @@
                                 </div>
                                 <div class="form-group">
                                     <h4 class="font-size-14"><strong>Jenis Guru BK :</strong></h4>
-                                    <p>{{ $guru->role_id ?? '-' }}</p>
+                                    <p>
+                                        @if ($guru->role_id == 2)
+                                            PNS
+                                        @else
+                                            GTT
+                                        @endif
+                                    </p>
                                 </div>
-                                
+
                         </div>
                     </div>
                 </div> <!-- end col -->
@@ -93,16 +99,16 @@
                                     <h4 class="font-size-14"><strong>No. HP Aktif :</strong></h4>
                                     <p>{{ $guru->no_handphone ?? '-' }}</p>
                                 </div>
-                                
+
                         </div>
                     </div>
                 </div> <!-- end col -->
             </div> <!-- end row -->
             <div class="row">
-            
+
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
 </div>
 @endsection

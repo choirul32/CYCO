@@ -10,7 +10,7 @@
             <div class="card-body p-4">
                 <div class="p-2">
                     <h5 class="mb-5 text-center">Register Guru</h5>
-                    <form class="form-horizontal" action="{{ url('guru/register') }}" method="post">
+                    <form class="form-horizontal" action="{{ url('guru/register') }}" method="post" novalidate>
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
@@ -21,11 +21,11 @@
                                 <div class="mb-4 ml-2">
                                     <h4 class="font-size-14 mb-3">Jenis Guru</h4>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input value="bk" type="radio" id="custominlineRadio1" name="jenis_guru" onclick="showNIP()" class="custom-control-input" checked="">
+                                        <input value="bk" type="radio" id="custominlineRadio1" name="jenis_guru" class="custom-control-input" checked="">
                                         <label class="custom-control-label" for="custominlineRadio1">Guru BK</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input value="mapel" type="radio" id="custominlineRadio2" name="jenis_guru" onclick="showNIK()" class="custom-control-input" >
+                                        <input value="mapel" type="radio" id="custominlineRadio2" name="jenis_guru" class="custom-control-input" >
                                         <label class="custom-control-label" for="custominlineRadio2">Guru Matapelajaran</label>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                                 <div id="nip-group" class="form-group form-group-custom mb-4">
-                                    <input name="nip" type="text" class="form-control" id="nip">
+                                    <input name="nip" type="text" class="form-control" id="nip" required>
                                     <label for="nip">NIP</label>
                                 </div>
                                 <div id="nik-group" class="form-group form-group-custom mb-4" style="display: none;">
@@ -50,11 +50,11 @@
                                     <label for="nik">NIK</label>
                                 </div>
                                 <div class="form-group form-group-custom mb-4">
-                                    <input name="no_handphone" type="text" class="form-control" id="nomor" required="">
+                                    <input name="no_handphone" type="text" class="form-control" id="nomor">
                                     <label for="nomor">Nomor Handphone</label>
                                 </div>
                                 <div class="form-group form-group-custom mb-4">
-                                    <input name="email" type="email" class="form-control" id="useremail" required="">
+                                    <input name="email" type="email" class="form-control" id="useremail">
                                     <label for="useremail">Email</label>
                                 </div>
                                 <div class="form-group form-group-custom mb-4">
@@ -66,10 +66,10 @@
                                     <label class="custom-control-label font-weight-normal" for="term-conditionCheck">I accept <a href="#" class="text-primary">Terms and Conditions</a></label>
                                 </div> --}}
                                 <div class="mt-4">
-                                    <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Register</button>
+                                    <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Daftar</button>
                                 </div>
                                 <div class="mt-4 text-center">
-                                    <a href="{{ url('guru/login') }}" class="text-muted"><i class="mdi mdi-account-circle mr-1"></i> Already have account?</a>
+                                    <a href="{{ url('guru/login') }}" class="text-muted"><i class="mdi mdi-account-circle mr-1"></i> Sudah punya akun?</a>
                                 </div>
                             </div>
                         </div>
@@ -86,11 +86,15 @@
         function showNIP(){
             document.getElementById('nip-group').style.display = 'block';
             document.getElementById('nik-group').style.display = 'none';
+            document.getElementById("nip-group").required = true;
+            document.getElementById("nik-group").required = false;
         }
 
         function showNIK(){
             document.getElementById('nip-group').style.display = 'none';
             document.getElementById('nik-group').style.display = 'block';
+            document.getElementById("nip-group").required = false;
+            document.getElementById("nik-group").required = true;
         }
     </script>
 @endpush

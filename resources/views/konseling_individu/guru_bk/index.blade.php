@@ -42,7 +42,8 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                
+                                @include('konseling_individu.guru_bk.modal-detail')
+                                @include('konseling_individu.guru_bk.modal-edit-jam')
                                 @if ($konseling->isEmpty())
                                 <div class="row justify-content-center">
                                     <div class="col-lg-10">
@@ -58,7 +59,7 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <h4 class="header-title">Permintaan Konseling</h4>
-                
+
                                                 <div class="table-responsive">
                                                     <table class="table mb-0">
                                                         <thead>
@@ -68,6 +69,7 @@
                                                                 <th>Siswa</th>
                                                                 <th>Permintaan Tanggal</th>
                                                                 <th>Permintaan Jam</th>
+                                                                <th>Media</th>
                                                                 <th>Status</th>
                                                                 <th>Aksi</th>
                                                             </tr>
@@ -77,9 +79,14 @@
                                                                 <tr>
                                                                     <td>{{$loop->iteration}}</td>
                                                                     <td>{{$item->konselor->nama ?? '-'}}</td>
-                                                                    <td>{{$item->siswa->nama_lengkap ?? '-'}}</td>
-                                                                    <td>{{$item->tanggal}}</td>
-                                                                    <td>{{$item->jam}}</td>
+                                                                    <td>{{$item->siswa->nama_lengkap ?? $item->siswa->username}}</td>
+                                                                    <td>{{ Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
+                                                                    <td>{{$item->jam_pengganti ?? $item->jam}}
+                                                                        @if (is_null($item->verified_at))
+                                                                            <button class="badge badge-pill badge-warning" onclick="editJam({{$item->id}})">Edit Jam</button>
+                                                                        @endif
+                                                                    </td>
+                                                                    <td>{{$item->perantara}}</td>
                                                                     <td>
                                                                         @if (is_null($item->verified_at))
                                                                             <span class="badge badge-pill badge-danger">Belum Diverifikasi</span>
@@ -89,9 +96,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <div class="btn-group">
-                                                                            <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Detail</button>
+                                                                            <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" onclick="detailKonseling({{$item->id}})">Detail</button>
                                                                             @if (is_null($item->verified_at))
-                                                                                <a href="{{ url('guru_bk/konseling_individu/verifikasi', ['id' => $item->id]) }}" class="btn btn-warning btn-sm waves-effect waves-light">Verifikasi</a>
+                                                                                <a href="{{ url('guru/konseling_individu/verifikasi', ['id' => $item->id]) }}" class="btn btn-warning btn-sm waves-effect waves-light">Verifikasi</a>
                                                                             @endif
                                                                         </div>
                                                                     </td>
@@ -100,7 +107,7 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                
+
                                             </div>
                                         </div>
                                     </div>
@@ -114,8 +121,48 @@
 
             </div>
             <!-- end container-fluid -->
-        </div> 
+        </div>
         <!-- end page-content-wrapper -->
     </div>
     <!-- End Page-content -->
 @endsection
+@push('js')
+    <script>
+        function detailKonseling(id){
+            var host = "{{URL::to('/')}}";
+            $.ajax({
+                url: '/guru/konseling_individu/api/edit/'+ id,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $('#modalDetail').modal('show');
+                    document.getElementsByTagName("p")[0].innerHTML= data.masalah;
+                    document.getElementsByTagName("p")[1].innerHTML=data.harapan;
+                    document.getElementById("link").value = data.link ?? "";
+                    document.getElementById("id_detail").value = data.id;
+                },
+                error: function() {
+                    console.log("error");
+                },
+            });
+        }
+
+        function editJam(id){
+            var host = "{{URL::to('/')}}";
+            $.ajax({
+                url: '/guru/konseling_individu/api/edit/'+ id,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data);
+                    $('#modalEditJam').modal('show');
+                    document.getElementById("jam").value = data.jam_pengganti ? data.jam_pengganti : data.jam;
+                    document.getElementById("id_jam").value = data.id;
+                },
+                error: function() {
+                    console.log("error");
+                },
+            });
+        }
+    </script>
+@endpush

@@ -12,7 +12,8 @@
         "fideloper/proxy": "^4.4",
         "laravel/framework": "^6.20",
         "laravel/tinker": "^2.5",
-        "munafio/chatify": "^1.0"
+        "laravel/ui": "1.0",
+        "musonza/chat": "^4.5"
     },
     "require-dev": {
         "facade/ignition": "^1.16.4",

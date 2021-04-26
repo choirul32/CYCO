@@ -18,7 +18,7 @@ class User extends Authenticatable
     // protected $fillable = [
     //     'name', 'email', 'password',
     // ];
-    protected $guarded = ['id']; 
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -39,6 +39,17 @@ class User extends Authenticatable
     ];
 
     public function getJenisKelaminNamaAttribute(){
-        if($this->attributes['jenis_kelamin'] == 1) return "Laki-Laki"; else return "Perempuan";
+        $kelas = $this->attributes['jenis_kelamin'];
+        switch ($kelas) {
+            case 1:
+                return "Laki-Laki";
+                break;
+            case 2:
+                return "Perempuan";
+                break;
+            default:
+                return "-";
+                break;
+        }
     }
 }

@@ -13,14 +13,26 @@
                     <div class="form-group">
                         <h5 class="font-size-14">Pilih Konselor</h5>
                         <select class="form-control" name="konselor" id="konselor">
-                            @foreach ($guru_bk as $item)
+                            @forelse ($guru_bk as $item)
                                 <option value="{{$item->id}}">{{$item->nama}}</option>
-                            @endforeach
+                            @empty
+                                <option disabled selected value="">-- Belum Ada Konselor --</option>
+                            @endforelse
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <h5 class="font-size-14">Perantara Konseling</h5>
+                        <select class="form-control" name="perantara" id="perantara">
+                            <option disabled selected value="">-- Pilih Perantara Konseling --</option>
+                            <option value="wa">Whatsapp</option>
+                            <option value="telegram">Telegram</option>
+                            <option value="skype">Skype</option>
+                            <option value="web">Web Chat</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <h5 class="font-size-14">Pilih Tanggal</h5>
-                        <input name="tanggal" class="form-control" type="date" value="2019-08-19" id="tanggal">
+                        <input name="tanggal" class="form-control" type="date" value="{{ date('d-m-Y') }}" id="tanggal">
                     </div>
                     <div class="form-group">
                         <h5 class="font-size-14">Pilih Jam</h5>

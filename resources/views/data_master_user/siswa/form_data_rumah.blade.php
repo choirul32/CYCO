@@ -183,17 +183,43 @@
                                     submission before sending it to your server.</p> --}}
                                     @php
                                         $gambar = json_decode($siswa->foto_rumah, true);
+                                        $foto_rumah_depan = $gambar['foto_rumah_depan'] ?? null;
+                                        $foto_ruang_tamu = $gambar['foto_ruang_tamu'] ?? null;
+                                        $foto_dapur = $gambar['foto_dapur'] ?? null;
+                                        $foto_kamar_tidur = $gambar['foto_kamar_tidur'] ?? null;
+                                        $foto_ruang_belajar = $gambar['foto_ruang_belajar'] ?? null;
+                                        $foto_kamar_mandi = $gambar['foto_kamar_mandi'] ?? null;
                                     @endphp
                                     {{-- {{dd($gambar['foto_rumah_depan'])}} --}}
                                     <div class="form-group">
                                         <h4 class="font-size-14"><strong>Foto Rumah Depan :</strong></h4>
                                         <input name="foto_rumah_depan" class="button-add-image" type="file"  multiple="multiple" accept="image/*" onchange="preview_image(event, 'preview_depan')">
-                                        <img src="{{ asset("foto_rumah/". $gambar['foto_rumah_depan']) }}" id="preview_depan" class="output_image"/>
+                                        <img src="{{ asset("foto_rumah/". $gambar['foto_rumah_depan']) }}" id="preview_depan" class="center output_image"/>
                                     </div>
                                     <div class="form-group">
-                                        <h4 class="font-size-14"><strong>Foto Rumah Belakang :</strong></h4>
-                                        <input name="foto_rumah_belakang" class="button-add-image" type="file" accept="image/*" onchange="preview_image(event, 'preview_belakang')">
-                                        <img src="{{ asset("foto_rumah/". $gambar['foto_rumah_belakang']) }}" id="preview_belakang" class="output_image"/>
+                                        <h4 class="font-size-14"><strong>Foto Ruang Tamu :</strong></h4>
+                                        <input name="foto_ruang_tamu" class="button-add-image" type="file" accept="image/*" onchange="preview_image(event, 'preview_tamu')">
+                                        <img src="{{ asset("foto_rumah/". $foto_ruang_tamu) }}" id="preview_tamu" class="center output_image"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <h4 class="font-size-14"><strong>Foto Dapur :</strong></h4>
+                                        <input name="foto_dapur" class="button-add-image" type="file" accept="image/*" onchange="preview_image(event, 'preview_dapur')">
+                                        <img src="{{ asset("foto_rumah/". $foto_dapur) }}" id="preview_dapur" class="center output_image"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <h4 class="font-size-14"><strong>Foto Kamar Tidur :</strong></h4>
+                                        <input name="foto_kamar_tidur" class="button-add-image" type="file" accept="image/*" onchange="preview_image(event, 'preview_ktidur')">
+                                        <img src="{{ asset("foto_rumah/". $foto_kamar_tidur) }}" id="preview_ktidur" class="center output_image"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <h4 class="font-size-14"><strong>Foto Ruang Belajar :</strong></h4>
+                                        <input name="foto_ruang_belajar" class="button-add-image" type="file" accept="image/*" onchange="preview_image(event, 'preview_rbelajar')">
+                                        <img src="{{ asset("foto_rumah/". $foto_ruang_belajar) }}" id="preview_rbelajar" class="center output_image"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <h4 class="font-size-14"><strong>Foto Kamar Mandi  :</strong></h4>
+                                        <input name="foto_kamar_mandi" class="button-add-image" type="file" accept="image/*" onchange="preview_image(event, 'preview_kmandi')">
+                                        <img src="{{ asset("foto_rumah/". $foto_kamar_mandi) }}" id="preview_kmandi" class="center output_image"/>
                                     </div>
                             </div>
                         </div>
@@ -222,6 +248,12 @@
 
 @push('css')
 <style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
     #wrapper
     {
         text-align:center;

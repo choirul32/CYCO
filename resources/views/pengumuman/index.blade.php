@@ -54,7 +54,7 @@
                                     <a href="{{url('guru/pengumuman/create')}}" class="btn btn-primary waves-effect waves-light">Tambah Pengumuman</a>
                                 </div>
 
-                                @for ($i = 0; $i < 4; $i++)
+                                @for ($i = 0; $i < count($pengumuman); $i++)
                                 <div id="accordion">
                                     <div class="card mb-0">
                                         <div class="card-header" id="headingOne">
@@ -88,11 +88,11 @@
                                                         <button class="btn btn-primary btn-sm">hapus</button>
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
                                     </div>
-                                
+
                                 </div>
                                 @endfor
                             </div>
@@ -102,7 +102,7 @@
 
             </div>
             <!-- end container-fluid -->
-        </div> 
+        </div>
         <!-- end page-content-wrapper -->
     </div>
     <!-- End Page-content -->

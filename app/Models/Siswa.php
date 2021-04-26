@@ -9,6 +9,8 @@ use App\Models\Other\Kelas;
 use App\Models\Other\Jurusan;
 use App\Models\Other\Agama;
 use App\Models\Other\Bahasa;
+use App\Models\Absensi;
+use App\Models\Poin;
 
 class Siswa extends Authenticatable
 {
@@ -28,6 +30,14 @@ class Siswa extends Authenticatable
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function absensi(){
+        return $this->hasOne(Absensi::class, 'siswa_id','id');
+    }
+
+    public function poin(){
+        return $this->hasOne(Poin::class, 'siswa_id','id');
     }
 
     // public function kelas(){

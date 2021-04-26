@@ -47,7 +47,7 @@
                             {{-- <p class="card-title-desc">Parsley is a javascript form validation
                                 library. It helps you provide your users with feedback on their form
                                 submission before sending it to your server.</p> --}}
-                            <form action="#" method="POST" enctype="multipart/form-data">
+                            <form action="{{ url('guru/materi_bk/store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <h5 class="font-size-14">Nama</h5>
@@ -71,7 +71,7 @@
                                             <div class="mb-3">
                                                 <i class="display-4 text-muted mdi mdi-cloud-upload-outline"></i>
                                             </div>
-                                            
+
                                             <h4>Drop files here to upload</h4>
                                         </div> --}}
                                 </div>
@@ -86,22 +86,9 @@
             </div> <!-- end row -->
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
 </div>
 @endsection
 
-@push('css')
-    <!-- Plugins css -->
-    <link href="{{url('Vertical/dist/assets/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
-@endpush
-@push('js')
-    <!-- dropzone js -->
-    <script src="{{url('Vertical/dist/assets/libs/dropzone/min/dropzone.min.js') }}"></script>
-    <script>
-        $(function(){
-            Dropzone.autoDiscover = false;
-            var myDropzone = new Dropzone("#my-awesome-dropzone", { url: "/file/post"});
-        });
-    </script>
-@endpush
+

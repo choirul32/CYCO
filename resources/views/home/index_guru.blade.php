@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="page-content">
-                        
+
         <!-- Page-Title -->
         <div class="page-title-box">
             <div class="container-fluid">
@@ -44,7 +44,17 @@
                             <div class="card-body">
                             <div class="row">
                                     <div class="col-6">
-                                        <h5>Welcome Back !</h5>
+                                        @php
+                                            $role = Auth::guard('guru')->user()->role_id;
+                                        @endphp
+                                        <h5>Welcome Back !
+                                            @if ($role == 2 || $role == 3)
+                                                Guru BK
+                                            @endif
+                                            @if ($role == 4 || $role == 5)
+                                                Guru Mapel
+                                            @endif
+                                        </h5>
                                         <p class="text-muted">{{ Auth::guard('guru')->user()->username }}</p>
 
                                         <div class="mt-4">

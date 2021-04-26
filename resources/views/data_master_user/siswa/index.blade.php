@@ -82,8 +82,11 @@
                                             <td>{{ $item->jurusan->nama ?? '-' }}</td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" data-toggle="modal" data-target="#modal-detail" onclick="detailShow({{$item->id}})">Detail</button>
+                                                    <button class="btn btn-outline-info waves-effect waves-light" onclick="detailShow({{$item->id}})" data-target="#modal-detail" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail"><i class="mdi mdi-account-details"></i></button>
+
                                                     @auth('web')
+                                                        <button class="btn btn-outline-warning waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-account-edit-outline"></i></button>
+                                                        <button class="btn btn-outline-danger waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-delete-alert"></i></button>
                                                         <button type="button" class="btn btn-primary btn-sm waves-effect waves-light">Edit</button>
                                                         <form action="{{ url('siswa/delete', ['id' => $item->id]) }}" method="POST">
                                                             @csrf
@@ -114,12 +117,14 @@
 @push('js')
     <script>
         function detailShow(id){
+            $('#modal-detail').modal('show');
             $.ajax({
                 url: '/guru/api/data_siswa/'+ id,
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
-                    console.log('data berhasil diload');
+                    // console.log('data berhasil diload');
+
                     document.getElementById('nama_lengkap').innerHTML = data.siswa.nama_lengkap;
                     document.getElementById('nisn').innerHTML = data.siswa.nisn;
                     document.getElementById('nama_panggilan').innerHTML = data.siswa.nama_panggilan;

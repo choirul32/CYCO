@@ -40,10 +40,10 @@
                                     <label for="password">Password</label>
                                 </div>
                                 <div class="mt-4">
-                                    <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Register</button>
+                                    <button class="btn btn-success btn-block waves-effect waves-light" type="submit">Daftar</button>
                                 </div>
                                 <div class="mt-4 text-center">
-                                    <a href="auth-login.html" class="text-muted"><i class="mdi mdi-account-circle mr-1"></i> Already have account?</a>
+                                    <a href="auth-login.html" class="text-muted"><i class="mdi mdi-account-circle mr-1"></i> Sudah punya akun?</a>
                                 </div>
                             </div>
                         </div>

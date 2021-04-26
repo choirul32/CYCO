@@ -19,10 +19,13 @@ class CreateKonselingIndividuTable extends Migration
             $table->bigInteger('siswa_id')->unsigned();
             $table->json('kelompok')->nullable();
             $table->tinyInteger('jenis_konseling');
+            $table->string('perantara');
             $table->date('tanggal');
             $table->string('jam');
-            $table->text('masalah');
-            $table->text('harapan');
+            $table->string('jam_pengganti')->nullable();
+            $table->text('link')->nullable();
+            $table->text('masalah')->nullable();
+            $table->text('harapan')->nullable();
             $table->integer('verified_by')->nullable();
             $table->date('verified_at')->nullable();
             $table->timestamps();

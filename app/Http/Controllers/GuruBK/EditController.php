@@ -43,7 +43,7 @@ class EditController extends Controller
             $model->save();
             return redirect('guru/profil/data_diri')->with(['success' => 'Data Diri Berhasil Diperbaharui']);
         } catch (\Throwable $th) {
-            return redirect('guru/profil/data_diri');
+            return redirect('guru/profil/data_diri')->with(['error' => 'Data Diri Gagal Diperbaharui']);
         }
     }
 
@@ -61,7 +61,7 @@ class EditController extends Controller
             }
             return redirect('guru/profil/riwayat_pendidikan')->with(['success' => 'Data Riwayat Pendidikan Berhasil Diperbaharui']);
         } catch (\Throwable $th) {
-            return redirect('guru/profil/riwayat_pendidikan');
+            return redirect('guru/profil/riwayat_pendidikan')->with(['error' => 'Data Riwayat Pendidikan Gagal Diperbaharui']);
         }
     }
 

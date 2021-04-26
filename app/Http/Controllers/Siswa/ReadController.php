@@ -22,4 +22,5 @@ class ReadController extends Controller
         $data['kondisi_rumah'] = KondisiRumah::find($id);
         return response()->json($data);
     }
+
 }

@@ -55,45 +55,33 @@
                                 </div>
                                 {{-- <h4 class="header-title">Accordion example</h4>
                                 <p class="card-title-desc">Extend the default collapse behavior to create an accordion.</p> --}}
-                                @for ($i = 0; $i < 4; $i++)
-                                <div id="accordion">
+                                @for ($i = 0; $i < count($materi); $i++)
+                                <div id="accordion-{{$i}}">
                                     <div class="card mb-0">
                                         <div class="card-header" id="headingOne">
                                             <h5 class="m-0 font-size-14">
-                                                <a data-toggle="collapse" data-parent="#accordion"
+                                                <a data-toggle="collapse" data-parent="#accordion-{{$i}}"
                                                     href="#collapse-{{$i}}" aria-expanded="true"
                                                     aria-controls="collapse-{{$i}}" class="text-dark">
-                                                    Materi 1
+                                                    {{$materi[$i]->nama}}
                                                 </a>
                                             </h5>
                                         </div>
 
-                                        <div id="collapse-{{$i}}" class="collapse"
-                                                aria-labelledby="heading-{{$i}}" data-parent="#accordion">
+                                        <div id="collapse-{{$i}}" class="collapse" aria-labelledby="heading-{{$i}}" data-parent="#accordion-{{$i}}">
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-10">
-                                                        Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                                        accusamus terry richardson ad squid. 3 wolf moon officia
-                                                        aute, non cupidatat skateboard dolor brunch. Food truck
-                                                        quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                                                        sunt aliqua put a bird on it squid single-origin coffee
-                                                        nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                                        helvetica, craft beer labore wes anderson cred nesciunt
-                                                        sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                                        Leggings occaecat craft beer farm-to-table, raw denim
-                                                        aesthetic synth nesciunt you probably haven't heard of them
-                                                        accusamus labore sustainable VHS.
+                                                        {{$materi[$i]->keterangan}}
                                                     </div>
                                                     <div class="col-2 m-auto">
-                                                        <button class="btn btn-primary btn-sm">hapus</button>
+                                                        <button class="btn btn-outline-danger waves-effect waves-light" onclick="deleteConfirmation({{ $materi[$i]->id }})" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-delete-alert"></i></button>
                                                     </div>
                                                 </div>
-                                                
                                             </div>
                                         </div>
                                     </div>
-                                
+
                                 </div>
                                 @endfor
                             </div>
@@ -103,8 +91,53 @@
 
             </div>
             <!-- end container-fluid -->
-        </div> 
+        </div>
         <!-- end page-content-wrapper -->
     </div>
     <!-- End Page-content -->
 @endsection
+
+@push('css')
+    <!-- Plugins css -->
+    <link href="{{url('Vertical/dist/assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css">
+@endpush
+
+@push('js')
+    <script src="{{url('Vertical/dist/assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
+    <script src="{{url('Vertical/dist/assets/js/pages/sweet-alerts.init.js')}}"></script>
+    <script type="text/javascript">
+        function deleteConfirmation(id) {
+        swal.fire({
+            title: "Hapus?",
+            text: "Apakah anda yakin ingin menghapuas data ini!",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Ya",
+            cancelButtonText: "Tidak",
+            reverseButtons: !0
+        }).then(function (e) {
+            if (e.value === true) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    type: 'DELETE',
+                    url: "{{ url('guru/materi_bk/delete') }}/" + id,
+                    data: {_token: CSRF_TOKEN},
+                    dataType: 'JSON',
+                    success: function (results) {
+                        if (results.success === true) {
+                            swal.fire("Done!", results.message, "success");
+                        } else {
+                            swal.fire("Error!", results.message, "error");
+                        }
+                    }
+                });
+            } else {
+                e.dismiss;
+            }
+        }, function (dismiss) {
+            return false;
+            })
+        }
+    </script>
+
+@endpush
