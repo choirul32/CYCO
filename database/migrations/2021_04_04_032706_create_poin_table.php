@@ -16,8 +16,10 @@ class CreatePoinTable extends Migration
         Schema::create('poin', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('siswa_id')->unsigned();
+            $table->string('nama')->nullable();
             $table->integer('poin')->nullable();
             $table->text('keterangan')->nullable();
+            $table->bigInteger('created_by')->nullable();
             $table->timestamps();
         });
     }

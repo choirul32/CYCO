@@ -6,9 +6,9 @@
         </a>
     </li>
     <li>
-        <a href="{{ url('guru/materi_bk') }}" class=" waves-effect">
+        <a href="{{ url('guru/data_siswa') }}" class=" waves-effect">
             <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
-            <span>Data Diri Siswa</span>
+            <span>Rekap Data Siswa</span>
         </a>
     </li>
     <li>

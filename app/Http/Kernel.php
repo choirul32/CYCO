@@ -63,6 +63,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         // Tambahan
         'siswa' => \App\Http\Middleware\SiswaAuthenticate::class,
+        'cors' => \App\Http\Middleware\Cors::class, // added
     ];
 
     /**

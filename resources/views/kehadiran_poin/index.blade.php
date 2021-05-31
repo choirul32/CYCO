@@ -39,32 +39,78 @@
             <div class="container-fluid">
 
                 <div class="row">
+
                     <div class="col-xl-4 col-sm-6">
                         <div class="card">
                             <div class="card-body">
-                
-                                <h4 class="header-title">Angle Offset</h4>
-                                <p class="card-title-desc">Example of angle offset chart.</p>
+
+                                <h4 class="header-title">Poin Pelanggaran</h4>
+                                <p class="card-title-desc">Total poin pelanggaran siswa.</p>
 
                                 <div class="text-center" dir="ltr">
                                     <input data-plugin="knob" data-width="180" data-height="180" data-angleOffset="90"
-                                        data-linecap="round" data-fgColor="#f06543" value="75" data-thickness=".15" disabled/>
+                                        data-linecap="round" data-fgColor="#f06543" value="{{$sum_poin}}" data-thickness=".15" data-readOnly=true disabled/>
                                 </div>
-                
+
                             </div> <!-- end card-body-->
                         </div> <!-- end card-->
                     </div> <!-- end col -->
+
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header bg-transparent p-3">
+                                <h5 class="header-title mb-0">Kehadiran</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="media my-2">
+
+                                        <div class="media-body">
+                                            <p class="text-muted mb-2">Sakit</p>
+                                            <h5 class="mb-0">{{$kehadiran->sakit ?? 0}}</h5>
+                                        </div>
+                                        <div class="icons-lg ml-2 align-self-center">
+                                            <i class="uim uim-layer-group"></i>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="media my-2">
+                                        <div class="media-body">
+                                            <p class="text-muted mb-2">Tidak Masuk Tanpa Keterangan</p>
+                                            <h5 class="mb-0">{{$kehadiran->tanpa_keterangan ?? 0}}</h5>
+                                        </div>
+                                        <div class="icons-lg ml-2 align-self-center">
+                                            <i class="uim uim-analytics"></i>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="media my-2">
+                                        <div class="media-body">
+                                            <p class="text-muted mb-2">Izin</p>
+                                            <h5 class="mb-0">{{$kehadiran->izin ?? 0}}</h5>
+                                        </div>
+                                        <div class="icons-lg ml-2 align-self-center">
+                                            <i class="uim uim-ruler"></i>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
                 </div> <!-- end row -->
 
             </div>
             <!-- end container-fluid -->
-        </div> 
+        </div>
         <!-- end page-content-wrapper -->
     </div>
     <!-- End Page-content -->
 @endsection
 
 @push('js')
-<script src="{{ url('Vertical/dist/assets/libs/jquery-knob/jquery.knob.min.js') }}"></script> 
+<script src="{{ url('Vertical/dist/assets/libs/jquery-knob/jquery.knob.min.js') }}"></script>
 <script src="{{ url('Vertical/dist/assets/js/pages/jquery-knob.init.js') }}"></script>
 @endpush

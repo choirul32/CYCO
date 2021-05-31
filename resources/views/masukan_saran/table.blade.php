@@ -53,6 +53,7 @@
                                             <th>Nama</th>
                                             <th>Kritik</th>
                                             <th>Saran</th>
+                                            <th>Tanggal</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -63,6 +64,7 @@
                                                 <td>{{$item->siswa->nama_lengkap }}</td>
                                                 <td>{{$item->kritik ?? '-'}}</td>
                                                 <td>{{$item->saran ?? '-'}}</td>
+                                                <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $item->created_at)->format('H:i d/m/Y')}}</td>
 
                                                 <td>
                                                     <div class="btn-group">

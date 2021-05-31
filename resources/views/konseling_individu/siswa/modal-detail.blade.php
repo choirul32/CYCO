@@ -14,7 +14,15 @@
                     <p class="card-title-desc"></p>
                     <h4 class="header-title">Harapan Konseling</h4>
                     <p class="card-title-desc"></p>
-                    <h4 class="header-title">Link</h4>
+                    <div class="form-group">
+                        <h4 class="font-size-14"><strong>Link :</strong></h4>
+                        <div id="link-input">
+                            <input class="form-control" type="text" id="link" name="link" value="">
+                        </div>
+                        <div id="link-web-chat">
+                            <a id="link-web-button" href="" class="btn btn-info">Masuk Chat Konseling</a>
+                        </div>
+                    </div>
                     <p id="link" class="card-title-desc"></p>
                 </div>
                 <div class="modal-footer">

@@ -55,14 +55,20 @@
                                         {{-- <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button> --}}
 
                                         <div class="image-upload-wrap" >
-                                        <input name="foto_diri" class="file-upload-input" type='file'  onchange="readURL(this);" accept="image/*" />
+                                        <input name="foto_diri" class="file-upload-input" type='file'  onchange="readURL(this);" accept="image/*,.pdf" />
                                         <div class="drag-text">
                                             <h3>Drag and drop a file or select add Image</h3>
                                         </div>
                                         </div>
                                         <div class="file-upload-content">
-
-                                            <img @if(isset($siswa->foto_diri)) src="{{ asset("data_file/". $siswa->foto_diri) }}" @endif class="file-upload-image" alt="your image" />
+                                            <img class="file-upload-image" alt="your image"
+                                            @if (isset($siswa->foto_diri))
+                                                @if (pathinfo($siswa->foto_diri, PATHINFO_EXTENSION) == 'jpeg' || pathinfo($siswa->foto_diri, PATHINFO_EXTENSION) == 'jpg' || pathinfo($siswa->foto_diri, PATHINFO_EXTENSION) == 'png')
+                                                    src="{{ asset("data_berkas/". $siswa->foto_diri) }}"
+                                                @else
+                                                    src="http://127.0.0.1:8000/image/file-extension/thumbnail-pdf.png"
+                                                @endif
+                                            @endif/>
                                             <div class="image-title-wrap">
                                                 <button type="button" onclick="removeUpload_(this);" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
                                             </div>
@@ -74,13 +80,20 @@
                                         {{-- <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button> --}}
 
                                         <div class="image-upload-wrap">
-                                        <input name="ijazah" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                        <input name="ijazah" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*,.pdf" />
                                         <div class="drag-text">
                                             <h3>Drag and drop a file or select add Image</h3>
                                         </div>
                                         </div>
                                         <div class="file-upload-content">
-                                        <img @if(isset($siswa->ijazah)) src="{{ asset("data_file/". $siswa->ijazah) }}" @endif class="file-upload-image" alt="your image" />
+                                            <img class="file-upload-image" alt="your image"
+                                            @if (isset($siswa->ijazah))
+                                                @if (pathinfo($siswa->ijazah, PATHINFO_EXTENSION) == 'jpeg' || pathinfo($siswa->ijazah, PATHINFO_EXTENSION) == 'jpg' || pathinfo($siswa->ijazah, PATHINFO_EXTENSION) == 'png')
+                                                    src="{{ asset("data_berkas/". $siswa->ijazah) }}"
+                                                @else
+                                                    src="http://127.0.0.1:8000/image/file-extension/thumbnail-pdf.png"
+                                                @endif
+                                            @endif/>
                                         <div class="image-title-wrap">
                                             <button type="button" onclick="removeUpload_(this);" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
                                         </div>
@@ -92,13 +105,20 @@
                                         {{-- <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button> --}}
 
                                         <div class="image-upload-wrap">
-                                        <input name="skhu" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                        <input name="skhu" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*,.pdf"  />
                                         <div class="drag-text">
                                             <h3>Drag and drop a file or select add Image</h3>
                                         </div>
                                         </div>
                                         <div class="file-upload-content">
-                                        <img @if(isset($siswa->skhu)) src="{{ asset("data_file/". $siswa->skhu) }}" @endif class="file-upload-image" alt="your image" />
+                                            <img class="file-upload-image" alt="your image"
+                                            @if (isset($siswa->skhu))
+                                                @if (pathinfo($siswa->skhu, PATHINFO_EXTENSION) == "png" || pathinfo($siswa->skhu, PATHINFO_EXTENSION) == "jpeg" || pathinfo($siswa->skhu, PATHINFO_EXTENSION) == "jpg")
+                                                    src="{{ asset("data_berkas/". $siswa->skhu) }}"
+                                                @else
+                                                    src="http://127.0.0.1:8000/image/file-extension/thumbnail-pdf.png"
+                                                @endif
+                                            @endif/>
                                         <div class="image-title-wrap">
                                             <button type="button" onclick="removeUpload_(this);" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
                                         </div>
@@ -118,13 +138,20 @@
                                     {{-- <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button> --}}
 
                                     <div class="image-upload-wrap">
-                                    <input name="kk" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                    <input name="kk" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*,.pdf" />
                                     <div class="drag-text">
                                         <h3>Drag and drop a file or select add Image</h3>
                                     </div>
                                     </div>
                                     <div class="file-upload-content">
-                                    <img @if(isset($siswa->kk)) src="{{ asset("data_file/". $siswa->kk) }}" @endif class="file-upload-image" alt="your image" />
+                                        <img class="file-upload-image" alt="your image"
+                                        @if (isset($siswa->kk))
+                                            @if (pathinfo($siswa->kk, PATHINFO_EXTENSION) == 'jpeg' || pathinfo($siswa->kk, PATHINFO_EXTENSION) == 'jpg' || pathinfo($siswa->kk, PATHINFO_EXTENSION) == 'png')
+                                                src="{{ asset("data_berkas/". $siswa->kk) }}"
+                                            @else
+                                                src="http://127.0.0.1:8000/image/file-extension/thumbnail-pdf.png"
+                                            @endif
+                                        @endif/>
                                     <div class="image-title-wrap">
                                         <button type="button" onclick="removeUpload_(this);" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
                                     </div>
@@ -136,13 +163,20 @@
                                     {{-- <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button> --}}
 
                                     <div class="image-upload-wrap">
-                                    <input name="akta_kelahiran" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                    <input name="akta_kelahiran" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*,.pdf"  />
                                     <div class="drag-text">
                                         <h3>Drag and drop a file or select add Image</h3>
                                     </div>
                                     </div>
                                     <div class="file-upload-content">
-                                    <img @if(isset($siswa->akta_kelahiran)) src="{{ asset("data_file/". $siswa->akta_kelahiran) }}" @endif class="file-upload-image" alt="your image" />
+                                        <img class="file-upload-image" alt="your image"
+                                        @if (isset($siswa->akta_kelahiran))
+                                            @if (pathinfo($siswa->akta_kelahiran, PATHINFO_EXTENSION) == 'jpeg' || pathinfo($siswa->akta_kelahiran, PATHINFO_EXTENSION) == 'jpg' || pathinfo($siswa->akta_kelahiran, PATHINFO_EXTENSION) == 'png')
+                                                src="{{ asset("data_berkas/". $siswa->akta_kelahiran) }}"
+                                            @else
+                                                src="http://127.0.0.1:8000/image/file-extension/thumbnail-pdf.png"
+                                            @endif
+                                        @endif/>
                                     <div class="image-title-wrap">
                                         <button type="button" onclick="removeUpload_(this);" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
                                     </div>
@@ -154,13 +188,20 @@
                                     {{-- <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button> --}}
 
                                     <div class="image-upload-wrap">
-                                    <input name="lain_lain" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                    <input name="lain_lain" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*,.pdf" value="{{$siswa->lainnya}}" />
                                     <div class="drag-text">
                                         <h3>Drag and drop a file or select add Image</h3>
                                     </div>
                                     </div>
                                     <div class="file-upload-content">
-                                    <img @if(isset($siswa->lainnya)) src="{{ asset("data_file/". $siswa->lainnya) }}" @endif class="file-upload-image" alt="your image" />
+                                        <img class="file-upload-image" alt="your image"
+                                        @if (isset($siswa->lainnya))
+                                            @if (pathinfo($siswa->lainnya, PATHINFO_EXTENSION) == 'jpeg' || pathinfo($siswa->lainnya, PATHINFO_EXTENSION) == 'jpg' || pathinfo($siswa->lainnya, PATHINFO_EXTENSION) == 'png')
+                                                src="{{ asset("data_berkas/". $siswa->lainnya) }}"
+                                            @else
+                                                src="http://127.0.0.1:8000/image/file-extension/thumbnail-pdf.png"
+                                            @endif
+                                        @endif/>
                                     <div class="image-title-wrap">
                                         <button type="button" onclick="removeUpload_(this);" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
                                     </div>

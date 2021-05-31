@@ -9,7 +9,9 @@ use App\Models\Data\Keluarga;
 use App\Models\Data\Akademik;
 use App\Models\Data\KondisiRumah;
 use App\Models\Data\UnggahBerkas;
+use App\Models\UnggahanSiswa;
 use Auth;
+use File;
 
 class EditController extends Controller
 {
@@ -156,6 +158,7 @@ class EditController extends Controller
     }
     public function unggahBerkasUpdate(Request $request){
         try {
+            $berkas = UnggahBerkas::where('siswa_id', Auth::user()->id)->first();
             $foto_diri = $request->file('foto_diri');
             $ijazah = $request->file('ijazah');
             $skhu = $request->file('skhu');
@@ -166,29 +169,46 @@ class EditController extends Controller
             if (isset($foto_diri)) {
                 $foto_diri_nama = time()."_".$foto_diri->getClientOriginalName();
                 $foto_diri->move($tujuan_upload,$foto_diri_nama);
+                if (isset($berkas->foto_diri)) {
+                    File::delete($tujuan_upload.'/'.$berkas->foto_diri);
+                }
             }
             if (isset($ijazah)) {
                 $ijazah_nama = time()."_".$ijazah->getClientOriginalName();
                 $ijazah->move($tujuan_upload,$ijazah_nama);
+                if (isset($berkas->ijazah)) {
+                    File::delete($tujuan_upload.'/'.$berkas->ijazah);
+                }
             }
             if (isset($skhu)) {
                 $skhu_nama = time()."_".$skhu->getClientOriginalName();
                 $skhu->move($tujuan_upload,$skhu_nama);
+                if (isset($berkas->skhu)) {
+                    File::delete($tujuan_upload.'/'.$berkas->skhu);
+                }
             }
             if (isset($kk)) {
                 $kk_nama = time()."_".$kk->getClientOriginalName();
                 $kk->move($tujuan_upload,$kk_nama);
+                if (isset($berkas->kk)) {
+                    File::delete($tujuan_upload.'/'.$berkas->kk);
+                }
             }
             if (isset($akta_kelahiran)) {
                 $akta_kelahiran_nama = time()."_".$akta_kelahiran->getClientOriginalName();
                 $akta_kelahiran->move($tujuan_upload,$akta_kelahiran_nama);
+                if (isset($berkas->akta_kelahiran)) {
+                    File::delete($tujuan_upload.'/'.$berkas->akta_kelahiran);
+                }
             }
             if (isset($lain_lain)) {
                 $lain_lain_nama = time()."_".$lain_lain->getClientOriginalName();
                 $lain_lain->move($tujuan_upload,$lain_lain_nama);
+                if (isset($berkas->lain_lain)) {
+                    File::delete($tujuan_upload.'/'.$berkas->lain_lain);
+                }
             }
 
-            $berkas = UnggahBerkas::where('siswa_id', Auth::user()->id)->first();
             if (!isset($berkas)) {
                 $berkas = new UnggahBerkas();
                 $berkas->siswa_id = Auth::user()->id;
@@ -212,10 +232,36 @@ class EditController extends Controller
             if($request->hasFile('lain_lain')){
                 $berkas->lainnya = $lain_lain_nama ?? null;
             }
+            // dd($berkas);
             $berkas->save();
             return redirect('siswa/unggah_berkas')->with(['success' => 'Berkas Berhasil Diperbaharui']);
         } catch (\Throwable $th) {
             return redirect('siswa/unggah_berkas')->with(['success' => 'Berkas Gagal Diperbaharui']);
+        }
+    }
+
+    public function editUnggahanSiswa(Request $request, $id){
+        try {
+            $model = UnggahanSiswa::find($id);
+            $model->siswa_id = Auth::user()->id;
+            $model->nama = $request->nama;
+            $model->jenis = $request->jenis;
+            $model->keterangan = $request->keterangan;
+            $file = $request->file_unggahan;
+            $destinationPath = 'unggahan-siswa';
+            if (isset($file)) {
+                $nama_file = time()."_".$file->getClientOriginalName();
+                $file->move($destinationPath,$nama_file);
+                if (isset($model->file)) {
+                    File::delete($destinationPath.'/'.$model->file);
+                }
+                $model->file = $nama_file;
+            }
+            // dd($model);
+            $model->save();
+            return redirect('siswa/unggahan-siswa')->with(['success' => 'Unggahan Baru Berhasil diedit']);
+        } catch (\Throwable $th) {
+            return redirect('siswa/unggahan-siswa')->with(['success' => 'Unggahan Baru Gagal diedit']);
         }
     }
 }

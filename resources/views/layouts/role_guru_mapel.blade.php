@@ -37,6 +37,12 @@
         </a>
     </li>
     <li>
+        <a href="{{ url('guru/kehadiran_dan_poin') }}" class=" waves-effect">
+            <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
+            <span>Kehadiran dan Poin</span>
+        </a>
+    </li>
+    <li>
         <a href="{{ url('guru/kritik_dan_saran') }}" class=" waves-effect">
             <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
             <span>Masukan Dan Saran</span>

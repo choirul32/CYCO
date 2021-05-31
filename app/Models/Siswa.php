@@ -10,6 +10,7 @@ use App\Models\Other\Jurusan;
 use App\Models\Other\Agama;
 use App\Models\Other\Bahasa;
 use App\Models\Absensi;
+use App\Models\ChatMessage;
 use App\Models\Poin;
 
 class Siswa extends Authenticatable
@@ -179,6 +180,10 @@ class Siswa extends Authenticatable
             default:
                 return "Lainnya";
         }
+    }
+
+    public function chat(){
+        return $this->hasMany(ChatMessage::class, 'user_id', 'id')->where('role_id', 6);
     }
 
 }

@@ -138,7 +138,15 @@
                     $('#modalDetail').modal('show');
                     document.getElementsByTagName("p")[0].innerHTML= data.masalah;
                     document.getElementsByTagName("p")[1].innerHTML=data.harapan;
-                    document.getElementById("link").value = data.link ?? "";
+                    if (data.perantara = 'web') {
+                        $('#modalDetail').find('#link-input').hide();
+                        $('#modalDetail').find('#link-web-chat').show();
+                        document.getElementById("link-web-button").href = "/guru/chat/room/"+data.link;
+                    } else {
+                        $('#modalDetail').find('#link-input').show();
+                        $('#modalDetail').find('#link-web-chat').hide();
+                        document.getElementById("link").value = data.link ?? "";
+                    }
                     document.getElementById("id_detail").value = data.id;
                 },
                 error: function() {

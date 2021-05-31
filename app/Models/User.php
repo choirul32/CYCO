@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\ChatMessage;
 
 class User extends Authenticatable
 {
@@ -51,5 +52,9 @@ class User extends Authenticatable
                 return "-";
                 break;
         }
+    }
+
+    public function chat(){
+        return $this->hasMany(ChatMessage::class, 'user_id', 'id')->whereIn('role_id', [2,3,4,5]);
     }
 }

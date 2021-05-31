@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['prefix' => 'siswa', 'middleware' => ['auth:siswa']], function () {
+Route::group(['prefix' => 'siswa', 'middleware' => ['auth:siswa', 'cors']], function () {
     Route::get('/', 'Siswa\ViewController@index');
     Route::get('/home', 'Home\Siswa\HomeController@siswaHome');
     Route::get('/data_siswa', 'Siswa\ViewController@dataSiswa');
@@ -51,10 +51,28 @@ Route::group(['prefix' => 'siswa', 'middleware' => ['auth:siswa']], function () 
     Route::prefix('/kehadiran_dan_poin')->group(function () {
         Route::get('/', 'KehadiranPoin\ViewController@indexSiswa');
     });
-    Route::get('/upload_berkas', function () {return view('data_master_user.siswa.upload_berkas');});
+    Route::prefix('/unggahan-siswa')->group(function(){
+        Route::get('/', 'Siswa\ViewController@unggahanSiswa');
+        Route::get('/create', 'Siswa\ViewController@createUnggahanSiswa');
+        Route::post('/create', 'Siswa\CreateController@createUnggahanSiswa');
+        Route::get('/edit/{id}', 'Siswa\ViewController@editUnggahanSiswa');
+        Route::post('/edit/{id}', 'Siswa\EditController@editUnggahanSiswa');
+        Route::delete('/delete/{id}', 'Siswa\DeleteController@deleteUnggahanSiswa');
+    });
+    // Route::get('/upload_berkas', function () {return view('data_master_user.siswa.upload_berkas');});
     Route::prefix('masukan_saran')->group(function () {
         Route::get('/', 'MasukanSaran\ViewController@index');
         Route::post('/create', 'MasukanSaran\CreateController@createKritikSaran');
+    });
+    Route::prefix('chat')->group(function () {
+        Route::get('/', function(){
+            return view('chat.index');
+        });
+        Route::get('/rooms', 'ChatController@rooms');
+        Route::get('/all-messages', 'ChatController@allMessages');
+        Route::get('/room/{slug}', 'ChatController@room');
+        Route::get('/api/room/{id}', 'ChatController@allMessages');
+        Route::post('/room/new-message', 'ChatController@newMessage');
     });
 });
 
@@ -125,9 +143,21 @@ Route::group(['prefix' => 'guru', 'middleware' => ['auth:guru']], function () {
     Route::get('/pengumuman', 'Pengumuman\ViewController@index');
     Route::get('/pengumuman/create', 'Pengumuman\CreateController@createForm');
     Route::post('/pengumuman/store', 'Pengumuman\CreateController@store');
-    Route::get('/kehadiran_dan_poin', 'KehadiranPoin\ViewController@indexTable');
-    Route::get('/message', function(){
-        return view('message.index');
+    Route::prefix('kehadiran_dan_poin')->group(function () {
+        Route::get('/', 'KehadiranPoin\ViewController@indexTable');
+        Route::get('/poin/create', 'KehadiranPoin\ViewController@formPoin');
+        Route::get('/poin/edit/{id}', 'KehadiranPoin\EditController@formEditPoin');
+        Route::post('/poin/create', 'KehadiranPoin\CreateController@createNewPoin');
+        Route::post('/poin/edit', 'KehadiranPoin\EditController@editPoin');
+        Route::delete('/poin/delete/{id}', 'KehadiranPoin\DeleteController@deletePoin');
+        Route::get('/kehadiran/create', 'KehadiranPoin\ViewController@formKehadiran');
+        Route::get('/kehadiran/edit/{id}', 'KehadiranPoin\EditController@formEditKehadiran');
+        Route::post('/kehadiran/edit', 'KehadiranPoin\EditController@editKehadiran');
+        Route::delete('/kehadiran/delete/{id}', 'KehadiranPoin\DeleteController@deleteKehadiran');
+    });
+    Route::prefix('chat')->group(function () {
+        Route::get('/room/{slug}', 'ChatController@room');
+        Route::get('/api/room/{id}', 'ChatController@allMessages');
     });
 });
 
@@ -251,6 +281,10 @@ Route::prefix('orangtua')->group(function () {
 Route::get('/', function(){
     return view('website.index');
 });
+
+Route::post('/message/push', 'ChatController@newMessage');
+
+
 
 
 

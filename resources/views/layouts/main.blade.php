@@ -17,6 +17,8 @@
         <link href="{{url('Vertical/dist/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- Bootstrap Css -->
         <link href="{{url('Vertical/dist/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+
+        <link href="{{url('Vertical/dist/assets/libs/select2/css/select2.css')}}" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
         <link href="{{url('Vertical/dist/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
@@ -24,7 +26,7 @@
         <!-- Sweet Alert-->
         <link href="{{url('Vertical/dist/assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
 
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         @stack('css')
     </head>
 
@@ -48,7 +50,7 @@
         </div>
         <!-- END layout-wrapper -->
         <!-- JAVASCRIPT -->
-        <script src="{{ asset('js/app.js') }}"></script>
+
         <script src="{{url('Vertical/dist/assets/libs/jquery/jquery.min.js')}}"></script>
         <script src="{{url('Vertical/dist/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{url('Vertical/dist/assets/libs/metismenu/metisMenu.min.js')}}"></script>
@@ -84,6 +86,8 @@
 
         <!-- Sweet alert init js-->
         <script src="{{url('Vertical/dist/assets/js/pages/sweet-alerts.init.js')}}"></script>
+
+        <script src="{{url('Vertical/dist/assets/libs/select2/js/select2.min.js')}}"></script>
         @stack('js')
     </body>
 </html>
