@@ -20,7 +20,7 @@ class ViewController extends Controller
     }
 
     public function dataSiswa(){
-        $data['siswa'] = Siswa::find(Auth::user()->id)->first();
+        $data['siswa'] = Siswa::where("id", Auth::user()->id)->first();
         return view('data_master_user.siswa.data_siswa')->with($data);
     }
 
