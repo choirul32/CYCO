@@ -28,7 +28,6 @@ Vue.use(VueAxios, axios);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('chat-firebase', require('./components/ChatFirebase.vue').default);
-Vue.component('chat-messages', require('./components/ChatMessage.vue').default);
 Vue.component('chat-form', require('./components/ChatForm.vue').default);
 
 /**

@@ -21,7 +21,7 @@ class Konseling extends Model
         return $this->belongsTo(Siswa::class, 'siswa_id', 'id');
     }
 
-    public function room(){
-        return $this->belongsTo(ChatRoom::class, 'room_id', 'id');
+    public function chat_room(){
+        return $this->belongsTo(ChatRoom::class, 'chat_room_id', 'id');
     }
 }

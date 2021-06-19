@@ -9,10 +9,10 @@
                 </div>
             </div>
         </div>
-        <div v-else class="incoming_msg">
-            <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+        <div v-else class="incoming_msg row">
+            <div class="incoming_msg_img col-1"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
             </div>
-            <div class="received_msg">
+            <div class="received_msg col">
                 <div class="received_withd_msg">
                    <p>{{ message.message }}</p>
                     <!-- <span class="time_date">{{ message.dateHuman }}</span> -->

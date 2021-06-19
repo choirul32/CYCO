@@ -55,7 +55,7 @@
                                         {{-- <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button> --}}
 
                                         <div class="image-upload-wrap" >
-                                        <input name="foto_diri" class="file-upload-input" type='file'  onchange="readURL(this);" accept="image/*,.pdf" />
+                                        <input id="foto_diri_input" name="foto_diri" class="file-upload-input" type='file'  onchange="readURL(this);" accept="image/*,.pdf" />
                                         <div class="drag-text">
                                             <h3>Drag and drop a file or select add Image</h3>
                                         </div>
@@ -64,7 +64,7 @@
                                             <img class="file-upload-image" alt="your image"
                                             @if (isset($siswa->foto_diri))
                                                 @if (pathinfo($siswa->foto_diri, PATHINFO_EXTENSION) == 'jpeg' || pathinfo($siswa->foto_diri, PATHINFO_EXTENSION) == 'jpg' || pathinfo($siswa->foto_diri, PATHINFO_EXTENSION) == 'png')
-                                                    src="{{ asset("data_berkas/". $siswa->foto_diri) }}"
+                                                    src="{{ asset("data_berkas/foto_diri/". $siswa->foto_diri) }}"
                                                 @else
                                                     src="http://127.0.0.1:8000/image/file-extension/thumbnail-pdf.png"
                                                 @endif
@@ -89,7 +89,7 @@
                                             <img class="file-upload-image" alt="your image"
                                             @if (isset($siswa->ijazah))
                                                 @if (pathinfo($siswa->ijazah, PATHINFO_EXTENSION) == 'jpeg' || pathinfo($siswa->ijazah, PATHINFO_EXTENSION) == 'jpg' || pathinfo($siswa->ijazah, PATHINFO_EXTENSION) == 'png')
-                                                    src="{{ asset("data_berkas/". $siswa->ijazah) }}"
+                                                    src="{{ asset("data_berkas/ijazah". $siswa->ijazah) }}"
                                                 @else
                                                     src="http://127.0.0.1:8000/image/file-extension/thumbnail-pdf.png"
                                                 @endif
@@ -114,7 +114,7 @@
                                             <img class="file-upload-image" alt="your image"
                                             @if (isset($siswa->skhu))
                                                 @if (pathinfo($siswa->skhu, PATHINFO_EXTENSION) == "png" || pathinfo($siswa->skhu, PATHINFO_EXTENSION) == "jpeg" || pathinfo($siswa->skhu, PATHINFO_EXTENSION) == "jpg")
-                                                    src="{{ asset("data_berkas/". $siswa->skhu) }}"
+                                                    src="{{ asset("data_berkas/skhu/". $siswa->skhu) }}"
                                                 @else
                                                     src="http://127.0.0.1:8000/image/file-extension/thumbnail-pdf.png"
                                                 @endif
@@ -147,7 +147,7 @@
                                         <img class="file-upload-image" alt="your image"
                                         @if (isset($siswa->kk))
                                             @if (pathinfo($siswa->kk, PATHINFO_EXTENSION) == 'jpeg' || pathinfo($siswa->kk, PATHINFO_EXTENSION) == 'jpg' || pathinfo($siswa->kk, PATHINFO_EXTENSION) == 'png')
-                                                src="{{ asset("data_berkas/". $siswa->kk) }}"
+                                                src="{{ asset("data_berkas/kk/". $siswa->kk) }}"
                                             @else
                                                 src="http://127.0.0.1:8000/image/file-extension/thumbnail-pdf.png"
                                             @endif
@@ -172,7 +172,7 @@
                                         <img class="file-upload-image" alt="your image"
                                         @if (isset($siswa->akta_kelahiran))
                                             @if (pathinfo($siswa->akta_kelahiran, PATHINFO_EXTENSION) == 'jpeg' || pathinfo($siswa->akta_kelahiran, PATHINFO_EXTENSION) == 'jpg' || pathinfo($siswa->akta_kelahiran, PATHINFO_EXTENSION) == 'png')
-                                                src="{{ asset("data_berkas/". $siswa->akta_kelahiran) }}"
+                                                src="{{ asset("data_berkas/akta_kelahiran/". $siswa->akta_kelahiran) }}"
                                             @else
                                                 src="http://127.0.0.1:8000/image/file-extension/thumbnail-pdf.png"
                                             @endif
@@ -188,7 +188,7 @@
                                     {{-- <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button> --}}
 
                                     <div class="image-upload-wrap">
-                                    <input name="lain_lain" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*,.pdf" value="{{$siswa->lainnya}}" />
+                                    <input name="lain_lain" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*,.pdf"/>
                                     <div class="drag-text">
                                         <h3>Drag and drop a file or select add Image</h3>
                                     </div>
@@ -197,7 +197,7 @@
                                         <img class="file-upload-image" alt="your image"
                                         @if (isset($siswa->lainnya))
                                             @if (pathinfo($siswa->lainnya, PATHINFO_EXTENSION) == 'jpeg' || pathinfo($siswa->lainnya, PATHINFO_EXTENSION) == 'jpg' || pathinfo($siswa->lainnya, PATHINFO_EXTENSION) == 'png')
-                                                src="{{ asset("data_berkas/". $siswa->lainnya) }}"
+                                                src="{{ asset("data_berkas/lain_lain/". $siswa->lainnya) }}"
                                             @else
                                                 src="http://127.0.0.1:8000/image/file-extension/thumbnail-pdf.png"
                                             @endif
@@ -289,13 +289,13 @@
 
     .image-upload-wrap {
         margin-top: 20px;
-        border: 4px dashed #1FB264;
+        border: 4px dashed #E4E9F8;
         position: relative;
     }
 
     .image-dropping,
     .image-upload-wrap:hover {
-        background-color: #1FB264;
+        background-color: #e4e9f8;
         border: 4px dashed #ffffff;
     }
 
@@ -311,7 +311,7 @@
     .drag-text h3 {
         font-weight: 100;
         text-transform: uppercase;
-        color: #15824B;
+        color: #6A716D;
         padding: 60px 0;
     }
 
@@ -397,7 +397,7 @@ function readURL(input, data) {
 }
 
 function removeUpload(element) {
-    element.find('.file-upload-input').replaceWith($('.file-upload-input').clone());
+    element.find('#foto_diri_iinput').replaceWith($('#foto_diri').clone());
     element.find('.file-upload-content').hide();
     element.find('.image-upload-wrap').show();
 }
@@ -405,7 +405,7 @@ function removeUpload(element) {
 
 function removeUpload_(input) {
     var element = $(input).parents().closest(".file-upload");
-    element.find('.file-upload-input').replaceWith($('.file-upload-input').clone());
+    element.find('.file-upload-input').replaceWith(element.find('.file-upload-input').clone());
     element.find('.file-upload-content').hide();
     element.find('.image-upload-wrap').show();
 }

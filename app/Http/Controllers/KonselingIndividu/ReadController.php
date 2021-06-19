@@ -9,6 +9,6 @@ use App\Models\Konseling;
 class ReadController extends Controller
 {
     public function getSingleKonseling($id){
-        return Konseling::find($id);
+        return Konseling::where('id',$id)->with('chat_room')->first();
     }
 }

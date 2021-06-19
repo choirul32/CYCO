@@ -12,6 +12,7 @@ use App\Models\Data\UnggahBerkas;
 use App\Models\UnggahanSiswa;
 use Auth;
 use File;
+use Illuminate\Support\Str;
 
 class EditController extends Controller
 {
@@ -157,6 +158,7 @@ class EditController extends Controller
         // }
     }
     public function unggahBerkasUpdate(Request $request){
+        
         try {
             $berkas = UnggahBerkas::where('siswa_id', Auth::user()->id)->first();
             $foto_diri = $request->file('foto_diri');
@@ -165,47 +167,54 @@ class EditController extends Controller
             $kk = $request->file('kk');
             $akta_kelahiran = $request->file('akta_kelahiran');
             $lain_lain = $request->file('lain_lain');
-            $tujuan_upload = 'data_berkas';
+
+            $dir_file_foto_diri = 'data_berkas/foto_diri';
+            $dir_file_ijazah = 'data_berkas/ijazah';
+            $dir_file_skhu = 'data_berkas/skhu';
+            $dir_file_kk = 'data_berkas/kk';
+            $dir_file_akta_kelahiran = 'data_berkas/akta_kelahiran';
+            $dir_file_lain_lain = 'data_berkas/lain_lain';
+
             if (isset($foto_diri)) {
-                $foto_diri_nama = time()."_".$foto_diri->getClientOriginalName();
-                $foto_diri->move($tujuan_upload,$foto_diri_nama);
+                $foto_diri_nama = Str::lower(time()."_".$foto_diri->getClientOriginalName());
+                $foto_diri->move($dir_file_foto_diri,$foto_diri_nama);
                 if (isset($berkas->foto_diri)) {
-                    File::delete($tujuan_upload.'/'.$berkas->foto_diri);
+                    File::delete($dir_file_foto_diri.'/'.$berkas->foto_diri);
                 }
             }
             if (isset($ijazah)) {
-                $ijazah_nama = time()."_".$ijazah->getClientOriginalName();
-                $ijazah->move($tujuan_upload,$ijazah_nama);
+                $ijazah_nama = Str::lower(time()."_".$ijazah->getClientOriginalName());
+                $ijazah->move($dir_file_ijazah,$ijazah_nama);
                 if (isset($berkas->ijazah)) {
-                    File::delete($tujuan_upload.'/'.$berkas->ijazah);
+                    File::delete($dir_file_ijazah.'/'.$berkas->ijazah);
                 }
             }
             if (isset($skhu)) {
-                $skhu_nama = time()."_".$skhu->getClientOriginalName();
-                $skhu->move($tujuan_upload,$skhu_nama);
+                $skhu_nama = Str::lower(time()."_".$skhu->getClientOriginalName());
+                $skhu->move($dir_file_skhu,$skhu_nama);
                 if (isset($berkas->skhu)) {
-                    File::delete($tujuan_upload.'/'.$berkas->skhu);
+                    File::delete($dir_file_skhu.'/'.$berkas->skhu);
                 }
             }
             if (isset($kk)) {
-                $kk_nama = time()."_".$kk->getClientOriginalName();
-                $kk->move($tujuan_upload,$kk_nama);
+                $kk_nama = Str::lower(time()."_".$kk->getClientOriginalName());
+                $kk->move($dir_file_kk,$kk_nama);
                 if (isset($berkas->kk)) {
-                    File::delete($tujuan_upload.'/'.$berkas->kk);
+                    File::delete($dir_file_kk.'/'.$berkas->kk);
                 }
             }
             if (isset($akta_kelahiran)) {
-                $akta_kelahiran_nama = time()."_".$akta_kelahiran->getClientOriginalName();
-                $akta_kelahiran->move($tujuan_upload,$akta_kelahiran_nama);
+                $akta_kelahiran_nama = Str::lower(time()."_".$akta_kelahiran->getClientOriginalName());
+                $akta_kelahiran->move($dir_file_akta_kelahiran,$akta_kelahiran_nama);
                 if (isset($berkas->akta_kelahiran)) {
-                    File::delete($tujuan_upload.'/'.$berkas->akta_kelahiran);
+                    File::delete($dir_file_akta_kelahiran.'/'.$berkas->akta_kelahiran);
                 }
             }
             if (isset($lain_lain)) {
-                $lain_lain_nama = time()."_".$lain_lain->getClientOriginalName();
-                $lain_lain->move($tujuan_upload,$lain_lain_nama);
+                $lain_lain_nama = Str::lower(time()."_".$lain_lain->getClientOriginalName());
+                $lain_lain->move($dir_file_lain_lain,$lain_lain_nama);
                 if (isset($berkas->lain_lain)) {
-                    File::delete($tujuan_upload.'/'.$berkas->lain_lain);
+                    File::delete($dir_file_lain_lain.'/'.$berkas->lain_lain);
                 }
             }
 
@@ -224,7 +233,7 @@ class EditController extends Controller
                 $berkas->skhu = $skhu_nama ?? null;
             }
             if($request->hasFile('kk')){
-                $berkas->kk = $kk_nam ?? null;
+                $berkas->kk = $kk_nama ?? null;
             }
             if($request->hasFile('akta_kelahiran')){
                 $berkas->akta_kelahiran = $akta_kelahiran_nama ?? null;
@@ -234,6 +243,7 @@ class EditController extends Controller
             }
             // dd($berkas);
             $berkas->save();
+            // dd($berkas);
             return redirect('siswa/unggah_berkas')->with(['success' => 'Berkas Berhasil Diperbaharui']);
         } catch (\Throwable $th) {
             return redirect('siswa/unggah_berkas')->with(['success' => 'Berkas Gagal Diperbaharui']);

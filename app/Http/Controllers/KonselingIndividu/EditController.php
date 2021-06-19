@@ -5,6 +5,8 @@ namespace App\Http\Controllers\KonselingIndividu;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Konseling;
+use App\Models\ChatRoom;
+use Illuminate\Support\Str;
 use Auth;
 
 class EditController extends Controller
@@ -12,9 +14,16 @@ class EditController extends Controller
     public function verifikasiPermintaan($id){
         try {
             $konseling = Konseling::find($id);
+            if ($konseling->perantara == "web") {
+                $chat_room = new ChatRoom;
+                $chat_room->slug = Str::random(40);
+                $chat_room->save();
+            }
             $now = date_create()->format('Y-m-d');
             $konseling->verified_at = $now;
             $konseling->verified_by = Auth::user()->id;
+            $konseling->chat_room_id = $chat_room->id;
+
             $konseling->save();
             return redirect()->back()->with(['success' => 'Konseling Berhasil Diverifikasi']);
         } catch (\Throwable $th) {

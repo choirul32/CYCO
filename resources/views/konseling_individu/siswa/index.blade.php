@@ -177,7 +177,7 @@
                     if (data.perantara = 'web') {
                         $('#modalDetail').find('#link-input').hide();
                         $('#modalDetail').find('#link-web-chat').show();
-                        document.getElementById("link-web-button").href = "/siswa/chat/room/"+data.link;
+                        document.getElementById("link-web-button").href = "/siswa/chat/room/"+data.chat_room.slug;
                     } else {
                         $('#modalDetail').find('#link-input').show();
                         $('#modalDetail').find('#link-web-chat').hide();

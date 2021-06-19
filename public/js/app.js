@@ -57591,11 +57591,12 @@ __webpack_require__.r(__webpack_exports__);
       role_id: this.role_id_,
       user_id: this.user_id_,
       room: this.room_,
+      time: "",
       messages: []
     };
   },
   created: function created() {
-    console.log(this.name_user);
+    console.log(this.room_);
   },
   methods: {
     updateUsername: function updateUsername() {
@@ -57604,20 +57605,27 @@ __webpack_require__.r(__webpack_exports__);
       this.userName = "";
     },
     sendMessage: function sendMessage() {
+      this.getNowTime();
       var message = {
         text: this.showMessage,
         username: this.userName,
         role_id: this.role_id,
         user_id: this.user_id,
-        room: this.room
+        room: this.room,
+        time: this.time
       };
       _fire__WEBPACK_IMPORTED_MODULE_0__["default"].database().ref("messages").push(message);
       this.showMessage = "";
+    },
+    getNowTime: function getNowTime() {
+      var today = new Date();
+      var time = today.getHours() + ":" + today.getMinutes();
+      this.time = time;
     }
   },
   mounted: function mounted() {
     var viewMessage = this;
-    var itemsRef = _fire__WEBPACK_IMPORTED_MODULE_0__["default"].database().ref("messages").orderByChild('room').equalTo(1);
+    var itemsRef = _fire__WEBPACK_IMPORTED_MODULE_0__["default"].database().ref("messages").orderByChild('room').equalTo(this.room_);
     itemsRef.on("value", function (snapshot) {
       var data = snapshot.val();
       var messages = [];
@@ -57628,6 +57636,7 @@ __webpack_require__.r(__webpack_exports__);
           role_id: data[key].role_id,
           user_id: data[key].user_id,
           room: data[key].room,
+          time: data[key].time,
           text: data[key].text
         });
       });
@@ -57673,60 +57682,6 @@ __webpack_require__.r(__webpack_exports__);
         user_id: this.user_id,
         message: this.newMessage,
         role_id: this.role_id,
-        room: this.room
-      });
-      this.newMessage = '';
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ChatMessage.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ChatMessage.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['messages', 'role_id', 'user_id', 'room'],
-  created: function created() {
-    this.setRoomId();
-    this.$emit('loadchat', {
-      room: this.room
-    });
-  },
-  methods: {
-    setRoomId: function setRoomId() {
-      this.$emit('setRoom', {
         room: this.room
       });
       this.newMessage = '';
@@ -93849,26 +93804,30 @@ var render = function() {
               ? _c("div", [
                   _c("div", { staticClass: "outgoing_msg" }, [
                     _c("div", { staticClass: "sent_msg" }, [
-                      _c("p", [_vm._v(_vm._s(message.text))])
+                      _c("p", [
+                        _vm._v(_vm._s(message.text) + " "),
+                        _c("span", [_vm._v(_vm._s(message.time))])
+                      ])
                     ])
                   ])
                 ])
-              : _c("div", { staticClass: "incoming_msg" }, [
+              : _c("div", { staticClass: "incoming_msg row" }, [
                   _vm._m(0, true),
                   _vm._v(" "),
-                  _c("div", { staticClass: "received_msg" }, [
+                  _c("div", { staticClass: "received_msg col" }, [
                     _c("div", { staticClass: "received_withd_msg" }, [
                       _c("div", { staticStyle: { display: "flex" } }, [
-                        _c("h5", { staticStyle: { margin: "8px 10px 0" } }, [
-                          _vm._v(_vm._s(message.username))
-                        ]),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "time_date" }, [
-                          _vm._v("jam segini")
-                        ])
+                        _vm._v(
+                          "\n                          " +
+                            _vm._s(message.username) +
+                            "\n                          "
+                        )
                       ]),
                       _vm._v(" "),
-                      _c("p", [_vm._v(_vm._s(message.text))])
+                      _c("p", [
+                        _vm._v(_vm._s(message.text) + " "),
+                        _c("span", [_vm._v(_vm._s(message.time))])
+                      ])
                     ])
                   ])
                 ])
@@ -93896,6 +93855,15 @@ var render = function() {
           },
           domProps: { value: _vm.showMessage },
           on: {
+            keyup: function($event) {
+              if (
+                !$event.type.indexOf("key") &&
+                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+              ) {
+                return null
+              }
+              return _vm.sendMessage($event)
+            },
             input: function($event) {
               if ($event.target.composing) {
                 return
@@ -93925,11 +93893,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "incoming_msg_img" }, [
+    return _c("div", { staticClass: "incoming_msg_img col-1" }, [
       _c("img", {
         attrs: {
           src: "https://ptetutorials.com/images/user-profile.png",
-          alt: "sunil"
+          alt: ""
         }
       })
     ])
@@ -94007,68 +93975,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ChatMessage.vue?vue&type=template&id=7812acf4&":
-/*!**************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ChatMessage.vue?vue&type=template&id=7812acf4& ***!
-  \**************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    _vm._l(_vm.messages, function(message) {
-      return _c("div", [
-        message.role_id == _vm.role_id && message.user_id == _vm.user_id
-          ? _c("div", [
-              _c("div", { staticClass: "outgoing_msg" }, [
-                _c("div", { staticClass: "sent_msg" }, [
-                  _c("p", [_vm._v(_vm._s(message.message))])
-                ])
-              ])
-            ])
-          : _c("div", { staticClass: "incoming_msg" }, [
-              _vm._m(0, true),
-              _vm._v(" "),
-              _c("div", { staticClass: "received_msg" }, [
-                _c("div", { staticClass: "received_withd_msg" }, [
-                  _c("p", [_vm._v(_vm._s(message.message))])
-                ])
-              ])
-            ])
-      ])
-    }),
-    0
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "incoming_msg_img" }, [
-      _c("img", {
-        attrs: {
-          src: "https://ptetutorials.com/images/user-profile.png",
-          alt: "sunil"
-        }
-      })
-    ])
-  }
-]
 render._withStripped = true
 
 
@@ -109461,7 +109367,6 @@ Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_1___default.a, axios__WEBPACK_IMPORTE
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('chat-firebase', __webpack_require__(/*! ./components/ChatFirebase.vue */ "./resources/js/components/ChatFirebase.vue")["default"]);
-Vue.component('chat-messages', __webpack_require__(/*! ./components/ChatMessage.vue */ "./resources/js/components/ChatMessage.vue")["default"]);
 Vue.component('chat-form', __webpack_require__(/*! ./components/ChatForm.vue */ "./resources/js/components/ChatForm.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -109476,23 +109381,6 @@ var app = new Vue({
     role_id: null,
     room: null,
     user_id: null
-  },
-  methods: {
-    fetchMessages: function fetchMessages(room) {
-      var _this = this;
-
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/siswa/chat/api/room/' + room.room).then(function (response) {
-        _this.messages = response.data.messages;
-        _this.role_id = response.data.role_id;
-        _this.user_id = response.data.user_id;
-      });
-    },
-    addMessage: function addMessage(message) {
-      this.messages.push(message);
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/siswa/chat/room/new-message', message).then(function (response) {
-        console.log(response.data);
-      });
-    }
   }
 });
 
@@ -109676,75 +109564,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatForm_vue_vue_type_template_id_6fb73fa7___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatForm_vue_vue_type_template_id_6fb73fa7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/ChatMessage.vue":
-/*!*************************************************!*\
-  !*** ./resources/js/components/ChatMessage.vue ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ChatMessage_vue_vue_type_template_id_7812acf4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ChatMessage.vue?vue&type=template&id=7812acf4& */ "./resources/js/components/ChatMessage.vue?vue&type=template&id=7812acf4&");
-/* harmony import */ var _ChatMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ChatMessage.vue?vue&type=script&lang=js& */ "./resources/js/components/ChatMessage.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ChatMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ChatMessage_vue_vue_type_template_id_7812acf4___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ChatMessage_vue_vue_type_template_id_7812acf4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/ChatMessage.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/ChatMessage.vue?vue&type=script&lang=js&":
-/*!**************************************************************************!*\
-  !*** ./resources/js/components/ChatMessage.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ChatMessage.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ChatMessage.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/ChatMessage.vue?vue&type=template&id=7812acf4&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/components/ChatMessage.vue?vue&type=template&id=7812acf4& ***!
-  \********************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatMessage_vue_vue_type_template_id_7812acf4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ChatMessage.vue?vue&type=template&id=7812acf4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ChatMessage.vue?vue&type=template&id=7812acf4&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatMessage_vue_vue_type_template_id_7812acf4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatMessage_vue_vue_type_template_id_7812acf4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
