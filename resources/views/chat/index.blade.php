@@ -140,12 +140,24 @@
         .incoming_msg_img {
             display: inline-block;
             width: 6%;
+            height: 50%;
+            margin: auto;
         }
         .received_msg {
             display: inline-block;
             padding: 0 0 0 10px;
             vertical-align: top;
             width: 92%;
+        }
+
+        .received_msg .username{
+            margin: auto;
+        }
+        .received_withd_msg .konselor{
+            background: yellow;
+            border-radius: 15%;
+            margin: 3px 3px;
+            padding: 0px 8px;
         }
         .received_withd_msg p {
             background: #ebebeb none repeat scroll 0 0;
@@ -167,7 +179,7 @@
         }
         .received_withd_msg {
             display:inline-block;
-            max-width: 57%;
+            max-width: 50%;
         }
         .mesgs {
             float: left;
@@ -191,6 +203,7 @@
         }
         .sent_msg {
             float: right;
+            max-width: 50%;
         }
         .input_msg_write input {
             background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
@@ -217,7 +230,11 @@
         }
         .messaging {
             margin: auto;
-            max-width: 50vw;
+        }
+
+        @media only screen and (min-width: 768px) {
+        /* For desktop: */
+            .messaging {max-width: 40vw;}
         }
         .msg_history {
             height: 516px;

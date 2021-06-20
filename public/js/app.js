@@ -57579,6 +57579,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['name_user', "role_id_", "user_id_", "room_"],
@@ -93812,17 +93817,45 @@ var render = function() {
                   ])
                 ])
               : _c("div", { staticClass: "incoming_msg row" }, [
-                  _vm._m(0, true),
+                  message.role_id == 2
+                    ? _c("div", { staticClass: "incoming_msg_img col-1" }, [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "http://cyco.justsimplelearn.com/image/avatar/teacher.png",
+                            alt: ""
+                          }
+                        })
+                      ])
+                    : _c("div", { staticClass: "incoming_msg_img col-1" }, [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "http://cyco.justsimplelearn.com/image/avatar/student.jpg",
+                            alt: ""
+                          }
+                        })
+                      ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "received_msg col" }, [
                     _c("div", { staticClass: "received_withd_msg" }, [
-                      _c("div", { staticStyle: { display: "flex" } }, [
-                        _vm._v(
-                          "\n                          " +
-                            _vm._s(message.username) +
-                            "\n                          "
-                        )
-                      ]),
+                      message.role_id == 2
+                        ? _c("div", { staticStyle: { display: "flex" } }, [
+                            _c("div", { staticClass: "username" }, [
+                              _vm._v(_vm._s(message.username))
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "konselor" }, [
+                              _vm._v("Konselor")
+                            ])
+                          ])
+                        : _c("div", { staticStyle: { display: "flex" } }, [
+                            _vm._v(
+                              "\n                          " +
+                                _vm._s(message.username) +
+                                "\n                      "
+                            )
+                          ]),
                       _vm._v(" "),
                       _c("p", [
                         _vm._v(_vm._s(message.text) + " "),
@@ -93888,21 +93921,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "incoming_msg_img col-1" }, [
-      _c("img", {
-        attrs: {
-          src: "https://ptetutorials.com/images/user-profile.png",
-          alt: ""
-        }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

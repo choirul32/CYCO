@@ -13,7 +13,7 @@ class ReadController extends Controller
     }
 
     public function getAPIGuruMapelById($id){
-        $guru = User::find($id);
+        $guru = User::where('id',$id)->first();
         return response()->json($guru);
     }
 }

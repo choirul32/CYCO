@@ -17,7 +17,7 @@ use Illuminate\Support\Str;
 class EditController extends Controller
 {
     public function dataSiswa(){
-        $data['siswa'] = Siswa::find(Auth::user()->id)->first();
+        $data['siswa'] = Siswa::where('id',Auth::user()->id)->first();
         return view('data_master_user.siswa.form_data_siswa')->with($data);
     }
 
@@ -57,7 +57,7 @@ class EditController extends Controller
     public function dataSiswaUpdate(Request $request){
         $data = $request->all();
         $data['bahasa'] = json_encode($request->input("bahasa") ?? []);
-        $model = Siswa::find(Auth::user()->id);
+        $model = Siswa::where('id',Auth::user()->id)->first();
         $model->update($data);
         $model->save();
         return redirect('siswa/data_siswa')->with(['success' => 'Data Siswa Berhasil Diperbaharui']);
@@ -158,7 +158,7 @@ class EditController extends Controller
         // }
     }
     public function unggahBerkasUpdate(Request $request){
-        
+
         try {
             $berkas = UnggahBerkas::where('siswa_id', Auth::user()->id)->first();
             $foto_diri = $request->file('foto_diri');

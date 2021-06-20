@@ -14,7 +14,7 @@ class ReadController extends Controller
     }
 
     public function getAPIGuruBKById($id){
-        $guru = User::find($id);
+        $guru = User::where('id',$id)->first();
         return response()->json($guru);
     }
 }

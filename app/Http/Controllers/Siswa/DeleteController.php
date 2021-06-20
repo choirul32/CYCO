@@ -11,14 +11,14 @@ use File;
 class DeleteController extends Controller
 {
     public function destroySiswa($id){
-        $siswa = Siswa::find($id);
+        $siswa = Siswa::where('id',$id)->first();
         $siswa->delete();
         return redirect('siswa');
     }
 
     public function deleteUnggahanSiswa($id){
         try {
-            $data = UnggahanSiswa::find($id);
+            $data = UnggahanSiswa::where('id',$id)->first();
             $destinationPath = 'unggahan-siswa';
             File::delete($destinationPath.'/'.$data->file);
             $data->delete();

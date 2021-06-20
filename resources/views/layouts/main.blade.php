@@ -50,13 +50,9 @@
         </div>
         <!-- END layout-wrapper -->
         <!-- JAVASCRIPT -->
-
         <script src="{{url('Vertical/dist/assets/libs/jquery/jquery.min.js')}}"></script>
         <script src="{{url('Vertical/dist/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-        <script src="{{url('Vertical/dist/assets/libs/metismenu/metisMenu.min.js')}}"></script>
-        <script src="{{url('Vertical/dist/assets/libs/simplebar/simplebar.min.js')}}"></script>
-        <script src="{{url('Vertical/dist/assets/libs/node-waves/waves.min.js')}}"></script>
-        <script src="https://unicons.iconscout.com/release/v2.0.1/script/monochrome/bundle.js"></script>
+
         <!-- Required datatable js -->
         <script src="{{url('Vertical/dist/assets/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>
         <script src="{{url('Vertical/dist/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -79,7 +75,6 @@
         <script src="{{url('Vertical/dist/assets/libs/parsleyjs/parsley.min.js')}}"></script>
         <!-- validation init -->
         <script src="{{url('Vertical/dist/assets/js/pages/form-validation.init.js')}}"></script>
-        <script src="{{url('Vertical/dist/assets/js/app.js')}}"></script>
 
         <!-- Sweet Alerts js -->
         <script src="{{url('Vertical/dist/assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
@@ -89,5 +84,11 @@
 
         <script src="{{url('Vertical/dist/assets/libs/select2/js/select2.min.js')}}"></script>
         @stack('js')
+
+        <script src="{{url('Vertical/dist/assets/libs/metismenu/metisMenu.min.js')}}"></script>
+        <script src="{{url('Vertical/dist/assets/libs/simplebar/simplebar.min.js')}}"></script>
+        <script src="{{url('Vertical/dist/assets/libs/node-waves/waves.min.js')}}"></script>
+        <script src="https://unicons.iconscout.com/release/v2.0.1/script/monochrome/bundle.js"></script>
+        <script src="{{url('Vertical/dist/assets/js/app.js')}}"></script>
     </body>
 </html>

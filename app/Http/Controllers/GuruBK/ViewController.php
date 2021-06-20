@@ -18,7 +18,7 @@ class ViewController extends Controller
     }
 
     public function dataDiri(){
-        $data['guru'] = User::find(auth()->guard('guru')->user()->id);
+        $data['guru'] = User::where('id',auth()->guard('guru')->user()->id)->first();
         return view('data_master_user.guru_bk.data_diri')->with($data);
     }
     public function riwayatPendidikan(){

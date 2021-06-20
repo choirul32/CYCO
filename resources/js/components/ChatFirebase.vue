@@ -15,16 +15,21 @@
                     </div>
                 </div>
                 <div v-else class="incoming_msg row">
-                    <div class="incoming_msg_img col-1"> <img src="https://ptetutorials.com/images/user-profile.png" alt="">
+                    <div class="incoming_msg_img col-1" v-if="message.role_id == 2">
+                        <img src="http://cyco.justsimplelearn.com/image/avatar/teacher.png" alt="">
+                    </div>
+                    <div class="incoming_msg_img col-1" v-else>
+                        <img src="http://cyco.justsimplelearn.com/image/avatar/student.jpg" alt="">
                     </div>
                     <div class="received_msg col">
                         <div class="received_withd_msg">
-                        <div style="display: flex;">
+                        <div style="display: flex;" v-if="message.role_id == 2">
+                            <div class="username">{{ message.username}}</div> <div class="konselor">Konselor</div>
+                        </div>
+                        <div style="display: flex;" v-else>
                             {{ message.username}}
-                            <!-- <span class="time_date">{{ message.created_at}}</span> -->
                         </div>
                         <p>{{ message.text }} <span>{{ message.time}}</span></p>
-
                         </div>
                     </div>
                 </div>
