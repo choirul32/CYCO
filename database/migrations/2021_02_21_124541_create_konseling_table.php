@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKonselingIndividuTable extends Migration
+class CreateKonselingTable extends Migration
 {
     /**
      * Run the migrations.

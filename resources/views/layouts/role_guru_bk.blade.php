@@ -12,6 +12,12 @@
         </a>
     </li>
     <li>
+        <a href="{{ url('guru/data_siswa') }}" class=" waves-effect">
+            <div class="d-inline-block icons-sm mr-1"><i class="uim uim-table"></i></div>
+            <span>Tindak Lanjut Siswa</span>
+        </a>
+    </li>
+    <li>
         <a href="javascript: void(0);" class="has-arrow waves-effect">
             <div class="d-inline-block icons-sm mr-1"><i class="uim uim-comment-message"></i></div>
             <span>Data Konseling</span>

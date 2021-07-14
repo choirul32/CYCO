@@ -67,10 +67,14 @@ class RegisterController extends Controller
      */
     protected function create(Request $data)
     {
+        $validated = $data->validate([
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:siswa'],
+            // 'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
 
         $siswa = Siswa::create([
             'username' => str_replace(' ', '_', $data['nama']),
-            'email' => $data['email'],
+            'email' => $validated['email'],
             'password' => $data['password'],
             'role_id' => 6,
             'kelas_id' => $data['kelas'],
@@ -79,7 +83,7 @@ class RegisterController extends Controller
         $absensi = new Absensi();
         $absensi->siswa_id = $siswa->id;
 
-        return redirect('siswa/login')->with(['success' => 'Siswa Berhasil Dibuat']);
+        return redirect('siswa/login')->with(['success-register' => 'Akun Siswa Berhasil Dibuat Silahkan login untuk melanjutkan']);
     }
 
 

@@ -15,20 +15,7 @@
                     </ol> --}}
                 </div>
                 <div class="col-md-4">
-                    <div class="float-right d-none d-md-block">
-                        <div class="dropdown">
-                            <button class="btn btn-light btn-rounded dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="mdi mdi-settings-outline mr-1"></i> Settings
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
 
@@ -47,29 +34,40 @@
                             {{-- <p class="card-title-desc">Parsley is a javascript form validation
                                 library. It helps you provide your users with feedback on their form
                                 submission before sending it to your server.</p> --}}
-                            <form id="form_kritik_dan_saran" method="POST" class="custom-validation" action="{{ url('siswa/masukan_saran/create') }}">
-                                @csrf
-                                <div class="form-group">
-                                    <h5 class="font-size-14">Kritik</h5>
-                                    <div>
-                                        <textarea name="kritik" required class="form-control" rows="5" id="kritik"></textarea>
+                                @if (!$krisar->isEmpty())
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-10">
+                                        <div class="text-center mt-4">
+                                            <h4>Anda sudah memberikan kritik dan saran</h4>
+                                            <p class="text-muted">Tunggu hari esok untuk bisa memberikan kritik dan saran lagi</p>
+                                        </div>
                                     </div>
                                 </div>
+                                @else
+                                <form id="form_kritik_dan_saran" method="POST" class="custom-validation" action="{{ url('siswa/masukan_saran/create') }}">
+                                    @csrf
+                                    <div class="form-group">
+                                        <h5 class="font-size-14">Kritik</h5>
+                                        <div>
+                                            <textarea name="kritik" required class="form-control" rows="5" id="kritik"></textarea>
+                                        </div>
+                                    </div>
 
-                                <div class="form-group">
-                                    <h5 class="font-size-14">Saran</h5>
-                                    <div>
-                                        <textarea name="saran" required class="form-control" rows="5" id="saran"></textarea>
+                                    <div class="form-group">
+                                        <h5 class="font-size-14">Saran</h5>
+                                        <div>
+                                            <textarea name="saran" required class="form-control" rows="5" id="saran"></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group mb-0">
-                                    <div>
-                                        <button type="button" onclick="submitConfirmation()" class="float-right btn btn-success waves-effect waves-light mr-1">
-                                            Submit
-                                        </button>
+                                    <div class="form-group mb-0">
+                                        <div>
+                                            <button type="button" onclick="submitConfirmation()" class="float-right btn btn-success waves-effect waves-light mr-1">
+                                                Submit
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                                @endif
                         </div>
                     </div>
                 </div> <!-- end col -->

@@ -28,7 +28,6 @@ class ViewController extends Controller
             $query->where('siswa.nama_lengkap', 'like', "%{$request->keyword_poin}%")
                 ->orWhere('siswa.username', 'like', "%{$request->keyword_poin}%");
         })->orderBy('created_at', 'desc')->paginate(10);
-
         return view('kehadiran_poin.index_table')->with($data);
     }
 
@@ -37,7 +36,7 @@ class ViewController extends Controller
     }
 
     public function formPoin(){
-        $data['siswa'] = Siswa::pluck('nama_lengkap', 'id');
+        $data['siswa'] = Siswa::get();
         return view('kehadiran_poin.create-poin')->with($data);
     }
     public function formKehadiran(){

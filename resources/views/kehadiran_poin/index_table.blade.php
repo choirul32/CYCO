@@ -14,21 +14,8 @@
                         </ol> --}}
                     </div>
                     <div class="col-md-4">
-                        <div class="float-right d-none d-md-block">
-                            <div class="dropdown">
-                                <button class="btn btn-light btn-rounded dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="mdi mdi-settings-outline mr-1"></i> Settings
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                                            </div>
                 </div>
 
             </div>
@@ -48,7 +35,7 @@
                                     <a href="{{url("guru/kehadiran_dan_poin/kehadiran/create")}}" class="btn btn-primary my-3">Tambah Kehadiran</a>
                                 @endif
 
-                                <form action="{{url('guru/kehadiran_dan_poin')}}" method="get">
+                                {{-- <form action="{{url('guru/kehadiran_dan_poin')}}" method="get">
                                     <div class="form-group row">
                                         <label for="example-url-input" class="col-md-2 col-form-label">Search Nama</label>
                                         <div class="col-md-4">
@@ -58,9 +45,9 @@
                                             <button class="btn btn-success" type="submit" id="nama">Submit</button>
                                         </div>
                                     </div>
-                                </form>
+                                </form> --}}
                                 <div class="table-responsive">
-                                    <table class="table mb-0">
+                                    <table id="datatable-kehadiran" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -77,12 +64,12 @@
                                         <tbody>
                                             @foreach ($siswa as $item)
                                                 <tr>
-                                                    <td>{{$loop->iteration}}</td>
+                                                    <td class="text-center">{{$loop->iteration}}</td>
                                                     <td>{{$item->siswa->nama_lengkap ? $item->siswa->nama_lengkap : $item->siswa->username}}</td>
-                                                    <td>{{$item->siswa->kelas}}</td>
-                                                    <td>{{$item->sakit ?? 0}}</td>
-                                                    <td>{{$item->izin ?? 0}}</td>
-                                                    <td>{{$item->tanpa_keterangan ?? 0}}</td>
+                                                    <td class="text-center">{{$item->siswa->kelas}}</td>
+                                                    <td class="text-center">{{$item->sakit ?? 0}}</td>
+                                                    <td class="text-center">{{$item->izin ?? 0}}</td>
+                                                    <td class="text-center">{{$item->tanpa_keterangan ?? 0}}</td>
                                                     @if (Auth::user()->role_id == 4 || Auth::user()->role_id == 5)
                                                         <td>
                                                             <a href="{{url('guru/kehadiran_dan_poin/kehadiran/edit')}}/{{$item->id}}" class="btn btn-outline-warning waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-account-edit-outline"></i></a>
@@ -112,7 +99,7 @@
                                     <a href="{{url("guru/kehadiran_dan_poin/poin/create")}}" class="btn btn-primary my-3">Tambah Poin Pelanggaran</a>
                                 @endif
 
-                                <form action="{{url('guru/kehadiran_dan_poin')}}" method="get">
+                                {{-- <form action="{{url('guru/kehadiran_dan_poin')}}" method="get">
                                     <div class="form-group row">
                                         <label for="example-url-input" class="col-md-2 col-form-label">Search Nama</label>
                                         <div class="col-md-4">
@@ -122,10 +109,10 @@
                                             <button class="btn btn-success" type="submit" id="nama">Submit</button>
                                         </div>
                                     </div>
-                                </form>
+                                </form> --}}
 
                                 <div class="table-responsive">
-                                    <table class="table mb-0">
+                                    <table id="datatable-poin" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -142,14 +129,14 @@
                                         <tbody>
                                             @foreach ($poin as $item)
                                                 <tr>
-                                                    <td>{{$loop->iteration}}</td>
-                                                    <td>{{$item->siswa->nama_lengkap}}</td>
-                                                    <td>{{$item->siswa->kelas}}</td>
-                                                    <td>{{$item->poin}}</td>
+                                                    <td class="text-center">{{$loop->iteration}}</td>
+                                                    <td>{{$item->siswa->nama_lengkap ? $item->siswa->nama_lengkap : $item->siswa->username}}</td>
+                                                    <td class="text-center">{{$item->siswa->kelas}}</td>
+                                                    <td class="text-center">{{$item->poin}}</td>
                                                     <td>{{$item->keterangan}}</td>
                                                     <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $item->created_at)->format('H:i d/m/Y')}} </td>
                                                     @if (Auth::user()->role_id == 2 || Auth::user()->role_id == 3)
-                                                        <td>
+                                                        <td class="text-center">
                                                             <a href="{{url('guru/kehadiran_dan_poin/poin/edit')}}/{{$item->id}}" class="btn btn-outline-warning waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-account-edit-outline"></i></a>
                                                             <button class="btn btn-outline-danger waves-effect waves-light" onclick="deletePoin({{ $item->id }})" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="mdi mdi-delete-alert"></i></button>
                                                         </td>
@@ -180,9 +167,16 @@
 @endpush
 
 @push('js')
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
     <script src="{{url('Vertical/dist/assets/js/pages/sweet-alerts.init.js')}}"></script>
     <script type="text/javascript">
+        $(document).ready(function() {
+            $('#datatable-poin').DataTable();
+        } );
+        $(document).ready(function() {
+            $('#datatable-kehadiran').DataTable();
+        } );
         function deletePoin(id) {
             swal.fire({
                 title: "Hapus?",

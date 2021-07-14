@@ -25,6 +25,9 @@
                                 @if(Session::has('error'))
                                     <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('error') }}</p>
                                 @endif
+                                @if ($message = Session::get('success-register'))
+                                    <div class="alert alert-success">{{ $message }}</div>
+                                @endif
                                 {{-- <div class="row">
                                     <div class="col-md-6">
                                         <div class="custom-control custom-checkbox">

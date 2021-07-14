@@ -31,13 +31,19 @@
                                     <label for="nomor">Nomor Handphone</label>
                                 </div>
                                 <div class="form-group form-group-custom mb-4">
-                                    <input name="email" type="email" class="form-control" id="useremail" required="">
+                                    <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="useremail" required="">
                                     <label for="useremail">Email</label>
                                 </div>
+                                @error('email')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <div class="form-group form-group-custom mb-4">
-                                    <input name="password" type="password" class="form-control" id="password" required="">
+                                    <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="password" required="">
                                     <label for="password">Password</label>
                                 </div>
+                                @error('password')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 {{-- <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="term-conditionCheck">
                                     <label class="custom-control-label font-weight-normal" for="term-conditionCheck">I accept <a href="#" class="text-primary">Terms and Conditions</a></label>

@@ -15,20 +15,7 @@
                     </ol> --}}
                 </div>
                 <div class="col-md-4">
-                    <div class="float-right d-none d-md-block">
-                        <div class="dropdown">
-                            <button class="btn btn-light btn-rounded dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="mdi mdi-settings-outline mr-1"></i> Settings
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
 
@@ -60,26 +47,25 @@
                                     <tbody>
                                         @foreach ($krisar as $item)
                                             <tr class="text-center">
-                                                <td>{{$loop->iteration}}</td>
-                                                <td>{{$item->siswa->nama_lengkap }}</td>
+                                                <td class="text-center" width="2%">{{$loop->iteration}}</td>
+                                                <td>{{$item->siswa->nama_lengkap ? $item->siswa->nama_lengkap :$item->siswa->username }}</td>
                                                 <td>{{$item->kritik ?? '-'}}</td>
                                                 <td>{{$item->saran ?? '-'}}</td>
                                                 <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $item->created_at)->format('H:i d/m/Y')}}</td>
 
-                                                <td>
+                                                <td class="text-center">
                                                     <div class="btn-group">
-                                                        <button type="button" class="btn-sm btn btn-secondary waves-effect waves-light" onclick="detailKonseling({{$item->id}})">Detail</button>
+                                                        <button type="button" class="btn btn-outline-secondary waves-effect waves-light" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail" onclick="detailKonseling({{$item->id}})"><i class="mdi mdi-account-edit-outline"></i></button>
 
                                                         @auth('web')
                                                         @if (is_null($item->verified_at))
                                                             <form action="{{ url('guru_bk/konseling_kelompok/delete', ['id' => $item->id]) }}" method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn-sm btn btn-danger waves-effect waves-light">Delete</button>
+                                                                <button type="submit" class="btn btn-outline-danger waves-effect waves-light"><i class="mdi mdi-account-delete-outline"></i></button>
                                                             </form>
                                                         @endif
                                                         @endauth
-
                                                     </div>
                                                 </td>
                                             </tr>

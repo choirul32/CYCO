@@ -16,20 +16,7 @@
                         </ol> --}}
                     </div>
                     <div class="col-md-4">
-                        <div class="float-right d-none d-md-block">
-                            <div class="dropdown">
-                                <button class="btn btn-light btn-rounded dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="mdi mdi-settings-outline mr-1"></i> Settings
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
 
@@ -74,13 +61,13 @@
                                     <tbody>
                                     @foreach ($siswa as $item)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                                            <td class="text-center" width="2%">{{ $loop->iteration }}</td>
                                             <td>{{ $item->username }}</td>
                                             <td>{{ $item->nisn ?? '-' }}</td>
                                             <td>{{ $item->nama_lengkap ?? '-' }}</td>
                                             <td>{{ $item->kelas->nama ?? '-' }}</td>
                                             <td>{{ $item->jurusan->nama ?? '-' }}</td>
-                                            <td>
+                                            <td class="text-center">
                                                 <div class="btn-group">
                                                     <button class="btn btn-outline-info waves-effect waves-light" onclick="detailShow({{$item->id}})" data-target="#modal-detail" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail"><i class="mdi mdi-account-details"></i></button>
 

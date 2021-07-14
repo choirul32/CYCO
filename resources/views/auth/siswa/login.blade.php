@@ -18,6 +18,9 @@
                                     <input name="username" type="text" class="form-control" id="username" required>
                                     <label for="username">Username</label>
                                 </div>
+                                @if ($message = Session::get('username-error'))
+                                    <div class="alert alert-success">{{ $message }}</div>
+                                @endif
 
                                 <div class="form-group form-group-custom mb-4">
                                     <input name="password" type="password" class="form-control" id="userpassword" required>
@@ -25,6 +28,9 @@
                                 </div>
                                 @if(Session::has('error'))
                                     <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('error') }}</p>
+                                @endif
+                                @if ($message = Session::get('success-register'))
+                                    <div class="alert alert-success">{{ $message }}</div>
                                 @endif
                                 {{-- <div class="row">
                                     <div class="col-md-6">

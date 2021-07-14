@@ -50,6 +50,11 @@
         </div>
         <!-- END layout-wrapper -->
         <!-- JAVASCRIPT -->
+        <script>
+            $(document).ready(function() {
+                $('#datatable-general').DataTable();
+            } );
+        </script>
         <script src="{{url('Vertical/dist/assets/libs/jquery/jquery.min.js')}}"></script>
         <script src="{{url('Vertical/dist/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 

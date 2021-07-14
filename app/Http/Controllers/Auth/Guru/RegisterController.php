@@ -14,65 +14,44 @@ class RegisterController extends Controller
 
     protected function create(Request $data)
     {
-        try {
+        // dd($data);
+        $validated = $data->validate([
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'no_handphone' => ['required', 'string', 'max:255', 'unique:users'],
+        ]);
+        // try {
+            $role_id = null;
             if ($data['jenis_guru'] == 'bk') {
                 if ($data['pangkat_guru'] == 'pns') {
-                    $data_nip_nik = $data['nip'] ?? null;
-                    Guru::create([
-                        'username' => $data['nip'],
-                        'nama' => $data['nama'],
-                        'nip_nik' => $data_nip_nik,
-                        'email' => $data['email'],
-                        'password' => $data['password'],
-                        'role_id' => 2,
-                        'no_handphone' => $data['no_handphone'],
-                    ]);
+                    $role_id = 2;
                 }
 
                 if ($data['pangkat_guru'] == 'gtt') {
-                    $data_nip_nik = $data['nik'] ?? null;
-                    Guru::create([
-                        'username' => $data['nik'],
-                        'nama' => $data['nama'],
-                        'nip_nik' => $data_nip_nik,
-                        'email' => $data['email'],
-                        'password' => $data['password'],
-                        'role_id' => 3,
-                        'no_handphone' => $data['no_handphone'],
-                    ]);
+                    $role_id = 3;
                 }
             }
             if ($data['jenis_guru'] == 'mapel') {
                 if ($data['pangkat_guru'] == 'pns') {
-                    $data_nip_nik = $data['nip'] ?? null;
-                    Guru::create([
-                        'username' => $data['nip'],
-                        'nama' => $data['nama'],
-                        'nip_nik' => $data_nip_nik,
-                        'email' => $data['email'],
-                        'password' => $data['password'],
-                        'role_id' => 4,
-                        'no_handphone' => $data['no_handphone'],
-                    ]);
+                    $role_id = 4;
                 }
 
                 if ($data['pangkat_guru'] == 'gtt') {
-                    $data_nip_nik = $data['nik'] ?? null;
-                    Guru::create([
-                        'username' => $data['nik'],
-                        'nama' => $data['nama'],
-                        'nip_nik' => $data_nip_nik,
-                        'email' => $data['email'],
-                        'password' => $data['password'],
-                        'role_id' => 5,
-                        'no_handphone' => $data['no_handphone'],
-                    ]);
+                    $role_id = 5;
                 }
             }
-            return redirect('guru/login')->with(['success' => 'Guru Berhasil Dibuat']);
-        } catch (\Throwable $th) {
-            return redirect('guru/login')->with(['error' => 'Guru Gagal Dibuat']);
-        }
+            Guru::create([
+                'username' => $data['nip_nik'],
+                'nama' => $data['nama'],
+                'nip_nik' => $data['nip_nik'],
+                'email' => $validated['email'],
+                'password' => $data['password'],
+                'role_id' => $role_id,
+                'no_handphone' => $validated['no_handphone'],
+            ]);
+            return redirect('guru/login')->with(['success-register' => 'Akun Guru Berhasil Dibuat Silahkan login untuk melanjutkan']);
+        // } catch (\Throwable $th) {
+        //     return redirect('guru/login')->with(['error' => 'Guru Gagal Dibuat']);
+        // }
     }
 
     protected function guard()

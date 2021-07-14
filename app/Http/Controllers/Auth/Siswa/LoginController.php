@@ -9,7 +9,7 @@ use Auth;
 
 class LoginController extends Controller
 {
-    
+
     use AuthenticatesUsers;
 
     /**
@@ -32,7 +32,7 @@ class LoginController extends Controller
     {
         $this->middleware('guest:siswa')->except('logout');
     }
-    
+
     /**
      * Get the guard to be used during authentication.
      *
@@ -44,7 +44,7 @@ class LoginController extends Controller
     }
 
     public function login(Request $request){
-        // dd($request);
+
         $auth = $request->only('username', 'password');
 
         if (auth()->guard('siswa')->attempt($auth)) {

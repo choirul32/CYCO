@@ -8,13 +8,14 @@
         <meta name="author" content="">
         <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-        <title>Jumbotron Template for Bootstrap</title>
+        <title>Cyco</title>
 
         <link rel="canonical" href="">
 
         <!-- Bootstrap core CSS -->
         <link href="{{ asset('/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('/website/carousel.css')}}">
+        <link rel="stylesheet" href="{{ asset('/website/layouts/style.css')}}">
 
         <!-- Custom styles for this template -->
         <link href="jumbotron.css" rel="stylesheet">

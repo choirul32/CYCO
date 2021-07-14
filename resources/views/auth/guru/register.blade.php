@@ -10,7 +10,7 @@
             <div class="card-body p-4">
                 <div class="p-2">
                     <h5 class="mb-5 text-center">Register Guru</h5>
-                    <form class="form-horizontal" action="{{ url('guru/register') }}" method="post" novalidate>
+                    <form class="form-horizontal" action="{{ url('guru/register') }}" method="post">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
@@ -42,21 +42,24 @@
                                     </div>
                                 </div>
                                 <div id="nip-group" class="form-group form-group-custom mb-4">
-                                    <input name="nip" type="text" class="form-control" id="nip" required>
-                                    <label for="nip">NIP</label>
+                                    <input name="nip_nik" type="text" class="form-control" id="nip_nik" required>
+                                    <label for="nip_nik" id="name_nip_nik">NIP</label>
                                 </div>
-                                <div id="nik-group" class="form-group form-group-custom mb-4" style="display: none;">
-                                    <input name="nik" type="text" class="form-control" id="nik" >
-                                    <label for="nik">NIK</label>
-                                </div>
+
                                 <div class="form-group form-group-custom mb-4">
-                                    <input name="no_handphone" type="text" class="form-control" id="nomor">
+                                    <input name="no_handphone" type="text" class="form-control" id="nomor" required>
                                     <label for="nomor">Nomor Handphone</label>
                                 </div>
+                                @error('no_handphone')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <div class="form-group form-group-custom mb-4">
-                                    <input name="email" type="email" class="form-control" id="useremail">
+                                    <input name="email" type="email" class="form-control" id="useremail" required>
                                     <label for="useremail">Email</label>
                                 </div>
+                                @error('email')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <div class="form-group form-group-custom mb-4">
                                     <input name="password" type="password" class="form-control" id="userpassword" required="">
                                     <label for="userpassword">Password</label>
@@ -84,17 +87,11 @@
 @push('script')
     <script>
         function showNIP(){
-            document.getElementById('nip-group').style.display = 'block';
-            document.getElementById('nik-group').style.display = 'none';
-            document.getElementById("nip-group").required = true;
-            document.getElementById("nik-group").required = false;
+            document.getElementById('name_nip_nik').innerHTML = 'NIP';
         }
 
         function showNIK(){
-            document.getElementById('nip-group').style.display = 'none';
-            document.getElementById('nik-group').style.display = 'block';
-            document.getElementById("nip-group").required = false;
-            document.getElementById("nik-group").required = true;
+            document.getElementById('name_nip_nik').innerHTML = 'NIK';
         }
     </script>
 @endpush

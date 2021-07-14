@@ -124,6 +124,11 @@ Route::group(['prefix' => 'guru', 'middleware' => ['auth:guru']], function () {
         Route::post('/save-jam', 'KonselingKelompok\EditController@saveJam');
         Route::get('/api/edit/{id}', 'KonselingKelompok\ReadController@getSingleKonseling');
     });
+
+    Route::prefix('/tindak-lanjut-siswa')->group(function () {
+        Route::get('/', 'TindakLanjutSiswa\ViewController@indexGuruBK');
+    });
+
     Route::prefix('/profil')->group(function () {
         Route::get('/data_diri', 'GuruBK\ViewController@dataDiri');
         Route::get('/riwayat_pendidikan', 'GuruBK\ViewController@riwayatPendidikan');

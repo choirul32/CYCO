@@ -14,20 +14,7 @@
                         </ol> --}}
                     </div>
                     <div class="col-md-4">
-                        <div class="float-right d-none d-md-block">
-                            <div class="dropdown">
-                                <button class="btn btn-light btn-rounded dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="mdi mdi-settings-outline mr-1"></i> Settings
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
 
@@ -84,10 +71,10 @@
                                                                     <td>
                                                                         <div class="btn-group">
                                                                             <a class="btn btn-primary btn-sm waves-effect waves-light" href="{{ url('siswa/unggahan-siswa/edit/'.$item->id)}}" >Edit</a>
-                                                                            <form action="{{ url('siswa/unggahan-siswa/delete', ['id' => $item->id]) }}" method="POST">
+                                                                            <form id="form_delete_unggahan" action="{{ url('siswa/unggahan-siswa/delete', ['id' => $item->id]) }}" method="POST">
                                                                                 @csrf
                                                                                 @method('DELETE')
-                                                                                <button type="submit" class="btn btn-danger btn-sm waves-effect waves-light">Delete</button>
+                                                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light" onclick="deleteConfirmation()">Delete</button>
                                                                             </form>
                                                                         </div>
                                                                     </td>
@@ -114,6 +101,9 @@
     </div>
     <!-- End Page-content -->
 @endsection
+@push('css')
+    <link href="{{url('Vertical/dist/assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css">
+@endpush
 @push('js')
     <script>
         function editKonseling(id){
@@ -161,6 +151,29 @@
                 error: function() {
             },
         });
+        }
+    </script>
+    <script src="{{url('Vertical/dist/assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
+    <script src="{{url('Vertical/dist/assets/js/pages/sweet-alerts.init.js')}}"></script>
+    <script type="text/javascript">
+        function deleteConfirmation() {
+        swal.fire({
+            title: "Hapus Unggahan?",
+            text: "Apakah anda yakin menghapus data ini!",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Ya",
+            cancelButtonText: "Tidak",
+            reverseButtons: !0
+        }).then(function (e) {
+            if (e.value === true) {
+                document.getElementById("form_delete_unggahan").submit();
+            } else {
+                e.dismiss;
+            }
+        }, function (dismiss) {
+            return false;
+            })
         }
     </script>
 

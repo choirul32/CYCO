@@ -15,20 +15,7 @@
                     </ol>
                 </div>
                 <div class="col-md-4">
-                    <div class="float-right d-none d-md-block">
-                        <div class="dropdown">
-                            <button class="btn btn-light btn-rounded dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="mdi mdi-settings-outline mr-1"></i> Settings
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
 
@@ -63,7 +50,7 @@
                                             Isi NIP/NIK terlebih dahulu.
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <h5 class="font-size-14">Tempat & Tanggal Lahir</h5>
                                         <div class="row">
@@ -138,7 +125,7 @@
                                             Isi No HP anda.
                                         </div>
                                     </div>
-                                    
+
                             </div>
                         </div>
                     </div> <!-- end col -->
@@ -160,7 +147,7 @@
             </form>
         </div>
         <!-- end container-fluid -->
-    </div> 
+    </div>
     <!-- end page-content-wrapper -->
 </div>
 @endsection
