@@ -10,11 +10,13 @@ class DeleteController extends Controller
 {
     public function deleteSiswa($id){
         try {
-            $data = Konseling::find($id);
-            $data->delete();
-            return redirect()->back()->with(['success' => 'Konseling Individu Berhasil Dihapus']);
+            $modal = Konseling::find($id);
+            $modal->delete();
+            $data['success'] = true;
+            return $data;
         } catch (\Throwable $th) {
-            return redirect()->back()->with(['success' => 'Konseling Individu Gagal Dihapus']);
+            $data['success'] = false;
+            return $data;
         }
     }
 }

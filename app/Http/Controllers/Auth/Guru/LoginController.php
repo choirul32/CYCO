@@ -19,7 +19,11 @@ class LoginController extends Controller
     protected $redirectTo = 'guru/home';
 
     public function showLoginForm(){
-        return view('auth.guru.login');
+        if (Auth::guard('guru')->user() != null) {
+            return redirect('guru/home');
+        }else{
+            return view('auth.guru.login');
+        }
     }
 
     /**
@@ -31,7 +35,7 @@ class LoginController extends Controller
     {
         $this->middleware('guest:guru')->except('logout');
     }
-    
+
     /**
      * Get the guard to be used during authentication.
      *

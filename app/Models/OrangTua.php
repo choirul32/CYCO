@@ -16,4 +16,8 @@ class OrangTua extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
+
+    public function siswa(){
+        return $this->hasOne(Siswa::class, 'orangtua_id', 'id');
+    }
 }

@@ -182,8 +182,7 @@ class Siswa extends Authenticatable
         }
     }
 
-    public function chat(){
-        return $this->hasMany(ChatMessage::class, 'user_id', 'id')->where('role_id', 6);
+    public function orangtua(){
+        return $this->belongsTo(OrangTua::class, 'orangtua_id', 'id');
     }
-
 }

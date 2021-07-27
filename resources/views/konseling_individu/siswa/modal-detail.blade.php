@@ -20,7 +20,7 @@
                             <input class="form-control" type="text" id="link" name="link" value="">
                         </div>
                         <div id="link-web-chat">
-                            <a id="link-web-button" href="" class="btn btn-info">Masuk Chat Konseling</a>
+                            <a id="link-web-button" href="" class="btn btn-info" style="margin-left: 0px;">Masuk Chat Konseling</a>
                         </div>
                     </div>
                     <p id="link" class="card-title-desc"></p>

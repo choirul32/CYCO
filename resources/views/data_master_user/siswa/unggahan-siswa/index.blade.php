@@ -30,7 +30,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="button-items mb-2">
-                                    <a href="{{url('/siswa/unggahan-siswa/create')}}" type="button" class="btn btn-success waves-effect waves-light" >Tambah Unggahan</a>
+                                    <a href="{{url('/siswa/unggahan-siswa/create')}}" type="button" class="btn btn-success waves-effect waves-light" >
+                                        <i class="mdi mdi-plus-thick mr-1"></i>
+                                        Tambah Unggahan</a>
 
                                 </div>
                                 @if (!isset($unggahan))
@@ -71,11 +73,8 @@
                                                                     <td>
                                                                         <div class="btn-group">
                                                                             <a class="btn btn-primary btn-sm waves-effect waves-light" href="{{ url('siswa/unggahan-siswa/edit/'.$item->id)}}" >Edit</a>
-                                                                            <form id="form_delete_unggahan" action="{{ url('siswa/unggahan-siswa/delete', ['id' => $item->id]) }}" method="POST">
-                                                                                @csrf
-                                                                                @method('DELETE')
-                                                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light" onclick="deleteConfirmation()">Delete</button>
-                                                                            </form>
+
+                                                                            <button type="button" class="btn btn-danger btn-sm waves-effect waves-light" onclick="deleteConfirmation({{$item->id}})">Delete</button>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -156,23 +155,37 @@
     <script src="{{url('Vertical/dist/assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
     <script src="{{url('Vertical/dist/assets/js/pages/sweet-alerts.init.js')}}"></script>
     <script type="text/javascript">
-        function deleteConfirmation() {
-        swal.fire({
-            title: "Hapus Unggahan?",
-            text: "Apakah anda yakin menghapus data ini!",
-            type: "warning",
-            showCancelButton: !0,
-            confirmButtonText: "Ya",
-            cancelButtonText: "Tidak",
-            reverseButtons: !0
-        }).then(function (e) {
-            if (e.value === true) {
-                document.getElementById("form_delete_unggahan").submit();
-            } else {
-                e.dismiss;
-            }
-        }, function (dismiss) {
-            return false;
+        function deleteConfirmation(id) {
+            swal.fire({
+                title: "Hapus?",
+                text: "Apakah anda yakin ingin menghapuas data ini!",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Ya",
+                cancelButtonText: "Tidak",
+                reverseButtons: !0
+            }).then(function (e) {
+                if (e.value === true) {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                        type: 'DELETE',
+                        url: "{{ url('siswa/unggahan-siswa/delete') }}/" + id,
+                        data: {_token: CSRF_TOKEN},
+                        dataType: 'JSON',
+                        success: function (results) {
+                            if (results.success === true) {
+                                swal.fire("Done!", results.message, "success");
+                            } else {
+                                swal.fire("Error!", results.message, "error");
+                            }
+                            location.reload();
+                        }
+                    });
+                } else {
+                    e.dismiss;
+                }
+            }, function (dismiss) {
+                return false;
             })
         }
     </script>

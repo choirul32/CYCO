@@ -30,7 +30,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="button-items mb-2">
-                                    <button type="button" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#myModal">Permintaan Konseling</button>
+                                    <button type="button" class="btn btn-success waves-effect waves-light" onclick="createKonseling()">
+                                        <i class="mdi mdi-plus-thick mr-1"></i>
+                                        Permintaan Konseling</button>
                                     @include('konseling_kelompok.siswa.modal-create')
                                     @include('konseling_kelompok.siswa.modal-detail')
                                 </div>
@@ -74,7 +76,7 @@
                                                                     <td>{{$item->perantara}}</td>
                                                                     <td>{{$item->jam_pengganti ?? $item->jam}}
                                                                         @if ($item->jam_pengganti != null)
-                                                                            <span class="badge badge-pill badge-success">diganti</span>
+                                                                            <span class="badge badge-pill badge-success">Jam Diganti</span>
                                                                         @endif
                                                                     </td>
                                                                     <td>
@@ -87,13 +89,9 @@
                                                                     <td>
                                                                         <div class="btn-group">
                                                                             <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" onclick="detailKonseling({{$item->id}})">Detail</button>
-                                                                            @if (is_null($item->verified_at))
+                                                                            @if (is_null($item->verified_at) && $item->siswa_id == Auth::user()->id)
                                                                                 <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" onclick="editKonseling({{$item->id}})">Edit</button>
-                                                                                <form action="{{ url('siswa/konseling_kelompok/delete', ['id' => $item->id]) }}" method="POST">
-                                                                                    @csrf
-                                                                                    @method('DELETE')
-                                                                                    <button type="submit" class="btn btn-danger btn-sm waves-effect waves-light">Delete</button>
-                                                                                </form>
+                                                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light" onclick="deleteConfirmation({{$item->id}})">Delete</button>
                                                                             @endif
                                                                         </div>
                                                                     </td>
@@ -121,8 +119,23 @@
     </div>
     <!-- End Page-content -->
 @endsection
+@push('css')
+    <!-- Selectize -->
+    <link href="{{url('Vertical/dist/assets/libs/selectize/css/selectize.css')}}" rel="stylesheet" type="text/css" />
+@endpush
 @push('js')
+    <!-- Selectize -->
+    <script src="{{url('Vertical/dist/assets/libs/selectize/js/standalone/selectize.min.js')}}"></script>
+
     <script>
+        var createModal = false;
+        function createKonseling(){
+            $('#myModal').modal('show')
+            if (createModal == false) {
+                $(".selectize").selectize();
+                createModal = true;
+            }
+        }
         function editKonseling(id){
             var host = "{{URL::to('/')}}";
             var url_ = host + '/siswa/konseling_kelompok/edit/';
@@ -144,16 +157,23 @@
                     $('#jam').val(jam)
                     $('#masalah').val(masalah)
                     $('#harapan').val(harapan)
+
                     document.querySelector('#perantara [value="' + perantara_data + '"]').selected = true;
                     $('#myModal').modal('show')
+                    if (createModal == false) {
+                        $(".selectize").selectize();
+                        createModal = true;
+                    }
+                    var kelompok = JSON.parse(data.kelompok);
+                    $('#kelompok_siswa').data('selectize').setValue(kelompok);
                 },
                 error: function() {
             },
-        });
+            });
         }
         function detailKonseling(id){
             var host = "{{URL::to('/')}}";
-            var url_ = host + '/siswa/konseling_individu/edit/';
+            var url_ = host + '/siswa/api/edit/{id}/';
             $.ajax({
                 url: '/siswa/konseling_individu/api/edit/'+ id,
                 type: 'GET',
@@ -162,11 +182,52 @@
                     $('#modalDetail').modal('show')
                     document.getElementsByTagName("p")[0].innerHTML= data.masalah;
                     document.getElementsByTagName("p")[1].innerHTML=data.harapan;
-                    document.getElementById("link").innerHTML= data.link ?? "MASIH KOSONG";
+                    if (data.perantara = 'web') {
+                        $('#modalDetail').find('#link-input').hide();
+                        $('#modalDetail').find('#link-web-chat').show();
+                        document.getElementById("link-web-button").href = "/siswa/chat/room/"+data.chat_room.slug;
+                    } else {
+                        $('#modalDetail').find('#link-input').show();
+                        $('#modalDetail').find('#link-web-chat').hide();
+                        document.getElementById("link").value = data.link ?? "Masih Kosong";
+                    }
                 },
-                error: function() {
-            },
-        });
+                    error: function() {
+                },
+            });
+        }
+        function deleteConfirmation(id) {
+            swal.fire({
+                title: "Hapus?",
+                text: "Apakah anda yakin ingin menghapuas data ini!",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Ya",
+                cancelButtonText: "Tidak",
+                reverseButtons: !0
+            }).then(function (e) {
+                if (e.value === true) {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                        type: 'DELETE',
+                        url: "{{ url('siswa/konseling_kelompok/delete') }}/" + id,
+                        data: {_token: CSRF_TOKEN},
+                        dataType: 'JSON',
+                        success: function (results) {
+                            if (results.success === true) {
+                                swal.fire("Done!", results.message, "success");
+                            } else {
+                                swal.fire("Error!", results.message, "error");
+                            }
+                            location.reload();
+                        }
+                    });
+                } else {
+                    e.dismiss;
+                }
+            }, function (dismiss) {
+                return false;
+            })
         }
     </script>
 

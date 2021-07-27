@@ -18,30 +18,17 @@
                             @if(Auth::user()->role_id == 7)
                                 <li>
                                     <a href="{{url('orangtua/home')}}" class="waves-effect">
-                                        <div class="d-inline-block icons-sm mr-1"><i class="uim uim-airplay"></i></div><span class="badge badge-pill badge-success float-right">3</span>
+                                        <div class="d-inline-block icons-sm mr-1"><i class="uim uim-airplay"></i></div><span class="badge badge-pill badge-success float-right"></span>
                                         <span>Dashboard</span>
                                     </a>
                                 </li>
-                                {{-- <li>
-                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                        <div class="d-inline-block icons-sm mr-1"><i class="uim uim-comment-message"></i></div>
-                                        <span>Data Master</span>
-                                    </a>
-                                    <ul class="sub-menu" aria-expanded="false">
-                                        <li><a href="{{ url('siswa/data_siswa') }}">Data Siswa</a></li>
-                                        <li><a href="{{ url('siswa/data_keluarga') }}">Keluarga</a></li>
-                                        <li><a href="{{ url('siswa/data_akademik') }}">Akademik</a></li>
-                                        <li><a href="{{ url('siswa/data_rumah') }}">Kondisi Rumah</a></li>
-                                    </ul>
-                                </li> --}}
                                 <li>
                                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                                         <div class="d-inline-block icons-sm mr-1"><i class="uim uim-comment-message"></i></div>
                                         <span>Data Konseling</span>
                                     </a>
                                     <ul class="sub-menu" aria-expanded="false">
-                                        <li><a href="{{url('orangtua/konseling_individu')}}">Individual</a></li>
-                                        <li><a href="{{url('orangtua/konseling_kelompok')}}">Kelompok</a></li>
+                                        <li><a href="{{url('orangtua/konseling_individu')}}">Riwayat Konseling</a></li>
                                         <li><a href="{{url('orangtua/kehadiran_dan_poin')}}">Kehadiran dan Poin Pelanggaran</a></li>
                                     </ul>
                                 </li>

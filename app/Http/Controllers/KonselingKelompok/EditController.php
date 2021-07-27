@@ -10,16 +10,16 @@ use Auth;
 class EditController extends Controller
 {
     public function verifikasiPermintaan($id){
-        try {
+        // try {
             $konseling = Konseling::find($id);
             $now = date_create()->format('Y-m-d');
             $konseling->verified_at = $now;
             $konseling->verified_by = Auth::user()->id;
             $konseling->save();
-            return redirect()->back()->with(['success' => 'Konseling Kelompok Berhasil Diverifikasi']);
-        } catch (\Throwable $th) {
-            return redirect()->back()->with(['success' => 'Konseling Kelompok Gagal Diverifikasi']);
-        }
+        //     return redirect()->back()->with(['success' => 'Konseling Kelompok Berhasil Diverifikasi']);
+        // } catch (\Throwable $th) {
+        //     return redirect()->back()->with(['success' => 'Konseling Kelompok Gagal Diverifikasi']);
+        // }
     }
 
     public function editSiswa(Request $request, $id){
@@ -33,6 +33,15 @@ class EditController extends Controller
             $data['harapan'] = $request->harapan;
             $data['perantara'] = $request->perantara;
             $data['jenis_konseling'] = 1;
+            $data['siswa_id'] = Auth::guard('siswa')->user()->id;
+            if ($request->kelompok_siswa != null) {
+                $kelompok = [];
+                foreach ($request->kelompok_siswa as $key => $value) {
+                    array_push($kelompok, (int)$value);
+                }
+                array_push($kelompok, $data['siswa_id']);
+                $data['kelompok'] = json_encode($kelompok);
+            }
             $konseling->update($data);
             return redirect('siswa/konseling_kelompok')->with(['success' => 'Konseling Kelompok Berhasil Diperbaharui']);
         } catch (\Throwable $th) {

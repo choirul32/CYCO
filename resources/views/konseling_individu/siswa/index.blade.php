@@ -30,7 +30,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="button-items mb-2">
-                                    <button type="button" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#myModal">Permintaan Konseling</button>
+                                    <button type="button" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#myModal">
+                                        <i class="mdi mdi-plus-thick mr-1"></i>
+                                        Permintaan Konseling</button>
                                     @include('konseling_individu.siswa.modal-create')
                                     @include('konseling_individu.siswa.modal-detail')
                                 </div>
@@ -72,7 +74,7 @@
                                                                     <td>{{$item->perantara}}</td>
                                                                     <td>{{$item->jam_pengganti ?? $item->jam}}
                                                                         @if ($item->jam_pengganti != null)
-                                                                            <span class="badge badge-pill badge-success">diganti</span>
+                                                                            <span class="badge badge-pill badge-success">Jam Diganti</span>
                                                                         @endif
                                                                     </td>
                                                                     <td>
@@ -87,11 +89,7 @@
                                                                             <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" onclick="detailKonseling({{$item->id}})">Detail</button>
                                                                             @if (is_null($item->verified_at))
                                                                                 <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" onclick="editKonseling({{$item->id}})">Edit</button>
-                                                                                <form action="{{ url('siswa/konseling_individu/delete', ['id' => $item->id]) }}" method="POST">
-                                                                                    @csrf
-                                                                                    @method('DELETE')
-                                                                                    <button type="submit" class="btn btn-danger btn-sm waves-effect waves-light">Delete</button>
-                                                                                </form>
+                                                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light" onclick="deleteConfirmation({{$item->id}})">Delete</button>
                                                                             @endif
                                                                         </div>
                                                                     </td>
@@ -119,7 +117,13 @@
     </div>
     <!-- End Page-content -->
 @endsection
+@push('css')
+    <!-- Plugins css -->
+    <link href="{{url('Vertical/dist/assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css">
+@endpush
 @push('js')
+    <script src="{{url('Vertical/dist/assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
+    <script src="{{url('Vertical/dist/assets/js/pages/sweet-alerts.init.js')}}"></script>
     <script>
         function editKonseling(id){
             var host = "{{URL::to('/')}}";
@@ -175,6 +179,38 @@
             },
         });
         }
+        function deleteConfirmation(id) {
+            swal.fire({
+                title: "Hapus?",
+                text: "Apakah anda yakin ingin menghapuas data ini!",
+                type: "warning",
+                showCancelButton: !0,
+                confirmButtonText: "Ya",
+                cancelButtonText: "Tidak",
+                reverseButtons: !0
+            }).then(function (e) {
+                if (e.value === true) {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                        type: 'DELETE',
+                        url: "{{ url('siswa/konseling_individu/delete') }}/" + id,
+                        data: {_token: CSRF_TOKEN},
+                        dataType: 'JSON',
+                        success: function (results) {
+                            if (results.success === true) {
+                                swal.fire("Done!", results.message, "success");
+                            } else {
+                                swal.fire("Error!", results.message, "error");
+                            }
+                            location.reload();
+                        }
+                    });
+                } else {
+                    e.dismiss;
+                }
+            }, function (dismiss) {
+                return false;
+            })
+        }
     </script>
-
 @endpush

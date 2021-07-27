@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home\GuruBK;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Auth;
 
 class HomeController extends Controller
@@ -17,6 +18,8 @@ class HomeController extends Controller
         return view('home.index_siswa');
     }
     public function guruBKHome(){
-        return view('home.index_guru');
+        $data['guru'] = User::where('id',auth()->guard('guru')->user()->id)->first();
+        return view('home.index_guru')->with($data);
     }
+
 }

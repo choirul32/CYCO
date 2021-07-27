@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Home\Orangtua;
 
 use App\Http\Controllers\Controller;
+use App\Models\OrangTua;
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -13,6 +15,7 @@ class HomeController extends Controller
     }
 
     public function orangtuaHome(){
-        return view('home.index_orangtua');
+        $data['ortu'] = OrangTua::where("id", Auth::user()->id)->first();
+        return view('home.index_orangtua')->with($data);
     }
 }

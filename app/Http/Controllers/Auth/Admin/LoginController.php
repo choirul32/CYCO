@@ -18,7 +18,11 @@ class LoginController extends Authenticatable
     }
 
     public function showLoginForm(){
-        return view('auth.admin.login');
+        if (Auth::guard('admin')->user() != null) {
+            return redirect('admin/home');
+        }else{
+            return view('auth.admin.login');
+        }
     }
 
     public function login(Request $request){

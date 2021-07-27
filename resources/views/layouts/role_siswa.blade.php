@@ -32,13 +32,13 @@
     </li>
     <li>
         <a href="{{ url('siswa/unggahan-siswa') }}" class=" waves-effect">
-            <div class="d-inline-block icons-sm mr-1"><i class="uim uim-window-maximize"></i></div>
+            <div class="d-inline-block icons-sm mr-1"><i class="uim uim-scenery"></i></div>
             <span>Unggahan Siswa</span>
         </a>
     </li>
     <li>
         <a href="{{ url('profil_pengembang') }}" class=" waves-effect">
-            <div class="d-inline-block icons-sm mr-1"><i class="uim uim-window-maximize"></i></div>
+            <div class="d-inline-block icons-sm mr-1"><i class="uim uim-circle"></i></div>
             <span>Profil Pengembang</span>
         </a>
     </li>

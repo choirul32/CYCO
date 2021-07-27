@@ -16,7 +16,11 @@ class LoginController extends Controller
     }
 
     public function showLoginForm(){
-        return view('auth.orangtua.login');
+        if (Auth::guard('orangtua')->user() != null) {
+            return redirect('orangtua/home');
+        }else{
+            return view('auth.orangtua.login');
+        }
     }
 
     protected function guard()

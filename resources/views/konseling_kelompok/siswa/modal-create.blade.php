@@ -38,6 +38,15 @@
                         <h5 class="font-size-14">Pilih Jam</h5>
                         <input name="jam" id="jam" type="time" class="form-control" required/>
                     </div>
+                    <div class="form-group mb-0">
+                        <label>Kelompok Siswa</label>
+                        <select class="selectize" multiple name="kelompok_siswa[]" id="kelompok_siswa">
+                            <option value="">Pilih Siswa...</option>
+                            @foreach ($siswa as $item)
+                                <option value="{{$item->id}}">{{$item->nama_lengkap ?? $item->username}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="form-group">
                         <h5 class="font-size-14">Ringkas Masalah</h5>
                         <div>
@@ -59,3 +68,5 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+

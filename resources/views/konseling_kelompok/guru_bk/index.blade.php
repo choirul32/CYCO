@@ -119,22 +119,30 @@
     <script>
         function detailKonseling(id){
             var host = "{{URL::to('/')}}";
+            var url_ = host + '/guru/api/edit/{id}/';
             $.ajax({
-                url: '/guru/konseling_kelompok/api/edit/'+ id,
+                url: '/guru/konseling_individu/api/edit/'+ id,
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
-                    $('#modalDetail').modal('show');
-                    document.getElementById("id_detail").value = data.id;
+                    $('#modalDetail').modal('show')
                     document.getElementsByTagName("p")[0].innerHTML= data.masalah;
                     document.getElementsByTagName("p")[1].innerHTML=data.harapan;
-                    document.getElementById("link").value = data.link ?? "";
+                    if (data.perantara = 'web') {
+                        $('#modalDetail').find('#link-input').hide();
+                        $('#modalDetail').find('#link-web-chat').show();
+                        document.getElementById("link-web-button").href = "/guru/chat/room/"+data.chat_room.slug;
+                    } else {
+                        $('#modalDetail').find('#link-input').show();
+                        $('#modalDetail').find('#link-web-chat').hide();
+                        document.getElementById("link").value = data.link ?? "Masih Kosong";
+                    }
                 },
-                error: function() {
-                    console.log("error");
+                    error: function() {
                 },
             });
         }
+
 
         function editJam(id){
             var host = "{{URL::to('/')}}";

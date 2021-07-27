@@ -61,9 +61,11 @@
                                     </div>
                                     <div class="form-group mb-0">
                                         <div>
-                                            <button type="button" onclick="submitConfirmation()" class="float-right btn btn-success waves-effect waves-light mr-1">
+                                            <button type="button" onclick="submitConfirmation()" class="float-right btn btn-primary waves-effect waves-light mr-1">
+                                                <i class="mdi mdi-content-save mr-1"></i>
                                                 Submit
                                             </button>
+
                                         </div>
                                     </div>
                                 </form>

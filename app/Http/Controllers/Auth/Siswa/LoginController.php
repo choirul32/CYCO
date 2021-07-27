@@ -20,7 +20,12 @@ class LoginController extends Controller
     protected $redirectTo = 'siswa/home';
 
     public function showLoginForm(){
-        return view('auth.siswa.login');
+        if (Auth::guard('siswa')->user() != null) {
+            return redirect('siswa/home');
+        }else{
+            return view('auth.siswa.login');
+        }
+
     }
 
     /**

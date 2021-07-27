@@ -16,6 +16,8 @@ class CreateTindakLanjutSiswaTable extends Migration
         Schema::create('tindak_lanjut_siswa', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('siswa_id');
+            $table->bigInteger('guru_bk_id')->nullable();
+            $table->bigInteger('guru_mapel_id');
             $table->text('masukan')->nullable();
             $table->text('tanggapan')->nullable();
             $table->text('keterangan')->nullable();

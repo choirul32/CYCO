@@ -205,8 +205,9 @@
                             <div class="card-body">
                                 <div class="form-group mb-0">
                                     <div>
-                                        <button type="submit" class="float-right btn btn-success waves-effect waves-light mr-1">
-                                            Lanjut
+                                        <button type="submit" class="float-right btn btn-primary waves-effect waves-light mr-1">
+                                            <i class="mdi mdi-content-save mr-1"></i>
+                                            Simpan
                                         </button>
                                     </div>
                                 </div>
@@ -226,7 +227,7 @@
 <style>
     .file-upload {
         background-color: #ffffff;
-        width: 600px;
+        width: auto;
         margin: 0 auto;
         padding: 20px;
     }

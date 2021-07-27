@@ -127,6 +127,12 @@ Route::group(['prefix' => 'guru', 'middleware' => ['auth:guru']], function () {
 
     Route::prefix('/tindak-lanjut-siswa')->group(function () {
         Route::get('/', 'TindakLanjutSiswa\ViewController@indexGuruBK');
+        Route::get('/create', 'TindakLanjutSiswa\ViewController@create');
+        Route::get('/edit/{id}', 'TindakLanjutSiswa\ViewController@edit');
+        Route::post('/save', 'TindakLanjutSiswa\CreateController@createTindakLanjut');
+        Route::post('/save-tanggapan/{id}', 'TindakLanjutSiswa\EditController@saveTanggapan');
+        Route::get('/api/edit-tanggapan/{id}', 'TindakLanjutSiswa\ReadController@getTanggapan');
+        Route::delete('/delete/{id}', 'TindakLanjutSiswa\DeleteController@delete');
     });
 
     Route::prefix('/profil')->group(function () {
