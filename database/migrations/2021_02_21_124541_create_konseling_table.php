@@ -17,7 +17,7 @@ class CreateKonselingTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('konselor_id')->unsigned();
             $table->bigInteger('siswa_id')->unsigned();
-            $table->bigInteger('room_id')->nullable();
+            $table->bigInteger('chat_room_id')->nullable();
             $table->json('kelompok')->nullable();
             $table->tinyInteger('jenis_konseling');
             $table->string('perantara');
@@ -29,6 +29,8 @@ class CreateKonselingTable extends Migration
             $table->text('harapan')->nullable();
             $table->integer('verified_by')->nullable();
             $table->date('verified_at')->nullable();
+            $table->tinyInteger('selesai')->default(0);
+            $table->text('penanganan')->nullable();
             $table->timestamps();
         });
     }

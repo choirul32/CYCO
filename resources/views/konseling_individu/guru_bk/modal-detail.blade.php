@@ -24,6 +24,13 @@
                             <a id="link-web-button" href="" class="btn btn-info">Masuk Chat Konseling</a>
                         </div>
                     </div>
+
+                    <div class="form-group" id="group-konseling-selesai">
+                        <h4 class="font-size-14"><strong>Klik Tombol Dibawah jika konseling telah selesai :</strong></h4>
+                        <div>
+                            <a href="" class="btn btn-success" id="button-konseling-selesai">Selesaikan Konseling</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success">Simpan</button>

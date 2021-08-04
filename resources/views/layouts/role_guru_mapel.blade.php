@@ -25,7 +25,7 @@
         </ul>
     </li> --}}
     <li>
-        <a href="{{ url('guru/konseling') }}" class=" waves-effect">
+        <a href="{{ url('guru/riwayat-konseling') }}" class=" waves-effect">
             <div class="d-inline-block icons-sm mr-1"><i class="uim uim-comment"></i></div>
             <span>Riwayat Konseling</span>
         </a>

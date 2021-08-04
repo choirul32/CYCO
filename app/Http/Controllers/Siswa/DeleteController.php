@@ -22,9 +22,11 @@ class DeleteController extends Controller
             $destinationPath = 'unggahan-siswa';
             File::delete($destinationPath.'/'.$data->file);
             $data->delete();
-            return redirect()->back()->with(['success' => 'Unggahan Siswa Berhasil Dihapus']);
+            $data['success'] = true;
+            return $data;
         } catch (\Throwable $th) {
-            return redirect()->back()->with(['success' => 'Unggahan Siswa Gagal Dihapus']);
+            $data['success'] = false;
+            return $data;
         }
     }
 }

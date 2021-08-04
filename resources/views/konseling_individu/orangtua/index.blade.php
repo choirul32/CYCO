@@ -57,10 +57,10 @@
                                                 @foreach ($konseling as $item)
                                                     <tr>
                                                         <td class="text-center" width="1%">{{$loop->iteration}}</td>
-                                                        <td>{{$item->created_at}}</td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <td>{{$item->created_at->isoFormat('dddd, D MMMM Y')}}</td>
+                                                        <td>{{$item->perantara}}</td>
+                                                        <td>{{$item->masalah}}</td>
+                                                        <td>{{$item->penanganan}}</td>
 
                                                         <td>
                                                             <div class="btn-group">

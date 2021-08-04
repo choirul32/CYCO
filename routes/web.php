@@ -53,17 +53,18 @@ Route::group(['prefix' => 'siswa', 'middleware' => ['auth:siswa', 'cors']], func
     });
     Route::prefix('/unggahan-siswa')->group(function(){
         Route::get('/', 'Siswa\ViewController@unggahanSiswa');
+        Route::delete('/delete/{id}', 'Siswa\DeleteController@deleteUnggahanSiswa');
         Route::get('/create', 'Siswa\ViewController@createUnggahanSiswa');
         Route::post('/create', 'Siswa\CreateController@createUnggahanSiswa');
         Route::get('/edit/{id}', 'Siswa\ViewController@editUnggahanSiswa');
         Route::post('/edit/{id}', 'Siswa\EditController@editUnggahanSiswa');
-        Route::delete('/delete/{id}', 'Siswa\DeleteController@deleteUnggahanSiswa');
     });
     // Route::get('/upload_berkas', function () {return view('data_master_user.siswa.upload_berkas');});
     Route::prefix('masukan_saran')->group(function () {
         Route::get('/', 'MasukanSaran\ViewController@index');
         Route::post('/create', 'MasukanSaran\CreateController@createKritikSaran');
     });
+
     Route::prefix('chat')->group(function () {
         Route::get('/', function(){
             return view('chat.index');
@@ -73,102 +74,6 @@ Route::group(['prefix' => 'siswa', 'middleware' => ['auth:siswa', 'cors']], func
         Route::get('/room/{slug}', 'ChatController@room');
         Route::get('/api/room/{id}', 'ChatController@allMessages');
         Route::post('/room/new-message', 'ChatController@newMessage');
-    });
-});
-
-Route::group(['prefix' => 'guru', 'middleware' => ['auth:guru']], function () {
-    Route::get('/', 'GuruBK\ViewController@index');
-    Route::get('/home', 'Home\GuruBK\HomeController@guruBKHome');
-    Route::get('/create', 'GuruBK\ViewController@form');
-    Route::post('/create', 'GuruBK\CreateController@storeGuruBK');
-    Route::delete('/delete/{id}', 'GuruBK\DeleteController@destroyGuruBK');
-    Route::get('/api', 'GuruBK\ReadController@getAPIGuruBK');
-    Route::prefix('/edit')->group(function () {
-        Route::get('/data_diri', 'GuruBK\EditController@dataDiri');
-        Route::get('/riwayat_pendidikan', 'GuruBK\EditController@riwayatPendidikan');
-        Route::get('/riwayat_pekerjaan', 'GuruBK\EditController@riwayatPekerjaan');
-        Route::get('/publikasi_artikel', 'GuruBK\EditController@publikasiArtikel');
-        Route::get('/pengalaman_penelitian', 'GuruBK\EditController@pengalamanPenelitian');
-        Route::post('/data_diri', 'GuruBK\EditController@dataDiriUpdate');
-        Route::post('/riwayat_pendidikan', 'GuruBK\EditController@riwayatPendidikanUpdate');
-        Route::post('/riwayat_pekerjaan', 'GuruBK\EditController@riwayatPekerjaanUpdate');
-        Route::post('/publikasi_artikel', 'GuruBK\EditController@publikasiArtikelUpdate');
-        Route::post('/pengalaman_penelitian', 'GuruBK\EditController@pengalamanPenelitianUpdate');
-    });
-    // Route::prefix('/konten')->group(function () {
-    //     Route::get('/', 'Konten\ViewController@index');
-    //     Route::get('/create', 'Konten\CreateController@form');
-    // });
-    Route::get('/data_siswa', 'Siswa\ViewController@index');
-    Route::get('/data_guru_bk', 'GuruBK\ViewController@index');
-    Route::get('/data_guru_mapel', 'GuruMapel\ViewController@index');
-    Route::get('/data_orang_tua', 'OrangTua\ViewController@index');
-    Route::prefix('/api')->group(function () {
-        Route::get('/data_siswa/{id}', 'Siswa\ReadController@getAPISiswaById');
-        Route::get('/data_guru_bk/{id}', 'GuruBK\ReadController@getAPIGuruBKById');
-        Route::get('/data_guru_mapel/{id}', 'GuruMapel\ReadController@getAPIGuruMapelById');
-        Route::get('/data_orang_tua/{id}', 'OrangTua\ReadController@getAPIOrangtuaById');
-    });
-
-    Route::prefix('/konseling_individu')->group(function () {
-        Route::get('/', 'KonselingIndividu\ViewController@indexGuruBK');
-        Route::get('/verifikasi/{id}', 'KonselingIndividu\EditController@verifikasiPermintaan');
-        Route::post('/save-link', 'KonselingIndividu\EditController@saveLink');
-        Route::post('/save-jam', 'KonselingIndividu\EditController@saveJam');
-        Route::get('/api/edit/{id}', 'KonselingIndividu\ReadController@getSingleKonseling');
-    });
-    Route::prefix('/konseling_kelompok')->group(function () {
-        Route::get('/', 'KonselingKelompok\ViewController@indexGuruBK');
-        Route::get('/verifikasi/{id}', 'KonselingIndividu\EditController@verifikasiPermintaan');
-        Route::post('/save-link', 'KonselingKelompok\EditController@saveLink');
-        Route::post('/save-jam', 'KonselingKelompok\EditController@saveJam');
-        Route::get('/api/edit/{id}', 'KonselingKelompok\ReadController@getSingleKonseling');
-    });
-
-    Route::prefix('/tindak-lanjut-siswa')->group(function () {
-        Route::get('/', 'TindakLanjutSiswa\ViewController@indexGuruBK');
-        Route::get('/create', 'TindakLanjutSiswa\ViewController@create');
-        Route::get('/edit/{id}', 'TindakLanjutSiswa\ViewController@edit');
-        Route::post('/save', 'TindakLanjutSiswa\CreateController@createTindakLanjut');
-        Route::post('/save-tanggapan/{id}', 'TindakLanjutSiswa\EditController@saveTanggapan');
-        Route::get('/api/edit-tanggapan/{id}', 'TindakLanjutSiswa\ReadController@getTanggapan');
-        Route::delete('/delete/{id}', 'TindakLanjutSiswa\DeleteController@delete');
-    });
-
-    Route::prefix('/profil')->group(function () {
-        Route::get('/data_diri', 'GuruBK\ViewController@dataDiri');
-        Route::get('/riwayat_pendidikan', 'GuruBK\ViewController@riwayatPendidikan');
-        Route::get('/riwayat_pekerjaan', 'GuruBK\ViewController@riwayatPekerjaan');
-        Route::get('/publikasi_artikel', 'GuruBK\ViewController@publikasiArtikel');
-        Route::get('/pengalaman_penelitian', 'GuruBK\ViewController@pengalamanPenelitian');
-    });
-
-    Route::get('kritik_dan_saran', 'MasukanSaran\ViewController@indexTable');
-    Route::get('/materi_bk', 'MateriBK\ViewController@index');
-    Route::get('/materi_bk/create', 'MateriBK\CreateController@createForm');
-    Route::post('/materi_bk/store', 'MateriBK\CreateController@store');
-    Route::delete('/materi_bk/delete/{id}', 'MateriBK\DeleteController@delete');
-    Route::get('/konten', 'Konten\ViewController@index');
-    Route::get('/konten/create', 'Konten\CreateController@createForm');
-    Route::post('/konten/store', 'Konten\CreateController@store');
-    Route::get('/pengumuman', 'Pengumuman\ViewController@index');
-    Route::get('/pengumuman/create', 'Pengumuman\CreateController@createForm');
-    Route::post('/pengumuman/store', 'Pengumuman\CreateController@store');
-    Route::prefix('kehadiran_dan_poin')->group(function () {
-        Route::get('/', 'KehadiranPoin\ViewController@indexTable');
-        Route::get('/poin/create', 'KehadiranPoin\ViewController@formPoin');
-        Route::get('/poin/edit/{id}', 'KehadiranPoin\EditController@formEditPoin');
-        Route::post('/poin/create', 'KehadiranPoin\CreateController@createNewPoin');
-        Route::post('/poin/edit', 'KehadiranPoin\EditController@editPoin');
-        Route::delete('/poin/delete/{id}', 'KehadiranPoin\DeleteController@deletePoin');
-        Route::get('/kehadiran/create', 'KehadiranPoin\ViewController@formKehadiran');
-        Route::get('/kehadiran/edit/{id}', 'KehadiranPoin\EditController@formEditKehadiran');
-        Route::post('/kehadiran/edit', 'KehadiranPoin\EditController@editKehadiran');
-        Route::delete('/kehadiran/delete/{id}', 'KehadiranPoin\DeleteController@deleteKehadiran');
-    });
-    Route::prefix('chat')->group(function () {
-        Route::get('/room/{slug}', 'ChatController@room');
-        Route::get('/api/room/{id}', 'ChatController@allMessages');
     });
 });
 
@@ -189,6 +94,9 @@ Route::group(['prefix' => 'orangtua', 'middleware' => ['auth:orangtua']], functi
     Route::prefix('masukan_saran')->group(function () {
         Route::get('/', 'MasukanSaran\ViewController@index');
         Route::post('/create', 'MasukanSaran\CreateController@createKritikSaran');
+    });
+    Route::prefix('/riwayat-konseling')->group(function () {
+        Route::get('/', 'KonselingIndividu\ViewController@riwayatKonseling');
     });
 });
 

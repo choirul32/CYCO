@@ -17,15 +17,27 @@ class ViewController extends Controller
         $data['guru_bk'] = Guru::where('role_id', 2)->get();
         return view('konseling_individu.siswa.index')->with($data);
     }
+
     public function indexGuruBK(){
         $data['konseling'] = Konseling::where('jenis_konseling', 0)->orderBy('verified_at', 'DESC')->get();
         return view('konseling_individu.guru_bk.index')->with($data);
     }
+
     public function indexOrangtua(){
         $data['konseling'] = Konseling::where('jenis_konseling', 0)
-        ->where('siswa_id', Auth::guard('orangtua')->user()->siswa_id)
+        ->where('siswa_id', Auth::guard('orangtua')->user()->siswa->id)
         ->get();
         $data['guru_bk'] = Guru::where('role_id', 2)->get();
         return view('konseling_individu.orangtua.index')->with($data);
+    }
+
+    public function riwayatKonseling(){
+        $data['konseling'] = Konseling::where('selesai', 1)->orderBy('verified_at', 'DESC')->get();
+        return view('konseling_individu.riwayat-konseling.index')->with($data);
+    }
+
+    public function formKonselingBerakhir($id){
+        $data['konseling'] = Konseling::where('id',$id)->first();
+        return view('konseling_individu.guru_bk.form-selesai-konseling')->with($data);
     }
 }

@@ -54,23 +54,23 @@
                                                     <table class="table mb-0">
                                                         <thead>
                                                             <tr>
-                                                                <th>No</th>
+                                                                <th class="text-center">No</th>
                                                                 <th>Nama</th>
                                                                 <th>Jenis Karya</th>
                                                                 <th>File</th>
                                                                 <th>Keterangan</th>
-                                                                <th>Aksi</th>
+                                                                <th class="text-center">Aksi</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             @foreach ($unggahan as $item)
                                                                 <tr>
-                                                                    <td>{{$loop->iteration}}</td>
+                                                                    <td class="text-center">{{$loop->iteration}}</td>
                                                                     <td>{{$item->nama}}</td>
                                                                     <td>{{$item->jenis}}</td>
                                                                     <td>{{$item->file}}</td>
                                                                     <td>{{$item->keterangan}}</td>
-                                                                    <td>
+                                                                    <td class="text-center">
                                                                         <div class="btn-group">
                                                                             <a class="btn btn-primary btn-sm waves-effect waves-light" href="{{ url('siswa/unggahan-siswa/edit/'.$item->id)}}" >Edit</a>
 
@@ -151,10 +151,6 @@
             },
         });
         }
-    </script>
-    <script src="{{url('Vertical/dist/assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
-    <script src="{{url('Vertical/dist/assets/js/pages/sweet-alerts.init.js')}}"></script>
-    <script type="text/javascript">
         function deleteConfirmation(id) {
             swal.fire({
                 title: "Hapus?",
@@ -189,5 +185,6 @@
             })
         }
     </script>
-
+    <script src="{{url('Vertical/dist/assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
+    <script src="{{url('Vertical/dist/assets/js/pages/sweet-alerts.init.js')}}"></script>
 @endpush

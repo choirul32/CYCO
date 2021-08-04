@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-md-8">
-                        <h4 class="page-title mb-1">Konseling Individu</h4>
+                        <h4 class="page-title mb-1">Riwayat Konseling</h4>
                         {{-- <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Tabel</a></li>
                         <li class="breadcrumb-item active">Table Siswa</li>
@@ -35,8 +35,8 @@
                                 <div class="row justify-content-center">
                                     <div class="col-lg-10">
                                         <div class="text-center mt-4">
-                                            <h4>Anda Belum Memiliki Permintaan Konseling Indvidu</h4>
-                                            <p class="text-muted">klik tombol "permintaan konseling" untuk melakukan permintaan konseling</p>
+                                            <h4>Sistem belum memiliki Konseling yang telah selesai</h4>
+                                            <p class="text-muted">Hubungi Guru BK untuk informasi lebih lanjut tentang konseling</p>
                                         </div>
                                     </div>
                                 </div>
@@ -45,50 +45,29 @@
                                     <div class="col-lg-12">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h4 class="header-title">Permintaan Konseling</h4>
+                                                <h4 class="header-title">Riwayat Konseling</h4>
 
                                                 <div class="table-responsive">
                                                     <table class="table mb-0">
                                                         <thead>
                                                             <tr>
-                                                                <th>No</th>
-                                                                <th>Konselor</th>
-                                                                <th>Siswa</th>
-                                                                <th>Permintaan Tanggal</th>
-                                                                <th>Permintaan Jam</th>
-                                                                <th>Media</th>
-                                                                <th>Status</th>
-                                                                <th>Aksi</th>
+                                                                <th class="text-center">No</th>
+                                                                <th class="text-center">Tanggal</th>
+                                                                <th>Bidang Layanan</th>
+                                                                <th>Ringkasan Masalah</th>
+                                                                <th>Alternatif Penanganna</th>
+                                                                <th class="text-center">Aksi</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             @foreach ($konseling as $item)
                                                                 <tr>
-                                                                    <td>{{$loop->iteration}}</td>
-                                                                    <td>{{$item->konselor->nama ?? '-'}}</td>
-                                                                    <td>{{$item->siswa->nama_lengkap ?? $item->siswa->username}}</td>
-                                                                    <td>{{ Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
-                                                                    <td>{{$item->jam_pengganti ?? $item->jam}}
-                                                                        @if (is_null($item->verified_at))
-                                                                            <button class="badge badge-pill badge-warning" onclick="editJam({{$item->id}})">Edit Jam</button>
-                                                                        @endif
-                                                                    </td>
+                                                                    <td class="text-center">{{$loop->iteration}}</td>
+                                                                    <td class="text-center">{{$item->tanggal}}, {{$item->jam_pengganti ?? $item->jam}}</td>
                                                                     <td>{{$item->perantara}}</td>
-                                                                    <td>
-                                                                        @if (is_null($item->verified_at))
-                                                                            <span class="badge badge-pill badge-danger">Belum Diverifikasi</span>
-                                                                        @else
-                                                                            <span class="badge badge-pill badge-success">Terverifikasi</span>
-                                                                        @endif
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="btn-group">
-                                                                            <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light" onclick="detailKonseling({{$item->id}})">Detail</button>
-                                                                            @if (is_null($item->verified_at))
-                                                                                <a href="{{ url('guru/konseling_individu/verifikasi', ['id' => $item->id]) }}" class="btn btn-warning btn-sm waves-effect waves-light">Verifikasi</a>
-                                                                            @endif
-                                                                        </div>
-                                                                    </td>
+                                                                    <td>{{$item->masalah}}</td>
+                                                                    <td>{{$item->penanganan}}</td>
+                                                                    <td class="text-center"></td>
                                                                 </tr>
                                                             @endforeach
                                                         </tbody>
@@ -125,12 +104,6 @@
                     $('#modalDetail').modal('show');
                     document.getElementsByTagName("p")[0].innerHTML= data.masalah;
                     document.getElementsByTagName("p")[1].innerHTML=data.harapan;
-                    $('#modalDetail').find('#group-konseling-selesai').hide();
-                    if (data.selesai != 1) {
-                        $('#modalDetail').find('#group-konseling-selesai').show();
-                        document.getElementById("button-konseling-selesai").href = "/guru/konseling_individu/form-konseling-selesai/"+data.id;
-                    }
-
                     if (data.perantara = 'web') {
                         $('#modalDetail').find('#link-input').hide();
                         $('#modalDetail').find('#link-web-chat').show();
@@ -148,22 +121,5 @@
             });
         }
 
-        function editJam(id){
-            var host = "{{URL::to('/')}}";
-            $.ajax({
-                url: '/guru/konseling_individu/api/edit/'+ id,
-                type: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    console.log(data);
-                    $('#modalEditJam').modal('show');
-                    document.getElementById("jam").value = data.jam_pengganti ? data.jam_pengganti : data.jam;
-                    document.getElementById("id_jam").value = data.id;
-                },
-                error: function() {
-                    console.log("error");
-                },
-            });
-        }
     </script>
 @endpush

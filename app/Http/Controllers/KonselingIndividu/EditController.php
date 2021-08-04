@@ -18,16 +18,28 @@ class EditController extends Controller
                 $chat_room = new ChatRoom;
                 $chat_room->slug = Str::random(40);
                 $chat_room->save();
+                $konseling->chat_room_id = $chat_room->id;
             }
             $now = date_create()->format('Y-m-d');
             $konseling->verified_at = $now;
             $konseling->verified_by = Auth::user()->id;
-            $konseling->chat_room_id = $chat_room->id;
 
             $konseling->save();
             return redirect()->back()->with(['success' => 'Konseling Berhasil Diverifikasi']);
         } catch (\Throwable $th) {
             return redirect()->back()->with(['success' => 'Konseling Gagal Diverifikasi']);
+        }
+    }
+
+    public function saveKonselingBerakhir(Request $request){
+        try {
+            $konseling = Konseling::find($request->id);
+            $konseling->penanganan = $request->alternatif_penanganan;
+            $konseling->selesai = 1;
+            $konseling->save();
+            return redirect('guru/konseling_individu')->with(['success' => 'Konseling Berhasil Ditandai Selesai']);
+        } catch (\Throwable $th) {
+            return redirect('guru/konseling_individu')->with(['success' => 'Konseling Gagal Ditandai Selesai']);
         }
     }
 
